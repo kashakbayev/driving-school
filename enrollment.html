@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Enrollment page for the Drive & Go school in Astana.">
+    <meta name="author" content="Aidos">
+    <title>Enrollment | Drive & Go</title>
+</head>
+<body>
+    <header>
+        <h1>Drive & Go Driving School</h1>
+
+        <nav aria-label="Main navigation">
+            <a href="index.html">Home</a>
+            <a href="colophon.html">Colophon</a>
+            <a href="courses.html">Courses</a>
+            <a href="coursedetail.html">Course Details</a>
+            <a href="instructors.html">Instructors</a>
+            <a href="reviews.html">Reviews</a>
+            <a href="schedule.html">Schedule</a>
+            <a href="enrollment.html">Enrollment</a>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>Visit the School</h2>
+
+            <address>
+                Drive & Go<br>
+                53 Kabanbay batyr Avenue<br>
+                Astana, Kazakhstan<br>
+                Monday-Friday: 9 AM - 5 PM<br>
+                Saturday: Closed<br>
+                Sunday: Closed
+            </address>
+
+            <h2>Office Hours</h2>
+            <dl>
+                <dt>Monday-Friday</dt>
+                <dd>9 AM - 5 PM</dd>
+
+                <dt>Saturday</dt>
+                <dd>Closed</dd>
+
+                <dt>Sunday</dt>
+                <dd>Closed</dd>
+            </dl>
+
+            <!-- why: real exterior photo helps new students recognize the school before visiting it -->
+            <figure>
+                <img
+                    src="images/entrance.png"
+                    alt=""
+                    width="600">
+                <figcaption>The driving school branch in Astana.</figcaption>
+            </figure>
+
+            <p>
+                For official information about getting a driver's license in Kazakhstan,
+                visit the
+                <a href="https://beta.egov.kz/situations/56/intro" target="_blank">Kazakhstan eGov driver's license page</a>.
+            </p>
+        </section>
+
+        <section>
+            <h2>Registration Form</h2>
+
+            <form method="post" action="#">
+                <!-- This practice form does not send data yet because no server is connected. -->
+
+                <fieldset>
+                    <legend>Student Information</legend>
+
+                    <p>
+                        <label for="full-name">Full name:</label><br>
+                        <input type="text" id="full-name" name="full-name"
+                               placeholder="Aidos Kashakbayev" required>
+                    </p>
+
+                    <p>
+                        <label for="email">Email:</label><br>
+                        <input type="email" id="email" name="email"
+                               placeholder="aidos@example.com" required>
+                    </p>
+
+                    <p>
+                        <label for="phone">Phone:</label><br>
+                        <input type="tel" id="phone" name="phone"
+                               placeholder="+7 7XX XXX XX XX" required>
+                    </p>
+
+                    <p>
+                        <label for="age">Age:</label><br>
+                        <input type="number" id="age" name="age"
+                               min="16" max="100" placeholder="18" required>
+                    </p>
+
+                    <p>
+                        <label for="start-date">Preferred start date:</label><br>
+                        <input type="date" id="start-date" name="start-date" required>
+                    </p>
+
+                    <p>Preferred transmission:</p>
+
+                    <input type="radio" id="automatic" name="transmission"
+                           value="automatic" required>
+                    <label for="automatic">Automatic</label>
+
+                    <input type="radio" id="manual" name="transmission"
+                           value="manual">
+                    <label for="manual">Manual</label>
+
+                    <p>
+                        <label for="category">License category:</label><br>
+                        <select id="category" name="category" required>
+                            <option value="">Choose a category</option>
+                            <option value="A">Category A</option>
+                            <option value="B">Category B</option>
+                            <option value="C">Category C</option>
+                            <option value="D">Category D</option>
+                        </select>
+                    </p>
+
+                    <p>
+                        <label for="notes">Questions or previous driving experience:</label><br>
+                        <textarea id="notes" name="notes" rows="5" cols="35"
+                                  placeholder="Write a short message here"></textarea>
+                    </p>
+
+                    <p>
+                        <input type="checkbox" id="agreement" name="agreement" required>
+                        <label for="agreement">
+                            I confirm that the information above is correct.
+                        </label>
+                    </p>
+
+                    <button type="submit">Submit Registration</button>
+                    <button type="reset">Reset Form</button>
+                </fieldset>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <address>
+            Drive &amp; Go<br>
+            Kazakhstan, Astana, Kabanbay batyr Avenue, 53, 010000<br>
+            Phone: <a href="tel:+77712270145">+7 771 227 01 45</a><br>
+            Email: <a href="mailto:info@drivengo.com">info@drivengo.com</a>
+        </address>
+        <p>&copy; 2026 Drive&amp;Go</p>
+    </footer>
+</body>
+</html>
