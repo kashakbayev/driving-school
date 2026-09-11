@@ -14,13 +14,13 @@
     <nav>
       <ul>
         <li><a href="index.html">Home</a></li>
-        <li><a href="colophon.html">Colophon</a></li>
         <li><a href="courses.html">Courses</a></li>
         <li><a href="coursedetail.html">Course Detail</a></li>
-        <li><a href="instructors.html">Instructors</a></li>
-        <li><a href="reviews.html">Reviews</a></li>
         <li><a href="schedule.html">Schedule</a></li>
         <li><a href="enrollment.html">Enrollment</a></li>
+        <li><a href="instructors.html">Instructors</a></li>
+        <li><a href="reviews.html">Reviews</a></li>
+        <li><a href="colophon.html">Colophon</a></li>
       </ul>
     </nav>
   </header>
@@ -70,7 +70,7 @@
     </aside>
 
     <figure>
-      <img src="" alt="Student practicing parallel parking during a Category B lesson">
+      <img src="images/category-b-detail.jpg" alt="Student practicing parallel parking during a Category B lesson">
       <figcaption>Practical lesson in a dual-control training car</figcaption>
     </figure>
 
@@ -95,27 +95,28 @@
 
     <h2 id="booking">Book a Trial Lesson</h2>
     <form action="#" method="post">
+      <!-- This trial lesson form is kept nonfunctional because server-side handling starts later in the course. -->
       <fieldset>
         <legend>Trial Lesson Booking</legend>
 
         <p>
           <label for="full-name">Full Name:</label><br>
-          <input type="text" id="full-name" name="full-name" required>
+          <input type="text" id="full-name" name="full-name" placeholder="Aigerim Bekova" required>
         </p>
 
         <p>
           <label for="email">Email:</label><br>
-          <input type="email" id="email" name="email" required>
+          <input type="email" id="email" name="email" placeholder="aigerim@example.com" required>
         </p>
 
         <p>
           <label for="phone">Phone:</label><br>
-          <input type="tel" id="phone" name="phone" required>
+          <input type="tel" id="phone" name="phone" placeholder="+7 700 000 00 00" required>
         </p>
 
         <p>
           <label for="age">Age:</label><br>
-          <input type="number" id="age" name="age" min="16" max="99" required>
+          <input type="number" id="age" name="age" min="16" max="99" placeholder="18" required>
         </p>
 
         <p>
@@ -125,8 +126,10 @@
 
         <fieldset>
           <legend>Preferred Transmission</legend>
-          <label><input type="radio" name="transmission" value="manual" checked> Manual</label>
-          <label><input type="radio" name="transmission" value="automatic"> Automatic</label>
+          <input type="radio" id="manual" name="transmission" value="manual" checked>
+          <label for="manual">Manual</label>
+          <input type="radio" id="automatic" name="transmission" value="automatic">
+          <label for="automatic">Automatic</label>
         </fieldset>
 
         <p>
@@ -141,11 +144,12 @@
 
         <p>
           <label for="comments">Additional Comments:</label><br>
-          <textarea id="comments" name="comments" rows="4"></textarea>
+          <textarea id="comments" name="comments" rows="4" placeholder="Tell us your preferred lesson time"></textarea>
         </p>
 
         <p>
-          <label><input type="checkbox" id="agree" name="agree" required> I agree to be contacted about my booking</label>
+          <input type="checkbox" id="agree" name="agree" required>
+          <label for="agree">I agree to be contacted about my booking</label>
         </p>
 
         <p>
