@@ -12,14 +12,16 @@
         <h1>Drive & Go Driving School</h1>
 
         <nav aria-label="Main navigation">
-            <a href="index.html">Home</a>
-            <a href="colophon.html">Colophon</a>
-            <a href="courses.html">Courses</a>
-            <a href="coursedetail.html">Course Details</a>
-            <a href="instructors.html">Instructors</a>
-            <a href="reviews.html">Reviews</a>
-            <a href="schedule.html">Schedule</a>
-            <a href="enrollment.html">Enrollment</a>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="courses.html">Courses</a></li>
+                <li><a href="coursedetail.html">Course Details</a></li>
+                <li><a href="schedule.html">Schedule</a></li>
+                <li><a href="enrollment.html">Enrollment</a></li>
+                <li><a href="instructors.html">Instructors</a></li>
+                <li><a href="reviews.html">Reviews</a></li>
+                <li><a href="colophon.html">Colophon</a></li>
+            </ul>
         </nav>
     </header>
 
@@ -51,15 +53,15 @@
             <!-- why: real exterior photo helps new students recognize the school before visiting it -->
             <figure>
                 <img
-                    src=""
-                    alt="">
+                    src="images/entrance.png"
+                    alt="Entrance to the Drive and Go branch in Astana">
                 <figcaption>The driving school branch in Astana.</figcaption>
             </figure>
 
             <p>
                 For official information about getting a driver's license in Kazakhstan,
                 visit the
-                <a href="https://beta.egov.kz/situations/56/intro" target="_blank">Kazakhstan eGov driver's license page</a>.
+                <a href="https://beta.egov.kz/situations/56/intro" target="_blank" rel="noopener noreferrer">Kazakhstan eGov driver's license page</a>.
             </p>
         </section>
 
@@ -75,25 +77,25 @@
                     <p>
                         <label for="full-name">Full name:</label><br>
                         <input type="text" id="full-name" name="full-name"
-                               required>
+                               placeholder="Aidos Kashakbayev" required>
                     </p>
 
                     <p>
                         <label for="email">Email:</label><br>
                         <input type="email" id="email" name="email"
-                               required>
+                               placeholder="aidos@example.com" required>
                     </p>
 
                     <p>
                         <label for="phone">Phone:</label><br>
                         <input type="tel" id="phone" name="phone"
-                               required>
+                               placeholder="+7 701 000 00 00" required>
                     </p>
 
                     <p>
                         <label for="age">Age:</label><br>
                         <input type="number" id="age" name="age"
-                               min="16" max="100" required>
+                               min="16" max="100" placeholder="18" required>
                     </p>
 
                     <p>
@@ -124,7 +126,8 @@
 
                     <p>
                         <label for="notes">Questions or previous driving experience:</label><br>
-                        <textarea id="notes" name="notes" rows="5" cols="35"></textarea>
+                        <textarea id="notes" name="notes" rows="5" cols="35"
+                                  placeholder="Tell us about your driving experience"></textarea>
                     </p>
 
                     <p>
