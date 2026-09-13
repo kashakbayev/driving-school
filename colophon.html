@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="How the Drive &amp; Go Driving School website was built, and credits for the three-person team.">
+  <meta name="author" content="Baygali">
+  <title>Colophon | Drive &amp; Go</title>
+</head>
+<body>
+
+  <header>
+    <p><strong>Drive &amp; Go</strong></p>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="colophon.html">Colophon</a></li>
+        <li><a href="Courses.html">Courses</a></li>
+        <li><a href="CourseDetail.html">Course Detail</a></li>
+        <li><a href="Instructors.html">Instructors</a></li>
+        <li><a href="Reviews.html">Reviews</a></li>
+        <li><a href="Schedule.html">Schedule</a></li>
+        <li><a href="Enrollment.html">Enrollment</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Colophon</h1>
+
+    
+    <p>
+      This site was built by a team of three students over one semester, starting
+      as plain HTML and later extended with CSS, Bootstrap, and JavaScript. This
+      page documents how it was made and who built what.
+    </p>
+
+    <h2>Build Notes</h2>
+
+    <section>
+      <h3>Baygali — Courses &amp; Course Detail</h3>
+      <p>
+        The course listing table was written first, then the detail page was built
+        around it. Here is the ordered-list snippet used for the enrollment steps:
+      </p>
+      <pre><code>&lt;ol start="2"&gt;
+  &lt;li&gt;Submit the application form&lt;/li&gt;
+  &lt;li&gt;Provide required documents&lt;/li&gt;
+&lt;/ol&gt;</code></pre>
+    </section>
+
+    <section>
+      <h3>Instructors &amp; Reviews</h3>
+      <p>
+        To keep the two pages visually consistent while editing, we repeatedly
+        saved and reloaded in the browser using <kbd>Ctrl</kbd> + <kbd>S</kbd>
+        followed by <kbd>F5</kbd>.
+      </p>
+    </section>  
+
+    <section>
+      <h3>Schedule &amp; Enrollment</h3>
+      <p>
+        Before submitting, every page was run through the W3C validator. A clean
+        result looked like this:
+      </p>
+      <p><samp>Document checking completed. No errors or warnings to show.</samp></p>
+    </section>
+
+    <h2>Credits</h2>
+    <table>
+      <caption>Team Credits</caption>
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Pages Built</th>
+          <th scope="col">Role</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Merei</td>
+          <td>Courses.html, CourseDetail.html</td>
+          <td>Course listing &amp; booking form</td>
+        </tr>
+        <tr>
+          <td>Baygali</td>
+          <td>Instructors.html, Reviews.html</td>
+          <td>Instructor bios &amp; feedback form</td>
+        </tr>
+        <tr>
+          <td>Aidos</td>
+          <td>Schedule.html, Enrollment.html</td>
+          <td>Timetable &amp; registration form</td>
+        </tr>
+      </tbody>
+    </table>
+  </main>
+
+  <footer>
+    <address>
+      Drive &amp; Go<br>
+      Kazakhstan, Astana, Kabanbay batyr Avenue, 53, 010000<br>
+      Phone: <a href="tel:+77712270145">+7 771 227 0145</a><br>
+      Email: <a href="mailto:info@drivengo.com">info@drivengo.com</a>
+    </address>
+    <p>&copy; 2026 Drive &amp;Go</p>
+  </footer>
+</body>
+</html>
