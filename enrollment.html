@@ -6,31 +6,32 @@
     <meta name="description" content="Enrollment page for Category B lessons at Prestige Driving School in Astana.">
     <meta name="author" content="Aidos">
     <title>Enrollment | Prestige Driving School</title>
+    <link rel="stylesheet" href="css/enrollment.css">
 </head>
 <body>
     <!-- The navigation is repeated so every page works as a static HTML page. -->
-    <header>
-        <p><strong><a href="index.html">Prestige Driving School</a></strong></p>
-        <nav aria-label="Main navigation">
+    <header class="site-header">
+        <p class="site-name"><strong><a href="index.html">Prestige Driving School</a></strong></p>
+        <nav class="main-navigation" aria-label="Main navigation">
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="courses.html">Courses</a></li>
                 <li><a href="coursedetail.html">Course Details</a></li>
                 <li><a href="schedule.html">Schedule</a></li>
-                <li><a href="enrollment.html">Enrollment</a></li>
+                <li><a class="active" href="enrollment.html">Enrollment</a></li>
                 <li><a href="instructors.html">Instructors</a></li>
                 <li><a href="reviews.html">Reviews</a></li>
             </ul>
         </nav>
     </header>
 
-    <main>
-        <h1>Category B Enrollment</h1>
+    <main class="enrollment-main">
+        <h1 class="page-title">Category B Enrollment</h1>
 
-        <section>
+        <section class="school-details">
             <h2>Visit the School</h2>
 
-            <address>
+            <address class="school-address">
                 Prestige Driving School<br>
                 <span lang="ru">Деловой дом Алма-Ата<br>
                 Амангельды Иманова улица, 19, 707F офис</span><br>
@@ -40,7 +41,7 @@
             </address>
 
             <h2>Office Hours</h2>
-            <dl>
+            <dl class="hours-list">
                 <dt>Monday-Saturday</dt>
                 <dd>10 AM - 9 PM (break from 1 PM to 2 PM)</dd>
 
@@ -49,20 +50,21 @@
             </dl>
 
             <!-- The office hours use a definition list because each day label is paired with one exact visiting status. -->
-            <p>
+            <p class="official-link">
                 For official information about getting a driver's license in Kazakhstan,
                 visit the
                 <a href="https://beta.egov.kz/situations/56/intro" target="_blank" rel="noopener noreferrer">Kazakhstan eGov driver's license page</a>.
             </p>
+            <img class="enrollment-image" src="images/practice.jpg" alt="Student practising driving with an instructor">
         </section>
 
-        <section>
+        <section class="form-section">
             <h2>Registration Form</h2>
 
-            <form method="post" action="#">
+            <form class="enrollment-form" method="post" action="#">
                 <!-- This practice form does not send data yet because no server is connected. -->
 
-                <fieldset>
+                <fieldset class="form-card">
                     <legend>Student Information</legend>
 
                     <p>
@@ -132,7 +134,7 @@
     </main>
 
     <!-- Contact details are written directly in HTML so they remain available on this page. -->
-    <footer>
+    <footer class="site-footer">
         <address>
             Prestige Driving School<br>
             <span lang="ru">Деловой дом Алма-Ата, Амангельды Иманова улица, 19, 707F офис</span><br>
