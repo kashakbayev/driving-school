@@ -6,17 +6,18 @@
     <meta name="description" content="Weekly Category B class schedule for Prestige Driving School in Astana.">
     <meta name="author" content="Aidos">
     <title>Prestige Weekly Class Schedule | Astana Driving School</title>
+    <link rel="stylesheet" href="css/schedule.css">
 </head>
 <body>
     <!-- The navigation is repeated so every page works as a static HTML page. -->
-    <header>
-        <p><strong><a href="index.html">Prestige Driving School</a></strong></p>
-        <nav aria-label="Main navigation">
+    <header class="site-header">
+        <p class="site-name"><strong><a href="index.html">Prestige Driving School</a></strong></p>
+        <nav class="main-navigation" aria-label="Main navigation">
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="courses.html">Courses</a></li>
                 <li><a href="coursedetail.html">Course Details</a></li>
-                <li><a href="schedule.html">Schedule</a></li>
+                <li><a class="active" href="schedule.html">Schedule</a></li>
                 <li><a href="enrollment.html">Enrollment</a></li>
                 <li><a href="instructors.html">Instructors</a></li>
                 <li><a href="reviews.html">Reviews</a></li>
@@ -24,12 +25,12 @@
         </nav>
     </header>
 
-    <main>
-        <section>
+    <main class="schedule-main">
+        <section class="schedule-overview">
             <h1>Weekly Class Schedule</h1>
 
             <!-- The weekly table comes first because students need appointment times before reading the extra notes. -->
-            <p>
+            <p class="schedule-intro">
                 Prestige offers <strong>flexible Category B driving lessons</strong> and
                 <em>online theory classes</em>. The school teaches the <b>Category B</b>
                 driving program and helps students follow the <i>Road Safety Education Program</i>.
@@ -38,12 +39,14 @@
                 CO<sub>2</sub> emissions during training.
             </p>
 
-            <p>
+            <p class="jump-links">
                 <a href="#weekday-classes">Jump to classes by weekday</a> &mdash;
                 <a href="#schedule-notes">Jump to schedule notes</a>
             </p>
 
-            <table>
+            <img class="schedule-image" src="images/theory.jpg" alt="Student attending an online driving theory lesson">
+
+            <table class="schedule-table">
                 <caption>Prestige weekly class timetable</caption>
                 <thead>
                     <tr>
@@ -93,16 +96,16 @@
                 </tbody>
             </table>
 
-            <p><small>Practical lesson times depend on student and instructor availability.</small></p>
+            <p class="availability-note"><small>Practical lesson times depend on student and instructor availability.</small></p>
 
         </section>
 
-        <hr>
+        <hr class="section-divider">
 
-        <section id="weekday-classes">
+        <section class="weekday-section" id="weekday-classes">
             <h2>Classes by Weekday</h2>
 
-            <ul>
+            <ul class="weekday-list">
                 <!-- Days are nested so repeated lesson details stay attached to each weekday. -->
                 <li>
                     Monday
@@ -139,13 +142,13 @@
             </ul>
 
     
-            <p>
+            <p class="office-hours">
                 Office hours: Monday to Saturday, 10:00 AM to 9:00 PM.<br>
                 Break: 1:00 PM to 2:00 PM. Sunday is a day off.
             </p>
         </section>
 
-        <section id="schedule-notes">
+        <section class="schedule-notes" id="schedule-notes">
             <h2>Schedule Notes</h2>
 
             <p>
@@ -153,7 +156,7 @@
                 Contact the school before visiting to confirm your lesson time.
             </p>
 
-            <p>
+            <p class="status-note">
                 Current status: Flexible scheduling available.
             </p>
 
@@ -167,7 +170,7 @@
     </main>
 
     <!-- Contact details are written directly in HTML so they remain available on this page. -->
-    <footer>
+    <footer class="site-footer">
         <address>
             Prestige Driving School<br>
             <span lang="ru">Деловой дом Алма-Ата, Амангельды Иманова улица, 19, 707F офис</span><br>

@@ -6,14 +6,15 @@
     <meta name="description" content="Welcome to Prestige, an Astana driving school offering Category B theory and practical driving lessons.">
     <meta name="author" content="Aidos">
     <title>Prestige Driving School | Category B Lessons in Astana</title>
+    <link rel="stylesheet" href="css/index.css">
 </head>
 <body>
     <!-- The navigation is repeated so every page works as a static HTML page. -->
-    <header>
-        <p><strong><a href="index.html">Prestige Driving School</a></strong></p>
-        <nav aria-label="Main navigation">
+    <header class="site-header">
+        <p class="site-name"><strong><a href="index.html">Prestige Driving School</a></strong></p>
+        <nav class="main-navigation" aria-label="Main navigation">
             <ul>
-                <li><a href="index.html">Home</a></li>
+                <li><a class="active" href="index.html">Home</a></li>
                 <li><a href="courses.html">Courses</a></li>
                 <li><a href="coursedetail.html">Course Details</a></li>
                 <li><a href="schedule.html">Schedule</a></li>
@@ -24,15 +25,17 @@
         </nav>
     </header>
 
-    <main>
-        <section>
+    <main class="home-main">
+        <section class="hero">
             <h1>Welcome to Prestige</h1>
 
-            <p>
+            <p class="hero-text">
                 Welcome to Prestige, an Astana driving school focused on helping new drivers become calm, careful, and confident on the road. We provide training for a Category B driving license. Students learn the rules of the road through theory lessons and then practice those ideas during real driving sessions with experienced instructors. We work on important skills such as observation, safe turns, lane changes, parking, speed control, and sharing the road with other drivers, cyclists, and pedestrians. Prestige also helps students understand the licensing process, from the learner’s permit to the final road test. Our instructors encourage questions and give practical feedback so students can improve one skill at a time. Whether you are starting your first driving course, returning after a break, or looking to become more comfortable behind the wheel, we want you to learn at a steady pace and build safe habits that will stay with you long after your test.
             </p>
 
-            <figure>
+            <img class="hero-image" src="images/driving-lesson.jpg" alt="Student taking a practical driving lesson with an instructor">
+
+            <figure class="quote-card">
                 <blockquote>
                     <p lang="en">
                         “Everything in life is somewhere else, and you get there in a car.”
@@ -42,14 +45,14 @@
             </figure>
 
             <!-- The short inline quote gives the page a student voice without adding another full testimonial section. -->
-            <p>
+            <p class="lesson-rule">
                 Our first lesson rule is <q>slow hands, calm eyes</q> because careful habits begin before the engine starts.
             </p>
         </section>
     </main>
 
     <!-- Contact details are written directly in HTML so they remain available on this page. -->
-    <footer>
+    <footer class="site-footer">
         <address>
             Prestige Driving School<br>
             <span lang="ru">Деловой дом Алма-Ата, Амангельды Иманова улица, 19, 707F офис</span><br>
