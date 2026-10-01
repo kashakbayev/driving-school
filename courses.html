@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Browse Category B driving courses offered by Prestige, including standard, intensive, and refresher training.">
   <meta name="author" content="Merey">
+  <!-- Bootstrap v5.3.8 (CDN); own stylesheet is linked after it so its rules win -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/courses.css">
   <title>Category B Courses | Prestige Driving School</title>
 </head>
 <body>
@@ -24,104 +27,136 @@
     </nav>
   </header>
 
-  <main>
-    <h1>Our Courses</h1>
+  <main class="bg-body-tertiary">
+    <!-- container-fluid: the dark title band should stretch edge to edge on every screen,
+         while the text inside stays aligned with the rest of the page through the inner .container -->
+    <div class="container-fluid bg-dark text-white py-5 mb-5">
+      <div class="container">
+        <!-- text-center on phones, left-aligned from md (tablet) up -->
+        <h1 class="display-4 fw-bold text-center text-md-start">Our Courses</h1>
 
-    <!-- The course table appears before the enrollment steps because students usually compare price and duration first. -->
-    <p>
-      Prestige offers <strong>three</strong> Category B training options designed for different
-      goals and schedules. Whether you are learning to drive for the <em>first time</em> or just
-      need a quick refresher, there is a course for you. <mark>New students save 10% this month.</mark>
-      <small>(Promotion valid for sign-ups completed online.)</small>
-    </p>
-
-    <table>
-      <caption>Available Courses</caption>
-      <thead>
-        <tr>
-          <th scope="col">Course</th>
-          <th scope="col">Duration</th>
-          <th scope="col">Price (KZT)</th>
-          <th scope="col">Hours</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th scope="row"><a href="coursedetail.html">Category B (Car)</a></th>
-          <td>6 weeks</td>
-          <td>145,000</td>
-          <td>56</td>
-        </tr>
-        <tr>
-          <th scope="row">Intensive Category B</th>
-          <td>3 weeks</td>
-          <td>165,000</td>
-          <td>56</td>
-        </tr>
-        <tr>
-          <th scope="row">Category B Refresher / Defensive Driving</th>
-          <td>1 week</td>
-          <td>45,000</td>
-          <td>10</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <p>
-      International students sometimes ask about pricing in other currencies &ndash; on request
-      we can provide an estimate in euros (roughly 220&euro; for the standard course).
-    </p>
-
-    <h2>How to Enroll</h2>
-    <p>Already spoken with our office by phone? Continue from where you left off:</p>
-
-    <ol start="2">
-      <li>Submit the application form (in person or online)</li>
-      <li>Provide required documents: ID and medical certificate</li>
-      <li>Pay the registration fee</li>
-      <li>Attend the orientation session</li>
-      <li>Begin theory classes</li>
-    </ol>
-
-    <h2>What Each Course Covers</h2>
-    <ul>
-      <li>Theory
-        <ul>
-          <li>Traffic rules</li>
-          <li>Road signs</li>
-          <li>First aid basics</li>
-        </ul>
-      </li>
-      <li>Practical
-        <ul>
-          <li>Vehicle control</li>
-          <li>Parking</li>
-          <li>City driving</li>
-        </ul>
-      </li>
-    </ul>
-
-    <hr>
-
-    <p>
-      Every course follows the standards published by the official traffic authority &rarr; see
-      the current traffic code here:
-      <a href="https://www.gov.kz" target="_blank" rel="noopener noreferrer">Official Government Portal</a>.
-    </p>
-
-    <!-- A generic wrapper groups this short pricing note because it is not a standalone article, section, or aside. -->
-    <div>
-      <p>
-        <b>Note:</b> class sizes are limited to <i>8 students</i> per group.<br>
-        Half-price seats (<sup>1</sup>&frasl;<sub>2</sub> off) are occasionally available for
-        siblings enrolling together &ndash; ask our staff for details.
-      </p>
+        <!-- The course table appears before the enrollment steps because students usually compare price and duration first. -->
+        <p class="lead mb-0 text-center text-md-start">
+          Prestige offers <strong>three</strong> Category B training options designed for different
+          goals and schedules. Whether you are learning to drive for the <em>first time</em> or just
+          need a quick refresher, there is a course for you. <mark class="bg-warning-subtle">New students save 10% this month.</mark>
+          <small class="text-white-50">(Promotion valid for sign-ups completed online.)</small>
+        </p>
+      </div>
     </div>
 
-    <p>
-      Questions before you choose a course? Email us at
-      <a href="mailto:info@prestige-auto.com">info@prestige-auto.com</a>.
-    </p>
+    <!-- container: the main content keeps a fixed, readable width on wide screens -->
+    <div class="container pb-5">
+
+      <!-- Bootstrap component: Tables (https://getbootstrap.com/docs/5.3/content/tables/).
+           Changed: own course data instead of the sample rows, caption moved to the top,
+           dark header (table-dark), hover rows, wrapped in .table-responsive so the table
+           scrolls inside itself on phones instead of making the whole page overflow. -->
+      <div class="table-responsive shadow-sm rounded-3 mb-4">
+        <table class="table table-hover align-middle caption-top mb-0">
+          <caption class="fs-5 fw-bold text-dark px-3">Available Courses</caption>
+          <thead class="table-dark">
+            <tr>
+              <th scope="col">Course</th>
+              <th scope="col">Duration</th>
+              <th scope="col">Price (KZT)</th>
+              <!-- Hours column is hidden on phones and shown from md (tablet) up -->
+              <th scope="col" class="d-none d-md-table-cell">Hours</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row"><a href="coursedetail.html" class="btn btn-warning btn-sm">Category B (Car)</a></th>
+              <td>6 weeks</td>
+              <td class="fw-bold">145,000</td>
+              <td class="d-none d-md-table-cell">56</td>
+            </tr>
+            <tr>
+              <th scope="row">Intensive Category B</th>
+              <td>3 weeks</td>
+              <td class="fw-bold">165,000</td>
+              <td class="d-none d-md-table-cell">56</td>
+            </tr>
+            <tr>
+              <th scope="row">Category B Refresher / Defensive Driving</th>
+              <td>1 week</td>
+              <td class="fw-bold">45,000</td>
+              <td class="d-none d-md-table-cell">10</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Secondary note: hidden on phones to keep the page short, visible from sm up -->
+      <p class="small text-body-secondary d-none d-sm-block">
+        International students sometimes ask about pricing in other currencies &ndash; on request
+        we can provide an estimate in euros (roughly 220&euro; for the standard course).
+      </p>
+
+      <div class="row g-4 mt-2">
+        <!-- Responsive block: one column on phones/tablets, two columns from lg (desktop) up -->
+        <div class="col-12 col-lg-6">
+          <h2 class="h3 fw-bold border-start border-warning border-4 ps-3 mb-3">How to Enroll</h2>
+          <p class="text-body-secondary">Already spoken with our office by phone? Continue from where you left off:</p>
+
+          <ol start="2" class="list-group list-group-numbered shadow-sm">
+            <li class="list-group-item">Submit the application form (in person or online)</li>
+            <li class="list-group-item">Provide required documents: ID and medical certificate</li>
+            <li class="list-group-item">Pay the registration fee</li>
+            <li class="list-group-item">Attend the orientation session</li>
+            <li class="list-group-item">Begin theory classes</li>
+          </ol>
+        </div>
+
+        <div class="col-12 col-lg-6">
+          <h2 class="h3 fw-bold border-start border-warning border-4 ps-3 mb-3">What Each Course Covers</h2>
+          <!-- Nested grid: this row sits inside the column above.
+               Responsive block: cards stack on phones and sit side by side from sm up -->
+          <ul class="row g-3 list-unstyled mb-0">
+            <li class="col-12 col-sm-6">
+              <div class="h-100 p-4 bg-white border-start border-warning border-4 rounded-3 shadow-sm fw-bold fs-5">Theory
+                <ul class="list-unstyled fw-normal fs-6 text-body-secondary mt-2 mb-0">
+                  <li>Traffic rules</li>
+                  <li>Road signs</li>
+                  <li>First aid basics</li>
+                </ul>
+              </div>
+            </li>
+            <li class="col-12 col-sm-6">
+              <div class="h-100 p-4 bg-white border-start border-warning border-4 rounded-3 shadow-sm fw-bold fs-5">Practical
+                <ul class="list-unstyled fw-normal fs-6 text-body-secondary mt-2 mb-0">
+                  <li>Vehicle control</li>
+                  <li>Parking</li>
+                  <li>City driving</li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <hr class="my-5">
+
+      <p>
+        Every course follows the standards published by the official traffic authority &rarr; see
+        the current traffic code here:
+        <a href="https://www.gov.kz" target="_blank" rel="noopener noreferrer" class="btn btn-outline-dark btn-sm">Official Government Portal</a>.
+      </p>
+
+      <!-- A generic wrapper groups this short pricing note because it is not a standalone article, section, or aside. -->
+      <div class="p-4 my-4 bg-white border-start border-warning border-4 rounded-3 shadow-sm">
+        <p class="mb-0">
+          <b>Note:</b> class sizes are limited to <i>8 students</i> per group.<br>
+          Half-price seats (<sup>1</sup>&frasl;<sub>2</sub> off) are occasionally available for
+          siblings enrolling together &ndash; ask our staff for details.
+        </p>
+      </div>
+
+      <p class="d-flex flex-column flex-md-row align-items-md-center gap-2 p-3 bg-dark text-white rounded-3 mb-0">
+        Questions before you choose a course? Email us at
+        <a href="mailto:info@prestige-auto.com" class="btn btn-warning">info@prestige-auto.com</a>
+      </p>
+    </div>
   </main>
 
   <!-- Contact details are written directly in HTML so they remain available on this page. -->
@@ -140,5 +175,7 @@
     <p>&copy; 2026 Prestige Driving School</p>
   </footer>
 
+  <!-- Bootstrap v5.3.8 JS bundle (CDN) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>
 </html>

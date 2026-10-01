@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Full details of the Category B driving course at Prestige Driving School, including curriculum, requirements, and a trial lesson booking form.">
   <meta name="author" content="Merey">
+  <!-- Bootstrap v5.3.8 (CDN); own stylesheet is linked after it so its rules win -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/courseDetail.css">
   <title>Category B Course Detail | Prestige Driving School</title>
 </head>
 <body>
@@ -24,133 +27,167 @@
     </nav>
   </header>
 
-  <main>
-    <h1>Course Detail: Category B (Car)</h1>
+  <main class="bg-body-tertiary">
+    <!-- container (not fluid): long text and a form are easier to read at a limited width -->
+    <div class="container py-5">
+      <h1 class="display-5 fw-bold border-start border-warning border-5 ps-3 mb-4">Course Detail: Category B (Car)</h1>
 
-    <p>
-      Our most popular course, Category B prepares you for the standard passenger-car
-      <abbr title="Republic of Kazakhstan">RK</abbr> driving license. Jump straight to
-      <a href="#requirements">requirements</a> or to the
-      <a href="#booking">booking form</a> if you already know this is the course for you.
-    </p>
+      <p class="lead text-body-secondary mb-4">
+        Our most popular course, Category B prepares you for the standard passenger-car
+        <abbr title="Republic of Kazakhstan">RK</abbr> driving license. Jump straight to
+        <a href="#requirements" class="link-warning link-offset-2">requirements</a> or to the
+        <a href="#booking" class="link-warning link-offset-2">booking form</a> if you already know this is the course for you.
+      </p>
 
-    <article>
-      <section id="curriculum">
-        <h2>Curriculum</h2>
-        <p>
-          The course combines classroom theory with hands-on practice in a dual-control
-          training car. All lessons focus on the skills needed for a
-          <abbr title="Category B passenger-car license">Category B</abbr> driving license.
-        </p>
-        <ul>
-          <li>Traffic law and road signage</li>
-          <li>Vehicle mechanics basics</li>
-          <li>First aid</li>
-          <li>Practical driving: city, highway, parking</li>
-        </ul>
-      </section>
+      <!-- Responsive block: content and FAQ stack on phones/tablets, 8 + 4 columns from lg (desktop) up -->
+      <div class="row g-4">
+        <article class="col-12 col-lg-8">
+          <!-- Nested grid: a row inside the article column; the two sections sit side by side from md up -->
+          <div class="row g-4">
+            <section id="curriculum" class="col-12 col-md-7">
+              <div class="h-100 p-4 bg-white border-bottom border-warning border-4 rounded-3 shadow-sm">
+                <h2 class="h4 fw-bold">Curriculum</h2>
+                <p class="text-body-secondary">
+                  The course combines classroom theory with hands-on practice in a dual-control
+                  training car. All lessons focus on the skills needed for a
+                  <abbr title="Category B passenger-car license">Category B</abbr> driving license.
+                </p>
+                <ul class="mb-0">
+                  <li>Traffic law and road signage</li>
+                  <li>Vehicle mechanics basics</li>
+                  <li>First aid</li>
+                  <li>Practical driving: city, highway, parking</li>
+                </ul>
+              </div>
+            </section>
 
-      <section id="requirements">
-        <h2>Requirements</h2>
-        <ul>
-          <li>Minimum age: 17 (license issued at 18)</li>
-          <li>Valid medical certificate</li>
-          <li>Two passport-style photos</li>
-        </ul>
-      </section>
-    </article>
+            <section id="requirements" class="col-12 col-md-5">
+              <div class="h-100 p-4 bg-white border-bottom border-warning border-4 rounded-3 shadow-sm">
+                <h2 class="h4 fw-bold">Requirements</h2>
+                <ul class="mb-0">
+                  <li>Minimum age: 17 (license issued at 18)</li>
+                  <li>Valid medical certificate</li>
+                  <li>Two passport-style photos</li>
+                </ul>
+              </div>
+            </section>
+          </div>
+        </article>
 
-    <aside>
-      <h2>Quick Tips &amp; FAQ</h2>
-      <p><strong>Q: Can I switch from manual to automatic mid-course?</strong><br>
-      A: Yes, with instructor approval before week 3.</p>
-      <p><strong>Q: What happens if I fail the final test?</strong><br>
-      A: You get two free retake lessons before the next exam attempt.</p>
-    </aside>
+        <aside class="col-12 col-lg-4">
+          <!-- Bootstrap component: Card (https://getbootstrap.com/docs/5.3/components/card/).
+               Changed: dark colour scheme (text-bg-dark), card-title in the brand gold,
+               no image or button, and it sticks to the top on desktop (sticky-lg-top). -->
+          <div class="card text-bg-dark shadow sticky-lg-top">
+            <div class="card-body p-4">
+              <h2 class="card-title h5 fw-bold text-warning border-bottom border-warning pb-2 mb-3">Quick Tips &amp; FAQ</h2>
+              <p class="card-text small"><strong>Q: Can I switch from manual to automatic mid-course?</strong><br>
+              A: Yes, with instructor approval before week 3.</p>
+              <p class="card-text small mb-0"><strong>Q: What happens if I fail the final test?</strong><br>
+              A: You get two free retake lessons before the next exam attempt.</p>
+            </div>
+          </div>
+        </aside>
+      </div>
 
-    <dl>
-      <dt>Duration</dt>
-      <dd>6 weeks (56 academic hours)</dd>
-      <dt>Price</dt>
-      <dd>145,000 KZT</dd>
-      <dt>Prerequisites</dt>
-      <dd>Minimum age 17, valid medical certificate</dd>
-    </dl>
+      <!-- Responsive block: the three facts stack on phones and line up in a row from md up -->
+      <dl class="d-flex flex-column flex-md-row gap-3 my-5">
+        <div class="flex-fill p-3 bg-white border rounded-3 shadow-sm">
+          <dt class="small text-uppercase text-body-secondary">Duration</dt>
+          <dd class="fs-5 fw-bold mb-0">6 weeks (56 academic hours)</dd>
+        </div>
+        <div class="flex-fill p-3 bg-white border rounded-3 shadow-sm">
+          <dt class="small text-uppercase text-body-secondary">Price</dt>
+          <dd class="fs-5 fw-bold mb-0">145,000 KZT</dd>
+        </div>
+        <div class="flex-fill p-3 bg-white border rounded-3 shadow-sm">
+          <dt class="small text-uppercase text-body-secondary">Prerequisites</dt>
+          <dd class="fs-5 fw-bold mb-0">Minimum age 17, valid medical certificate</dd>
+        </div>
+      </dl>
 
-    <hr>
+      <hr class="my-4">
 
-    <p>
-      Call us with any questions before booking: <a href="tel:+77058444848">+7 (705) 844 4848</a>.
-      Students who complete this course rarely need the
-      <!-- span is used here only to mark up a short inline phrase for a later CSS
-           highlight; no semantic inline tag (abbr/cite/etc.) applies to it -->
-      <span>optional evening refresher</span> add-on.
-    </p>
+      <p>
+        Call us with any questions before booking: <a href="tel:+77058444848" class="link-warning text-nowrap">+7 (705) 844 4848</a>.
+        Students who complete this course rarely need the
+        <!-- span is used here only to mark up a short inline phrase for a later CSS
+             highlight; no semantic inline tag (abbr/cite/etc.) applies to it -->
+        <span class="bg-warning-subtle text-warning-emphasis fw-bold px-1 rounded">optional evening refresher</span> add-on.
+      </p>
 
-    <h2 id="booking">Book a Trial Lesson</h2>
-    <form action="#" method="post">
-      <!-- This trial lesson form is kept nonfunctional because server-side handling starts later in the course. -->
-      <fieldset>
-        <legend>Trial Lesson Booking</legend>
+      <h2 id="booking" class="h3 fw-bold border-start border-warning border-4 ps-3 mt-5 mb-3">Book a Trial Lesson</h2>
+      <form action="#" method="post">
+        <!-- This trial lesson form is kept nonfunctional because server-side handling starts later in the course. -->
+        <fieldset class="p-4 bg-white border rounded-3 shadow-sm">
+          <legend class="fs-5 fw-bold">Trial Lesson Booking</legend>
 
-        <p>
-          <label for="full-name">Full Name:</label><br>
-          <input type="text" id="full-name" name="full-name" placeholder="Aigerim Bekova" required>
-        </p>
+          <!-- Responsive block: form fields in one column on phones, two columns from md up -->
+          <div class="row g-3">
+            <p class="col-12 col-md-6 mb-0">
+              <label for="full-name" class="form-label">Full Name:</label><br>
+              <input type="text" id="full-name" name="full-name" placeholder="Aigerim Bekova" required class="form-control">
+            </p>
 
-        <p>
-          <label for="email">Email:</label><br>
-          <input type="email" id="email" name="email" placeholder="aigerim@example.com" required>
-        </p>
+            <p class="col-12 col-md-6 mb-0">
+              <label for="email" class="form-label">Email:</label><br>
+              <input type="email" id="email" name="email" placeholder="aigerim@example.com" required class="form-control">
+            </p>
 
-        <p>
-          <label for="phone">Phone:</label><br>
-          <input type="tel" id="phone" name="phone" placeholder="+7 700 000 00 00" required>
-        </p>
+            <p class="col-12 col-md-6 mb-0">
+              <label for="phone" class="form-label">Phone:</label><br>
+              <input type="tel" id="phone" name="phone" placeholder="+7 700 000 00 00" required class="form-control">
+            </p>
 
-        <p>
-          <label for="age">Age:</label><br>
-          <input type="number" id="age" name="age" min="16" max="99" placeholder="18" required>
-        </p>
+            <p class="col-12 col-md-6 mb-0">
+              <label for="age" class="form-label">Age:</label><br>
+              <input type="number" id="age" name="age" min="16" max="99" placeholder="18" required class="form-control">
+            </p>
 
-        <p>
-          <label for="preferred-date">Preferred Lesson Date:</label><br>
-          <input type="date" id="preferred-date" name="preferred-date" required>
-        </p>
+            <p class="col-12 col-md-6 mb-0">
+              <label for="preferred-date" class="form-label">Preferred Lesson Date:</label><br>
+              <input type="date" id="preferred-date" name="preferred-date" required class="form-control">
+            </p>
 
-        <fieldset>
-          <legend>Preferred Transmission</legend>
-          <input type="radio" id="manual" name="transmission" value="manual" checked>
-          <label for="manual">Manual</label>
-          <input type="radio" id="automatic" name="transmission" value="automatic">
-          <label for="automatic">Automatic</label>
+            <!-- Radio buttons shown as a toggle group (btn-check + btn-outline-dark) -->
+            <fieldset class="col-12 col-md-6">
+              <legend class="form-label fs-6 mb-2">Preferred Transmission</legend>
+              <input type="radio" id="manual" name="transmission" value="manual" checked class="btn-check">
+              <label for="manual" class="btn btn-outline-dark">Manual</label>
+              <input type="radio" id="automatic" name="transmission" value="automatic" class="btn-check">
+              <label for="automatic" class="btn btn-outline-dark">Automatic</label>
+            </fieldset>
+
+            <p class="col-12 mb-0">
+              <label for="course-select" class="form-label">Course of Interest:</label><br>
+              <select id="course-select" name="course-select" class="form-select">
+                <option value="category-b">Category B (Car)</option>
+                <option value="intensive">Intensive Category B</option>
+                <option value="refresher">Category B Refresher / Defensive Driving</option>
+              </select>
+            </p>
+
+            <p class="col-12 mb-0">
+              <label for="comments" class="form-label">Additional Comments:</label><br>
+              <textarea id="comments" name="comments" rows="4" placeholder="Tell us your preferred lesson time" class="form-control"></textarea>
+            </p>
+
+            <div class="col-12">
+              <p class="form-check mb-0">
+                <input type="checkbox" id="agree" name="agree" required class="form-check-input">
+                <label for="agree" class="form-check-label">I agree to be contacted about my booking</label>
+              </p>
+            </div>
+
+            <!-- Buttons: stacked full width on phones (d-grid), in one line from sm up (d-sm-flex) -->
+            <p class="col-12 mb-0 d-grid d-sm-flex gap-2">
+              <button type="submit" class="btn btn-warning btn-lg fw-bold">Submit Booking</button>
+              <button type="reset" class="btn btn-outline-secondary btn-lg">Reset</button>
+            </p>
+          </div>
         </fieldset>
-
-        <p>
-          <label for="course-select">Course of Interest:</label><br>
-          <select id="course-select" name="course-select">
-            <option value="category-b">Category B (Car)</option>
-            <option value="intensive">Intensive Category B</option>
-            <option value="refresher">Category B Refresher / Defensive Driving</option>
-          </select>
-        </p>
-
-        <p>
-          <label for="comments">Additional Comments:</label><br>
-          <textarea id="comments" name="comments" rows="4" placeholder="Tell us your preferred lesson time"></textarea>
-        </p>
-
-        <p>
-          <input type="checkbox" id="agree" name="agree" required>
-          <label for="agree">I agree to be contacted about my booking</label>
-        </p>
-
-        <p>
-          <button type="submit">Submit Booking</button>
-          <button type="reset">Reset</button>
-        </p>
-      </fieldset>
-    </form>
+      </form>
+    </div>
   </main>
 
   <!-- Contact details are written directly in HTML so they remain available on this page. -->
@@ -169,5 +206,7 @@
     <p>&copy; 2026 Prestige Driving School</p>
   </footer>
 
+  <!-- Bootstrap v5.3.8 JS bundle (CDN) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>
 </html>
