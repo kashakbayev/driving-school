@@ -9,6 +9,9 @@
 body {
     color: #263746;
     font-family: Arial, Helvetica, sans-serif;
+    background:
+        radial-gradient(circle at 8% 8%, rgba(244, 123, 32, 0.09), transparent 26rem),
+        #f4f7fa !important;
 }
 
 .bg-brand {
@@ -49,13 +52,115 @@ body {
     letter-spacing: 0.12em;
 }
 
+.hero-panel {
+    background: linear-gradient(135deg, #fff 0%, #fff 62%, #e9f1f8 100%);
+}
+
+.hero-panel h1 {
+    color: var(--prestige-navy);
+    letter-spacing: -0.055em;
+}
+
+.hero-panel h1 span {
+    color: var(--prestige-blue);
+}
+
 .hero-image {
     height: clamp(18rem, 45vw, 31rem);
     object-fit: cover;
 }
 
+.hero-visual::before {
+    position: absolute;
+    inset: -0.8rem 1.5rem 1.5rem -0.8rem;
+    z-index: 0;
+    border-radius: 1.25rem;
+    background: var(--prestige-orange);
+    content: "";
+}
+
+.hero-visual img,
+.hero-message {
+    position: relative;
+    z-index: 1;
+}
+
+.hero-message {
+    width: min(18rem, 80%);
+    margin: -3.5rem 0 0 -1.5rem;
+}
+
+.trust-item {
+    padding-left: 0.75rem;
+    border-left: 0.2rem solid var(--prestige-orange);
+}
+
+.trust-item strong,
+.trust-item small {
+    display: block;
+}
+
+.trust-item small {
+    color: #687888;
+}
+
 .benefit-card {
-    border-top: 0.3rem solid var(--prestige-orange) !important;
+    transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.benefit-card:hover {
+    transform: translateY(-0.35rem);
+    box-shadow: 0 1rem 2.5rem rgba(7, 26, 45, 0.15) !important;
+}
+
+.selling-card-image {
+    height: 12.5rem;
+    object-fit: cover;
+}
+
+.step-label {
+    color: #b64705;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.link-arrow {
+    color: var(--prestige-blue);
+    text-underline-offset: 0.3rem;
+}
+
+.journey-section {
+    background: linear-gradient(135deg, var(--prestige-navy), #123f66);
+}
+
+.eyebrow-light {
+    color: #ffb578;
+}
+
+.journey-step {
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.journey-step span {
+    display: grid;
+    width: 2.3rem;
+    height: 2.3rem;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--prestige-orange);
+    font-weight: 800;
+}
+
+.journey-step small {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.cta-panel {
+    background: linear-gradient(135deg, #f47b20, #ff9b4f);
+    color: #1d2d3b;
 }
 
 .btn-primary {
@@ -94,5 +199,14 @@ body {
 
     .main-navigation .nav-link {
         padding-left: 0.75rem;
+    }
+
+    .hero-message {
+        width: calc(100% - 2rem);
+        margin: -2rem auto 0;
+    }
+
+    .hero-visual::before {
+        inset: -0.55rem 0.75rem 1rem -0.55rem;
     }
 }
