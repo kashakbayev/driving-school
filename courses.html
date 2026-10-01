@@ -7,27 +7,35 @@
   <meta name="author" content="Merey">
   <!-- Bootstrap v5.3.8 (CDN); own stylesheet is linked after it so its rules win -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/index.css">
   <link rel="stylesheet" href="css/courses.css">
   <title>Category B Courses | Prestige Driving School</title>
 </head>
-<body>
-  <!-- The navigation is repeated so every page works as a static HTML page. -->
-  <header>
-    <p><strong><a href="index.html">Prestige Driving School</a></strong></p>
-    <nav aria-label="Main navigation">
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="courses.html">Courses</a></li>
-        <li><a href="coursedetail.html">Course Details</a></li>
-        <li><a href="schedule.html">Schedule</a></li>
-        <li><a href="enrollment.html">Enrollment</a></li>
-        <li><a href="instructors.html">Instructors</a></li>
-        <li><a href="reviews.html">Reviews</a></li>
-      </ul>
-    </nav>
+<body class="bg-body-tertiary d-flex flex-column min-vh-100">
+  <header class="navbar navbar-expand-md navbar-dark bg-brand shadow-sm">
+    <!-- container-fluid lets the navigation use the full screen width. -->
+    <div class="container-fluid px-3 px-lg-5">
+      <a class="navbar-brand fw-bold" href="index.html"><span class="brand-mark"></span>Prestige Driving School</a>
+      <input class="visually-hidden nav-toggle" type="checkbox" id="courses-nav-toggle">
+      <label class="navbar-toggler d-md-none" for="courses-nav-toggle">
+        <span class="navbar-toggler-icon"></span>
+        <span class="visually-hidden">Toggle navigation</span>
+      </label>
+      <nav class="navbar-collapse main-navigation" aria-label="Main navigation">
+        <ul class="navbar-nav ms-md-auto gap-md-1">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link active" aria-current="page" href="courses.html">Courses</a></li>
+          <li class="nav-item"><a class="nav-link" href="courseDetail.html">Course Details</a></li>
+          <li class="nav-item"><a class="nav-link" href="schedule.html">Schedule</a></li>
+          <li class="nav-item"><a class="nav-link" href="enrollment.html">Enrollment</a></li>
+          <li class="nav-item"><a class="nav-link" href="instructors.html">Instructors</a></li>
+          <li class="nav-item"><a class="nav-link" href="reviews.html">Reviews</a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
 
-  <main class="bg-body-tertiary">
+  <main class="bg-body-tertiary flex-grow-1">
     <!-- container-fluid: the dark title band should stretch edge to edge on every screen,
          while the text inside stays aligned with the rest of the page through the inner .container -->
     <div class="container-fluid bg-dark text-white py-5 mb-5">
@@ -66,7 +74,7 @@
           </thead>
           <tbody>
             <tr>
-              <th scope="row"><a href="coursedetail.html" class="btn btn-warning btn-sm">Category B (Car)</a></th>
+              <th scope="row"><a href="courseDetail.html" class="btn btn-warning btn-sm">Category B (Car)</a></th>
               <td>6 weeks</td>
               <td class="fw-bold">145,000</td>
               <td class="d-none d-md-table-cell">56</td>
@@ -159,23 +167,18 @@
     </div>
   </main>
 
-  <!-- Contact details are written directly in HTML so they remain available on this page. -->
-  <footer>
-    <address>
-      Prestige Driving School<br>
-      <span lang="ru">Деловой дом Алма-Ата, Амангельды Иманова улица, 19, 707F офис</span><br>
-      Phone: <a href="tel:+77058444848">+7 (705) 844 4848</a><br>
-      Email: <a href="mailto:info@prestige-auto.com">info@prestige-auto.com</a>
-    </address>
-    <p>
-      Monday&ndash;Saturday: 10:00 AM&ndash;9:00 PM<br>
-      Break: 1:00 PM&ndash;2:00 PM<br>
-      Sunday: Closed
-    </p>
-    <p>&copy; 2026 Prestige Driving School</p>
+  <footer class="site-footer bg-brand text-white-50 py-4 mt-auto">
+    <div class="container">
+      <div class="row g-4 align-items-start">
+        <address class="col-12 col-md-6 col-lg-5 mb-0">
+          <strong class="text-white">Prestige Driving School</strong><br>
+          <span lang="ru">Деловой дом Алма-Ата, Амангельды Иманова улица, 19, 707F офис</span><br>
+          <a href="tel:+77058444848">+7 (705) 844 4848</a> · <a href="mailto:info@prestige-auto.com">info@prestige-auto.com</a>
+        </address>
+        <p class="col-12 col-md-6 col-lg-4 mb-0 small">Monday–Saturday: 10:00 AM–9:00 PM<br>Break: 1:00 PM–2:00 PM<br>Sunday: Closed</p>
+        <p class="col-12 col-lg-3 mb-0 text-lg-end small">&copy; 2026 Prestige Driving School</p>
+      </div>
+    </div>
   </footer>
-
-  <!-- Bootstrap v5.3.8 JS bundle (CDN) -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>
 </html>
