@@ -35,167 +35,121 @@
     </div>
   </header>
 
-  <main class="bg-body-tertiary flex-grow-1">
-    <!-- container (not fluid): long text and a form are easier to read at a limited width -->
-    <div class="container py-5">
-      <h1 class="display-5 fw-bold border-start border-warning border-5 ps-3 mb-4">Course Detail: Category B (Car)</h1>
+  <main class="container py-4 py-lg-5 flex-grow-1">
+    <section class="detail-hero row g-4 g-lg-5 align-items-center rounded-5 shadow overflow-hidden p-3 p-md-4 p-lg-5" aria-labelledby="course-title">
+      <div class="col-12 col-lg-6 text-center text-lg-start">
+        <p class="eyebrow fw-bold text-uppercase mb-2">Complete Category B training</p>
+        <h1 class="display-3 fw-bold lh-1 mb-4" id="course-title">Learn the road. Build real confidence.</h1>
+        <p class="lead text-body-secondary mb-4">A focused six-week course combining essential theory with practical driving experience.</p>
+        <div class="d-flex flex-wrap justify-content-center justify-content-lg-start gap-2">
+          <a class="btn btn-primary btn-lg px-4" href="#booking">Book a trial lesson</a>
+          <a class="btn btn-outline-primary btn-lg px-4" href="schedule.html">View schedule</a>
+        </div>
+      </div>
+      <div class="col-12 col-lg-6">
+        <div class="detail-visual position-relative">
+          <img class="detail-image img-fluid w-100 rounded-4" src="images/category-b-detail.jpg" alt="Student practising parking with a driving instructor">
+          <div class="detail-message bg-white rounded-3 shadow p-3">
+            <strong class="d-block text-brand">Category B</strong>
+            <small class="text-body-secondary">Theory, city driving, highway skills, and parking.</small>
+          </div>
+        </div>
+      </div>
+    </section>
 
-      <p class="lead text-body-secondary mb-4">
-        Our most popular course, Category B prepares you for the standard passenger-car
-        <abbr title="Republic of Kazakhstan">RK</abbr> driving license. Jump straight to
-        <a href="#requirements" class="link-warning link-offset-2">requirements</a> or to the
-        <a href="#booking" class="link-warning link-offset-2">booking form</a> if you already know this is the course for you.
-      </p>
+    <section class="py-5" aria-labelledby="facts-title">
+      <h2 class="visually-hidden" id="facts-title">Course facts</h2>
+      <dl class="row g-3 mb-0">
+        <div class="col-12 col-md-4"><div class="fact-card h-100 bg-white rounded-4 shadow-sm p-4"><dt>Duration</dt><dd>6 weeks</dd><small>56 academic hours</small></div></div>
+        <div class="col-12 col-md-4"><div class="fact-card h-100 bg-white rounded-4 shadow-sm p-4"><dt>Price</dt><dd>145,000 KZT</dd><small>Category B program</small></div></div>
+        <div class="col-12 col-md-4"><div class="fact-card h-100 bg-white rounded-4 shadow-sm p-4"><dt>Starting age</dt><dd>17 years</dd><small>License issued from age 18</small></div></div>
+      </dl>
+    </section>
 
-      <!-- Responsive block: content and FAQ stack on phones/tablets, 8 + 4 columns from lg (desktop) up -->
-      <div class="row g-4">
-        <article class="col-12 col-lg-8">
-          <!-- Nested grid: a row inside the article column; the two sections sit side by side from md up -->
-          <div class="row g-4">
-            <section id="curriculum" class="col-12 col-md-7">
-              <div class="h-100 p-4 bg-white border-bottom border-warning border-4 rounded-3 shadow-sm">
-                <h2 class="h4 fw-bold">Curriculum</h2>
-                <p class="text-body-secondary">
-                  The course combines classroom theory with hands-on practice in a dual-control
-                  training car. All lessons focus on the skills needed for a
-                  <abbr title="Category B passenger-car license">Category B</abbr> driving license.
-                </p>
-                <ul class="mb-0">
-                  <li>Traffic law and road signage</li>
-                  <li>Vehicle mechanics basics</li>
-                  <li>First aid</li>
-                  <li>Practical driving: city, highway, parking</li>
-                </ul>
-              </div>
-            </section>
-
-            <section id="requirements" class="col-12 col-md-5">
-              <div class="h-100 p-4 bg-white border-bottom border-warning border-4 rounded-3 shadow-sm">
-                <h2 class="h4 fw-bold">Requirements</h2>
-                <ul class="mb-0">
-                  <li>Minimum age: 17 (license issued at 18)</li>
-                  <li>Valid medical certificate</li>
-                  <li>Two passport-style photos</li>
-                </ul>
-              </div>
-            </section>
+    <section class="row g-4 mb-5" aria-label="Course curriculum and requirements">
+      <!-- Bootstrap Card component: adapted as concise curriculum and requirements panels. -->
+      <div class="col-12 col-lg-7">
+        <article class="card info-card h-100 border-0 shadow-sm">
+          <div class="card-body p-4 p-lg-5">
+            <p class="eyebrow fw-bold text-uppercase mb-2">What you will learn</p>
+            <h2 class="h2 mb-4">Skills for everyday driving</h2>
+            <div class="row g-3">
+              <div class="col-12 col-sm-6"><div class="skill-item h-100 rounded-3 p-3"><strong>Road knowledge</strong><small>Traffic rules and road signs</small></div></div>
+              <div class="col-12 col-sm-6"><div class="skill-item h-100 rounded-3 p-3"><strong>Vehicle basics</strong><small>Controls and simple mechanics</small></div></div>
+              <div class="col-12 col-sm-6"><div class="skill-item h-100 rounded-3 p-3"><strong>Safe decisions</strong><small>Observation and first aid basics</small></div></div>
+              <div class="col-12 col-sm-6"><div class="skill-item h-100 rounded-3 p-3"><strong>Road practice</strong><small>City, highway, and parking</small></div></div>
+            </div>
           </div>
         </article>
-
-        <aside class="col-12 col-lg-4">
-          <!-- Bootstrap component: Card (https://getbootstrap.com/docs/5.3/components/card/).
-               Changed: dark colour scheme (text-bg-dark), card-title in the brand gold,
-               no image or button, and it sticks to the top on desktop (sticky-lg-top). -->
-          <div class="card text-bg-dark shadow sticky-lg-top">
-            <div class="card-body p-4">
-              <h2 class="card-title h5 fw-bold text-warning border-bottom border-warning pb-2 mb-3">Quick Tips &amp; FAQ</h2>
-              <p class="card-text small"><strong>Q: Can I switch from manual to automatic mid-course?</strong><br>
-              A: Yes, with instructor approval before week 3.</p>
-              <p class="card-text small mb-0"><strong>Q: What happens if I fail the final test?</strong><br>
-              A: You get two free retake lessons before the next exam attempt.</p>
-            </div>
-          </div>
-        </aside>
       </div>
+      <div class="col-12 col-lg-5" id="requirements">
+        <article class="requirements-card h-100 rounded-4 p-4 p-lg-5 text-white">
+          <p class="eyebrow eyebrow-light fw-bold text-uppercase mb-2">Before you begin</p>
+          <h2 class="h2 mb-4">Requirements</h2>
+          <ul class="requirements-list list-unstyled mb-4">
+            <li>Minimum age: 17</li>
+            <li>Valid medical certificate</li>
+            <li>Two passport-style photos</li>
+          </ul>
+          <a class="btn btn-light" href="tel:+77058444848">Ask a question</a>
+        </article>
+      </div>
+    </section>
 
-      <!-- Responsive block: the three facts stack on phones and line up in a row from md up -->
-      <dl class="d-flex flex-column flex-md-row gap-3 my-5">
-        <div class="flex-fill p-3 bg-white border rounded-3 shadow-sm">
-          <dt class="small text-uppercase text-body-secondary">Duration</dt>
-          <dd class="fs-5 fw-bold mb-0">6 weeks (56 academic hours)</dd>
+    <section class="booking-panel rounded-5 p-3 p-md-4 p-lg-5" id="booking" aria-labelledby="booking-title">
+      <div class="row g-4 g-lg-5 align-items-start">
+        <div class="col-12 col-lg-4">
+          <p class="eyebrow fw-bold text-uppercase mb-2">Try the experience</p>
+          <h2 class="display-6 fw-bold mb-3" id="booking-title">Book a trial lesson</h2>
+          <p class="text-body-secondary mb-0">Choose a preferred date and tell us which transmission you want to practise.</p>
         </div>
-        <div class="flex-fill p-3 bg-white border rounded-3 shadow-sm">
-          <dt class="small text-uppercase text-body-secondary">Price</dt>
-          <dd class="fs-5 fw-bold mb-0">145,000 KZT</dd>
-        </div>
-        <div class="flex-fill p-3 bg-white border rounded-3 shadow-sm">
-          <dt class="small text-uppercase text-body-secondary">Prerequisites</dt>
-          <dd class="fs-5 fw-bold mb-0">Minimum age 17, valid medical certificate</dd>
-        </div>
-      </dl>
-
-      <hr class="my-4">
-
-      <p>
-        Call us with any questions before booking: <a href="tel:+77058444848" class="link-warning text-nowrap">+7 (705) 844 4848</a>.
-        Students who complete this course rarely need the
-        <!-- span is used here only to mark up a short inline phrase for a later CSS
-             highlight; no semantic inline tag (abbr/cite/etc.) applies to it -->
-        <span class="bg-warning-subtle text-warning-emphasis fw-bold px-1 rounded">optional evening refresher</span> add-on.
-      </p>
-
-      <h2 id="booking" class="h3 fw-bold border-start border-warning border-4 ps-3 mt-5 mb-3">Book a Trial Lesson</h2>
-      <form action="#" method="post">
-        <!-- This trial lesson form is kept nonfunctional because server-side handling starts later in the course. -->
-        <fieldset class="p-4 bg-white border rounded-3 shadow-sm">
-          <legend class="fs-5 fw-bold">Trial Lesson Booking</legend>
-
-          <!-- Responsive block: form fields in one column on phones, two columns from md up -->
-          <div class="row g-3">
-            <p class="col-12 col-md-6 mb-0">
-              <label for="full-name" class="form-label">Full Name:</label><br>
-              <input type="text" id="full-name" name="full-name" placeholder="Aigerim Bekova" required class="form-control">
-            </p>
-
-            <p class="col-12 col-md-6 mb-0">
-              <label for="email" class="form-label">Email:</label><br>
-              <input type="email" id="email" name="email" placeholder="aigerim@example.com" required class="form-control">
-            </p>
-
-            <p class="col-12 col-md-6 mb-0">
-              <label for="phone" class="form-label">Phone:</label><br>
-              <input type="tel" id="phone" name="phone" placeholder="+7 700 000 00 00" required class="form-control">
-            </p>
-
-            <p class="col-12 col-md-6 mb-0">
-              <label for="age" class="form-label">Age:</label><br>
-              <input type="number" id="age" name="age" min="16" max="99" placeholder="18" required class="form-control">
-            </p>
-
-            <p class="col-12 col-md-6 mb-0">
-              <label for="preferred-date" class="form-label">Preferred Lesson Date:</label><br>
-              <input type="date" id="preferred-date" name="preferred-date" required class="form-control">
-            </p>
-
-            <!-- Radio buttons shown as a toggle group (btn-check + btn-outline-dark) -->
-            <fieldset class="col-12 col-md-6">
-              <legend class="form-label fs-6 mb-2">Preferred Transmission</legend>
-              <input type="radio" id="manual" name="transmission" value="manual" checked class="btn-check">
-              <label for="manual" class="btn btn-outline-dark">Manual</label>
-              <input type="radio" id="automatic" name="transmission" value="automatic" class="btn-check">
-              <label for="automatic" class="btn btn-outline-dark">Automatic</label>
+        <div class="col-12 col-lg-8">
+          <form action="#" method="post">
+            <fieldset class="bg-white rounded-4 shadow-sm p-3 p-md-4">
+              <legend class="h5 mb-4">Your details</legend>
+              <div class="row g-3">
+                <div class="col-12 col-md-6">
+                  <label for="full-name" class="form-label fw-semibold">Full name</label>
+                  <input type="text" id="full-name" name="full-name" placeholder="Aigerim Bekova" required class="form-control">
+                </div>
+                <div class="col-12 col-md-6">
+                  <label for="email" class="form-label fw-semibold">Email</label>
+                  <input type="email" id="email" name="email" placeholder="aigerim@example.com" required class="form-control">
+                </div>
+                <div class="col-12 col-md-6">
+                  <label for="phone" class="form-label fw-semibold">Phone</label>
+                  <input type="tel" id="phone" name="phone" placeholder="+7 700 000 00 00" required class="form-control">
+                </div>
+                <div class="col-12 col-md-6">
+                  <label for="preferred-date" class="form-label fw-semibold">Preferred date</label>
+                  <input type="date" id="preferred-date" name="preferred-date" required class="form-control">
+                </div>
+                <fieldset class="col-12">
+                  <legend class="form-label fs-6 fw-semibold mb-2">Preferred transmission</legend>
+                  <div class="d-flex flex-wrap gap-2">
+                    <input type="radio" id="manual" name="transmission" value="manual" checked class="btn-check">
+                    <label for="manual" class="btn btn-outline-primary">Manual</label>
+                    <input type="radio" id="automatic" name="transmission" value="automatic" class="btn-check">
+                    <label for="automatic" class="btn btn-outline-primary">Automatic</label>
+                  </div>
+                </fieldset>
+                <div class="col-12">
+                  <label for="comments" class="form-label fw-semibold">Preferred lesson time</label>
+                  <textarea id="comments" name="comments" rows="3" placeholder="Morning, afternoon, or evening" class="form-control"></textarea>
+                </div>
+                <div class="col-12">
+                  <div class="form-check"><input type="checkbox" id="agree" name="agree" required class="form-check-input"><label for="agree" class="form-check-label">I agree to be contacted about my booking.</label></div>
+                </div>
+                <div class="col-12 d-flex flex-wrap gap-2 pt-2">
+                  <button type="submit" class="btn btn-primary btn-lg px-4">Submit booking</button>
+                  <button type="reset" class="btn btn-outline-secondary">Clear form</button>
+                </div>
+              </div>
             </fieldset>
-
-            <p class="col-12 mb-0">
-              <label for="course-select" class="form-label">Course of Interest:</label><br>
-              <select id="course-select" name="course-select" class="form-select">
-                <option value="category-b">Category B (Car)</option>
-                <option value="intensive">Intensive Category B</option>
-                <option value="refresher">Category B Refresher / Defensive Driving</option>
-              </select>
-            </p>
-
-            <p class="col-12 mb-0">
-              <label for="comments" class="form-label">Additional Comments:</label><br>
-              <textarea id="comments" name="comments" rows="4" placeholder="Tell us your preferred lesson time" class="form-control"></textarea>
-            </p>
-
-            <div class="col-12">
-              <p class="form-check mb-0">
-                <input type="checkbox" id="agree" name="agree" required class="form-check-input">
-                <label for="agree" class="form-check-label">I agree to be contacted about my booking</label>
-              </p>
-            </div>
-
-            <!-- Buttons: stacked full width on phones (d-grid), in one line from sm up (d-sm-flex) -->
-            <p class="col-12 mb-0 d-grid d-sm-flex gap-2">
-              <button type="submit" class="btn btn-warning btn-lg fw-bold">Submit Booking</button>
-              <button type="reset" class="btn btn-outline-secondary btn-lg">Reset</button>
-            </p>
-          </div>
-        </fieldset>
-      </form>
-    </div>
+          </form>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer class="site-footer bg-brand text-white-50 py-4 mt-auto">

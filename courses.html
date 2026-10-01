@@ -35,136 +35,106 @@
     </div>
   </header>
 
-  <main class="bg-body-tertiary flex-grow-1">
-    <!-- container-fluid: the dark title band should stretch edge to edge on every screen,
-         while the text inside stays aligned with the rest of the page through the inner .container -->
-    <div class="container-fluid bg-dark text-white py-5 mb-5">
-      <div class="container">
-        <!-- text-center on phones, left-aligned from md (tablet) up -->
-        <h1 class="display-4 fw-bold text-center text-md-start">Our Courses</h1>
-
-        <!-- The course table appears before the enrollment steps because students usually compare price and duration first. -->
-        <p class="lead mb-0 text-center text-md-start">
-          Prestige offers <strong>three</strong> Category B training options designed for different
-          goals and schedules. Whether you are learning to drive for the <em>first time</em> or just
-          need a quick refresher, there is a course for you. <mark class="bg-warning-subtle">New students save 10% this month.</mark>
-          <small class="text-white-50">(Promotion valid for sign-ups completed online.)</small>
-        </p>
+  <main class="container py-4 py-lg-5 flex-grow-1">
+    <section class="courses-hero row g-4 g-lg-5 align-items-center rounded-5 shadow overflow-hidden p-3 p-md-4 p-lg-5" aria-labelledby="courses-title">
+      <div class="col-12 col-lg-6 text-center text-lg-start">
+        <p class="eyebrow fw-bold text-uppercase mb-2">Choose your training path</p>
+        <h1 class="display-3 fw-bold lh-1 mb-4" id="courses-title">A Category B course for your goals</h1>
+        <p class="lead text-body-secondary mb-4">Start from the beginning, train at a faster pace, or refresh the skills you already have.</p>
+        <a class="btn btn-primary btn-lg px-4" href="enrollment.html">Start enrollment</a>
       </div>
-    </div>
-
-    <!-- container: the main content keeps a fixed, readable width on wide screens -->
-    <div class="container pb-5">
-
-      <!-- Bootstrap component: Tables (https://getbootstrap.com/docs/5.3/content/tables/).
-           Changed: own course data instead of the sample rows, caption moved to the top,
-           dark header (table-dark), hover rows, wrapped in .table-responsive so the table
-           scrolls inside itself on phones instead of making the whole page overflow. -->
-      <div class="table-responsive shadow-sm rounded-3 mb-4">
-        <table class="table table-hover align-middle caption-top mb-0">
-          <caption class="fs-5 fw-bold text-dark px-3">Available Courses</caption>
-          <thead class="table-dark">
-            <tr>
-              <th scope="col">Course</th>
-              <th scope="col">Duration</th>
-              <th scope="col">Price (KZT)</th>
-              <!-- Hours column is hidden on phones and shown from md (tablet) up -->
-              <th scope="col" class="d-none d-md-table-cell">Hours</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th scope="row"><a href="courseDetail.html" class="btn btn-warning btn-sm">Category B (Car)</a></th>
-              <td>6 weeks</td>
-              <td class="fw-bold">145,000</td>
-              <td class="d-none d-md-table-cell">56</td>
-            </tr>
-            <tr>
-              <th scope="row">Intensive Category B</th>
-              <td>3 weeks</td>
-              <td class="fw-bold">165,000</td>
-              <td class="d-none d-md-table-cell">56</td>
-            </tr>
-            <tr>
-              <th scope="row">Category B Refresher / Defensive Driving</th>
-              <td>1 week</td>
-              <td class="fw-bold">45,000</td>
-              <td class="d-none d-md-table-cell">10</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <!-- Secondary note: hidden on phones to keep the page short, visible from sm up -->
-      <p class="small text-body-secondary d-none d-sm-block">
-        International students sometimes ask about pricing in other currencies &ndash; on request
-        we can provide an estimate in euros (roughly 220&euro; for the standard course).
-      </p>
-
-      <div class="row g-4 mt-2">
-        <!-- Responsive block: one column on phones/tablets, two columns from lg (desktop) up -->
-        <div class="col-12 col-lg-6">
-          <h2 class="h3 fw-bold border-start border-warning border-4 ps-3 mb-3">How to Enroll</h2>
-          <p class="text-body-secondary">Already spoken with our office by phone? Continue from where you left off:</p>
-
-          <ol start="2" class="list-group list-group-numbered shadow-sm">
-            <li class="list-group-item">Submit the application form (in person or online)</li>
-            <li class="list-group-item">Provide required documents: ID and medical certificate</li>
-            <li class="list-group-item">Pay the registration fee</li>
-            <li class="list-group-item">Attend the orientation session</li>
-            <li class="list-group-item">Begin theory classes</li>
-          </ol>
-        </div>
-
-        <div class="col-12 col-lg-6">
-          <h2 class="h3 fw-bold border-start border-warning border-4 ps-3 mb-3">What Each Course Covers</h2>
-          <!-- Nested grid: this row sits inside the column above.
-               Responsive block: cards stack on phones and sit side by side from sm up -->
-          <ul class="row g-3 list-unstyled mb-0">
-            <li class="col-12 col-sm-6">
-              <div class="h-100 p-4 bg-white border-start border-warning border-4 rounded-3 shadow-sm fw-bold fs-5">Theory
-                <ul class="list-unstyled fw-normal fs-6 text-body-secondary mt-2 mb-0">
-                  <li>Traffic rules</li>
-                  <li>Road signs</li>
-                  <li>First aid basics</li>
-                </ul>
-              </div>
-            </li>
-            <li class="col-12 col-sm-6">
-              <div class="h-100 p-4 bg-white border-start border-warning border-4 rounded-3 shadow-sm fw-bold fs-5">Practical
-                <ul class="list-unstyled fw-normal fs-6 text-body-secondary mt-2 mb-0">
-                  <li>Vehicle control</li>
-                  <li>Parking</li>
-                  <li>City driving</li>
-                </ul>
-              </div>
-            </li>
-          </ul>
+      <div class="col-12 col-lg-6">
+        <div class="courses-visual position-relative">
+          <img class="courses-image img-fluid w-100 rounded-4" src="images/category-b-car.jpg" alt="Blue Category B training car">
+          <div class="courses-message bg-white rounded-3 shadow p-3">
+            <strong class="d-block text-brand">Theory + practice</strong>
+            <small class="text-body-secondary">Build knowledge and real driving skills together.</small>
+          </div>
         </div>
       </div>
+    </section>
 
-      <hr class="my-5">
-
-      <p>
-        Every course follows the standards published by the official traffic authority &rarr; see
-        the current traffic code here:
-        <a href="https://www.gov.kz" target="_blank" rel="noopener noreferrer" class="btn btn-outline-dark btn-sm">Official Government Portal</a>.
-      </p>
-
-      <!-- A generic wrapper groups this short pricing note because it is not a standalone article, section, or aside. -->
-      <div class="p-4 my-4 bg-white border-start border-warning border-4 rounded-3 shadow-sm">
-        <p class="mb-0">
-          <b>Note:</b> class sizes are limited to <i>8 students</i> per group.<br>
-          Half-price seats (<sup>1</sup>&frasl;<sub>2</sub> off) are occasionally available for
-          siblings enrolling together &ndash; ask our staff for details.
-        </p>
+    <section class="py-5" aria-labelledby="options-title">
+      <div class="text-center mx-auto section-heading mb-4">
+        <p class="eyebrow fw-bold text-uppercase mb-2">Three clear options</p>
+        <h2 class="display-6 fw-bold mb-2" id="options-title">Find the right pace</h2>
+        <p class="text-body-secondary mb-0">Every option focuses on Category B driving skills.</p>
       </div>
 
-      <p class="d-flex flex-column flex-md-row align-items-md-center gap-2 p-3 bg-dark text-white rounded-3 mb-0">
-        Questions before you choose a course? Email us at
-        <a href="mailto:info@prestige-auto.com" class="btn btn-warning">info@prestige-auto.com</a>
-      </p>
-    </div>
+      <!-- Bootstrap Card component: adapted as concise course comparison cards. -->
+      <div class="row g-4">
+        <div class="col-12 col-md-6 col-lg-4">
+          <article class="card course-card featured-course h-100 border-0 shadow-sm">
+            <div class="card-body p-4 d-flex flex-column">
+              <span class="course-label align-self-start mb-3">Most complete</span>
+              <h3 class="h3">Category B</h3>
+              <p class="text-body-secondary">Full training for new drivers.</p>
+              <dl class="course-facts row g-2 mt-1 mb-4">
+                <div class="col-6"><dt>Duration</dt><dd>6 weeks</dd></div>
+                <div class="col-6"><dt>Hours</dt><dd>56</dd></div>
+              </dl>
+              <p class="course-price mt-auto mb-3">145,000 <small>KZT</small></p>
+              <a class="btn btn-primary" href="courseDetail.html">View course details</a>
+            </div>
+          </article>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4">
+          <article class="card course-card h-100 border-0 shadow-sm">
+            <div class="card-body p-4 d-flex flex-column">
+              <span class="course-label align-self-start mb-3">Faster pace</span>
+              <h3 class="h3">Intensive Category B</h3>
+              <p class="text-body-secondary">The same core hours in a shorter schedule.</p>
+              <dl class="course-facts row g-2 mt-1 mb-4">
+                <div class="col-6"><dt>Duration</dt><dd>3 weeks</dd></div>
+                <div class="col-6"><dt>Hours</dt><dd>56</dd></div>
+              </dl>
+              <p class="course-price mt-auto mb-3">165,000 <small>KZT</small></p>
+              <a class="btn btn-outline-primary" href="enrollment.html">Choose intensive</a>
+            </div>
+          </article>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4">
+          <article class="card course-card h-100 border-0 shadow-sm">
+            <div class="card-body p-4 d-flex flex-column">
+              <span class="course-label align-self-start mb-3">Skill refresh</span>
+              <h3 class="h3">Defensive Driving</h3>
+              <p class="text-body-secondary">Focused practice for returning drivers.</p>
+              <dl class="course-facts row g-2 mt-1 mb-4">
+                <div class="col-6"><dt>Duration</dt><dd>1 week</dd></div>
+                <div class="col-6"><dt>Hours</dt><dd>10</dd></div>
+              </dl>
+              <p class="course-price mt-auto mb-3">45,000 <small>KZT</small></p>
+              <a class="btn btn-outline-primary" href="enrollment.html">Choose refresher</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="included-panel rounded-5 p-4 p-lg-5 mb-5 text-white" aria-labelledby="included-title">
+      <div class="row g-4 align-items-center">
+        <div class="col-12 col-lg-5">
+          <p class="eyebrow eyebrow-light fw-bold text-uppercase mb-2">Balanced preparation</p>
+          <h2 class="display-6 fw-bold mb-2" id="included-title">Learn it. Then drive it.</h2>
+          <p class="text-white-50 mb-0">Connect road knowledge with practical experience.</p>
+        </div>
+        <div class="col-12 col-lg-7">
+          <div class="row g-3">
+            <div class="col-12 col-sm-6"><div class="included-card h-100 rounded-4 p-4"><span>01</span><h3 class="h4 mt-3">Theory</h3><p class="mb-0">Traffic rules, road signs, and first aid basics.</p></div></div>
+            <div class="col-12 col-sm-6"><div class="included-card h-100 rounded-4 p-4"><span>02</span><h3 class="h4 mt-3">Practice</h3><p class="mb-0">Vehicle control, parking, and city driving.</p></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="courses-cta rounded-5 p-4 p-lg-5 text-center shadow-sm" aria-labelledby="courses-cta-title">
+      <p class="fw-bold text-uppercase small mb-2">Ready to choose?</p>
+      <h2 class="display-6 fw-bold mb-3" id="courses-cta-title">Start with the course that fits you</h2>
+      <div class="d-flex flex-wrap justify-content-center gap-2">
+        <a class="btn btn-dark btn-lg px-5" href="enrollment.html">Enroll at Prestige</a>
+        <a class="btn btn-outline-dark btn-lg" href="https://www.gov.kz" target="_blank" rel="noopener noreferrer">Official driving information</a>
+      </div>
+    </section>
   </main>
 
   <footer class="site-footer bg-brand text-white-50 py-4 mt-auto">

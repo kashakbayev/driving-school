@@ -1,30 +1,116 @@
-/* courseDetail.html — correction layer on top of Bootstrap 5.3.8.
-   Layout, spacing, typography, form controls and buttons come from Bootstrap classes in the HTML;
-   this file only swaps Bootstrap's default colours for the Prestige brand colours.
-   Everything is scoped to <main> so the shared header and footer keep their own styles. */
-
-main {
-  /* Brand gold and graphite instead of Bootstrap's yellow and dark.
-     Used by text-warning, border-warning, link-warning and text-bg-dark (FAQ card). */
-  --bs-warning-rgb: 245, 158, 11;
-  --bs-dark-rgb: 15, 23, 42;
+/* Bootstrap handles the grid, forms, cards, spacing, typography, and buttons.
+   This stylesheet adds only the Prestige course-detail visuals. */
+.detail-hero {
+  background: linear-gradient(135deg, #fff 0%, #fff 62%, #e9f1f8 100%);
 }
 
-/* .btn-warning has its own colour variables, so the brand gold is set here as well */
-main .btn-warning {
-  --bs-btn-bg: #f59e0b;
-  --bs-btn-border-color: #f59e0b;
-  --bs-btn-hover-bg: #d97706;
-  --bs-btn-hover-border-color: #d97706;
-  --bs-btn-active-bg: #b45309;
-  --bs-btn-active-border-color: #b45309;
+.detail-hero h1 {
+  color: var(--prestige-navy);
+  letter-spacing: -0.055em;
 }
 
-/* .btn-outline-dark (transmission toggle) uses graphite instead of Bootstrap's #212529 */
-main .btn-outline-dark {
-  --bs-btn-color: #0f172a;
-  --bs-btn-border-color: #0f172a;
-  --bs-btn-hover-bg: #0f172a;
-  --bs-btn-active-bg: #0f172a;
-  --bs-btn-active-color: #f59e0b;
+.detail-image {
+  height: clamp(18rem, 42vw, 29rem);
+  object-fit: cover;
+}
+
+.detail-visual::before {
+  position: absolute;
+  inset: -0.8rem 1.5rem 1.5rem -0.8rem;
+  z-index: 0;
+  border-radius: 1.25rem;
+  background: var(--prestige-orange);
+  content: "";
+}
+
+.detail-visual img,
+.detail-message {
+  position: relative;
+  z-index: 1;
+}
+
+.detail-message {
+  width: min(20rem, 86%);
+  margin: -3rem 0 0 -1.25rem;
+}
+
+.fact-card {
+  border-top: 0.3rem solid var(--prestige-orange);
+}
+
+.fact-card dt {
+  color: #687888;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.fact-card dd {
+  margin: 0.3rem 0 0;
+  color: var(--prestige-navy);
+  font-size: 1.35rem;
+  font-weight: 800;
+}
+
+.fact-card small,
+.skill-item small {
+  color: #687888;
+}
+
+.info-card {
+  border-top: 0.3rem solid var(--prestige-orange) !important;
+}
+
+.skill-item {
+  background: #f0f5f9;
+}
+
+.skill-item strong,
+.skill-item small {
+  display: block;
+}
+
+.requirements-card {
+  background: linear-gradient(135deg, var(--prestige-navy), #123f66);
+}
+
+.requirements-list li {
+  position: relative;
+  padding: 0.8rem 0 0.8rem 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.requirements-list li::before {
+  position: absolute;
+  left: 0;
+  color: #ffb578;
+  content: "✓";
+  font-weight: 800;
+}
+
+.booking-panel {
+  background: #eaf1f7;
+}
+
+.form-control:focus,
+.form-select:focus,
+.form-check-input:focus {
+  border-color: var(--prestige-orange);
+  box-shadow: 0 0 0 0.25rem rgba(244, 123, 32, 0.2);
+}
+
+.form-check-input:checked {
+  border-color: var(--prestige-orange);
+  background-color: var(--prestige-orange);
+}
+
+@media (max-width: 767.98px) {
+  .detail-message {
+    width: calc(100% - 2rem);
+    margin: -2rem auto 0;
+  }
+
+  .detail-visual::before {
+    inset: -0.55rem 0.75rem 1rem -0.55rem;
+  }
 }
