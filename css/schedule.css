@@ -9,6 +9,9 @@
 body {
     color: #263746;
     font-family: Arial, Helvetica, sans-serif;
+    background:
+        radial-gradient(circle at 8% 8%, rgba(244, 123, 32, 0.09), transparent 26rem),
+        #f4f7fa !important;
 }
 
 .bg-brand {
@@ -43,17 +46,74 @@ body {
     display: block;
 }
 
-.eyebrow {
+.eyebrow,
+.text-brand {
     color: #b64705;
     letter-spacing: 0.12em;
 }
 
+.schedule-hero {
+    background: linear-gradient(135deg, #fff 0%, #fff 62%, #e9f1f8 100%);
+}
+
+.schedule-hero h1 {
+    color: var(--prestige-navy);
+    letter-spacing: -0.055em;
+}
+
 .schedule-image {
-    height: clamp(16rem, 38vw, 24rem);
+    height: clamp(18rem, 42vw, 29rem);
     object-fit: cover;
 }
 
-.schedule-table caption,
+.schedule-visual::before {
+    position: absolute;
+    inset: -0.8rem 1.5rem 1.5rem -0.8rem;
+    z-index: 0;
+    border-radius: 1.25rem;
+    background: var(--prestige-orange);
+    content: "";
+}
+
+.schedule-visual img,
+.schedule-message {
+    position: relative;
+    z-index: 1;
+}
+
+.schedule-message {
+    width: min(18rem, 82%);
+    margin: -3rem 0 0 -1.25rem;
+}
+
+.section-heading {
+    max-width: 44rem;
+}
+
+.schedule-card {
+    transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.schedule-card:hover {
+    transform: translateY(-0.35rem);
+    box-shadow: 0 1rem 2.5rem rgba(7, 26, 45, 0.15) !important;
+}
+
+.option-number {
+    display: grid;
+    width: 2.6rem;
+    height: 2.6rem;
+    place-items: center;
+    border-radius: 50%;
+    background: #fff0e5;
+    color: #b64705;
+    font-weight: 800;
+}
+
+.timetable-panel {
+    background: #eaf1f7;
+}
+
 .schedule-table thead th {
     background: var(--prestige-navy);
     color: #fff;
@@ -63,17 +123,23 @@ body {
     min-width: 34rem;
 }
 
-.schedule-card {
-    border-top: 0.3rem solid var(--prestige-orange) !important;
-}
-
-.btn-primary,
-.text-bg-primary {
+.btn-primary {
     --bs-btn-bg: var(--prestige-blue);
     --bs-btn-border-color: var(--prestige-blue);
     --bs-btn-hover-bg: #174a77;
     --bs-btn-hover-border-color: #174a77;
-    background-color: var(--prestige-blue) !important;
+}
+
+.btn-outline-primary {
+    --bs-btn-color: var(--prestige-blue);
+    --bs-btn-border-color: var(--prestige-blue);
+    --bs-btn-hover-bg: var(--prestige-blue);
+    --bs-btn-hover-border-color: var(--prestige-blue);
+}
+
+.schedule-cta {
+    background: linear-gradient(135deg, #f47b20, #ff9b4f);
+    color: #1d2d3b;
 }
 
 .site-footer {
@@ -103,5 +169,14 @@ body {
     .schedule-table {
         min-width: 31rem;
         font-size: 0.875rem;
+    }
+
+    .schedule-message {
+        width: calc(100% - 2rem);
+        margin: -2rem auto 0;
+    }
+
+    .schedule-visual::before {
+        inset: -0.55rem 0.75rem 1rem -0.55rem;
     }
 }
