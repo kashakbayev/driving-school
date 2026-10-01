@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Enrollment page for Category B lessons at Prestige Driving School in Astana.">
+    <meta name="description" content="Start Category B training at Prestige Driving School in Astana with a simple enrollment form and flexible lesson planning.">
     <meta name="author" content="Aidos">
     <title>Enrollment | Prestige Driving School</title>
-    <!-- Bootstrap 5.3.8 is used for the responsive grid, navigation, forms, alert, buttons, and utilities. -->
+    <!-- Bootstrap 5.3.8 is used for the responsive grid, navigation, forms, cards, buttons, and utilities. -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/enrollment.css">
 </head>
@@ -35,101 +35,116 @@
     </header>
 
     <!-- container keeps the form at a comfortable reading width. -->
-    <main class="container py-5 flex-grow-1">
-        <section class="text-center text-md-start mb-4" aria-labelledby="enrollment-title">
-            <p class="eyebrow fw-bold text-uppercase mb-2">Start your training</p>
-            <h1 class="display-4 fw-bold mb-3" id="enrollment-title">Category B Enrollment</h1>
-            <p class="lead text-body-secondary mb-0">Tell us how to contact you and when you would like to begin.</p>
-        </section>
-
-        <section class="row g-4 align-items-stretch mb-5" aria-labelledby="visit-title">
-            <div class="col-12 col-md-6 col-lg-4">
-                <article class="card h-100 border-0 shadow-sm detail-card">
-                    <div class="card-body p-4">
-                        <h2 class="h4" id="visit-title">Visit the school</h2>
-                        <address class="mb-3">
-                            <strong>Prestige Driving School</strong><br>
-                            <span lang="ru">Деловой дом Алма-Ата<br>Амангельды Иманова улица, 19<br>707F офис</span>
-                        </address>
-                        <a class="btn btn-outline-primary btn-sm" href="https://beta.egov.kz/situations/56/intro" target="_blank" rel="noopener noreferrer">Kazakhstan eGov information</a>
-                    </div>
-                </article>
+    <main class="container py-4 py-lg-5 flex-grow-1">
+        <section class="enrollment-hero row g-4 g-lg-5 align-items-center rounded-5 shadow overflow-hidden p-3 p-md-4 p-lg-5" aria-labelledby="enrollment-title">
+            <div class="col-12 col-lg-6 text-center text-lg-start">
+                <p class="eyebrow fw-bold text-uppercase mb-2">Your road starts here</p>
+                <h1 class="display-3 fw-bold lh-1 mb-4" id="enrollment-title">Start your journey to confident driving</h1>
+                <p class="lead text-body-secondary mb-4">Complete one short form to begin planning your Category B theory and practical training with Prestige.</p>
+                <div class="row g-2 text-start" aria-label="Enrollment benefits">
+                    <div class="col-12 col-sm-4"><p class="trust-item mb-0"><strong>Simple</strong><small>Enrollment form</small></p></div>
+                    <div class="col-12 col-sm-4"><p class="trust-item mb-0"><strong>Flexible</strong><small>Start date</small></p></div>
+                    <div class="col-12 col-sm-4"><p class="trust-item mb-0"><strong>Your choice</strong><small>Manual or automatic</small></p></div>
+                </div>
             </div>
-            <div class="col-12 col-md-6 col-lg-4">
-                <article class="card h-100 border-0 shadow-sm detail-card">
-                    <div class="card-body p-4">
-                        <h2 class="h4">Office hours</h2>
-                        <dl class="row mb-0">
-                            <dt class="col-12">Monday–Saturday</dt>
-                            <dd class="col-12 text-body-secondary">10 AM–9 PM<br><small>Break: 1 PM–2 PM</small></dd>
-                            <dt class="col-12">Sunday</dt>
-                            <dd class="col-12 text-body-secondary mb-0">Closed</dd>
-                        </dl>
+            <div class="col-12 col-lg-6">
+                <div class="enrollment-visual position-relative">
+                    <img class="enrollment-image img-fluid w-100 rounded-4" src="images/practice.jpg" alt="Student practising driving with an instructor">
+                    <div class="enrollment-message bg-white rounded-3 shadow p-3">
+                        <strong class="d-block text-brand">Category B focus</strong>
+                        <small class="text-body-secondary">Theory, practice, and test preparation</small>
                     </div>
-                </article>
-            </div>
-            <div class="col-12 col-md-6 col-lg-4">
-                <img class="enrollment-image img-fluid w-100 h-100 rounded-4 shadow" src="images/practice.jpg" alt="Student practising driving with an instructor">
+                </div>
             </div>
         </section>
 
-        <section class="form-section mt-4" aria-labelledby="form-title">
-            <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-end gap-2 mb-3">
-                <div><h2 class="h3 mb-1" id="form-title">Registration form</h2><p class="text-body-secondary mb-0">Fields marked required must be completed.</p></div>
-                <a class="btn btn-outline-secondary btn-sm" href="tel:+77058444848">Prefer to call?</a>
-            </div>
+        <section class="row g-4 align-items-start py-5" aria-labelledby="form-title">
+            <div class="col-12 col-lg-8">
+                <div class="mb-4">
+                    <p class="eyebrow fw-bold text-uppercase mb-2">Take the first step</p>
+                    <h2 class="display-6 fw-bold mb-2" id="form-title">Tell us about you</h2>
+                    <p class="text-body-secondary mb-0">Complete the required fields and choose the training options that suit you.</p>
+                </div>
 
-            <form class="bg-white border rounded-4 shadow-sm p-3 p-md-4" method="post" action="#">
-                <fieldset>
-                    <legend class="h5 mb-4">Student information</legend>
-                    <div class="row g-3">
-                        <div class="col-12 col-md-6">
-                            <label class="form-label fw-semibold" for="full-name">Full name</label>
-                            <input class="form-control" type="text" id="full-name" name="full-name" placeholder="Aidos Kashakbayev" required>
-                        </div>
-                        <div class="col-12 col-md-6">
-                            <label class="form-label fw-semibold" for="email">Email</label>
-                            <input class="form-control" type="email" id="email" name="email" placeholder="aidos@example.com" required>
-                        </div>
-                        <div class="col-12 col-md-6 col-lg-4">
-                            <label class="form-label fw-semibold" for="phone">Phone</label>
-                            <input class="form-control" type="tel" id="phone" name="phone" placeholder="+7 701 000 00 00" required>
-                        </div>
-                        <div class="col-6 col-md-3 col-lg-2">
-                            <label class="form-label fw-semibold" for="age">Age</label>
-                            <input class="form-control" type="number" id="age" name="age" min="16" max="100" placeholder="18" required>
-                        </div>
-                        <div class="col-6 col-md-3 col-lg-3">
-                            <label class="form-label fw-semibold" for="start-date">Start date</label>
-                            <input class="form-control" type="date" id="start-date" name="start-date" required>
-                        </div>
-                        <div class="col-12 col-lg-3">
-                            <label class="form-label fw-semibold" for="category">License category</label>
-                            <select class="form-select" id="category" name="category" required>
-                                <option value="B">Category B</option>
-                            </select>
-                        </div>
-                        <div class="col-12 col-md-6">
-                            <p class="form-label fw-semibold mb-2">Preferred transmission</p>
-                            <div class="d-flex flex-wrap gap-3">
-                                <div class="form-check"><input class="form-check-input" type="radio" id="automatic" name="transmission" value="automatic" required><label class="form-check-label" for="automatic">Automatic</label></div>
-                                <div class="form-check"><input class="form-check-input" type="radio" id="manual" name="transmission" value="manual"><label class="form-check-label" for="manual">Manual</label></div>
+                <form class="enrollment-form bg-white border rounded-4 shadow-sm p-3 p-md-4" method="post" action="#">
+                    <fieldset>
+                        <legend class="h5 mb-4">Student information</legend>
+                        <div class="row g-3">
+                            <div class="col-12 col-md-6">
+                                <label class="form-label fw-semibold" for="full-name">Full name</label>
+                                <input class="form-control" type="text" id="full-name" name="full-name" placeholder="Aidos Kashakbayev" required>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label class="form-label fw-semibold" for="email">Email</label>
+                                <input class="form-control" type="email" id="email" name="email" placeholder="aidos@example.com" required>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label class="form-label fw-semibold" for="phone">Phone</label>
+                                <input class="form-control" type="tel" id="phone" name="phone" placeholder="+7 701 000 00 00" required>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <label class="form-label fw-semibold" for="age">Age</label>
+                                <input class="form-control" type="number" id="age" name="age" min="16" max="100" placeholder="18" required>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <label class="form-label fw-semibold" for="start-date">Start date</label>
+                                <input class="form-control" type="date" id="start-date" name="start-date" required>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label class="form-label fw-semibold" for="category">License category</label>
+                                <select class="form-select" id="category" name="category" required>
+                                    <option value="B">Category B</option>
+                                </select>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <p class="form-label fw-semibold mb-2">Preferred transmission</p>
+                                <div class="d-flex flex-wrap gap-3">
+                                    <div class="form-check"><input class="form-check-input" type="radio" id="automatic" name="transmission" value="automatic" required><label class="form-check-label" for="automatic">Automatic</label></div>
+                                    <div class="form-check"><input class="form-check-input" type="radio" id="manual" name="transmission" value="manual"><label class="form-check-label" for="manual">Manual</label></div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label fw-semibold" for="notes">Questions or previous driving experience</label>
+                                <textarea class="form-control" id="notes" name="notes" rows="4" placeholder="Tell us what you want help with"></textarea>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-check"><input class="form-check-input" type="checkbox" id="agreement" name="agreement" required><label class="form-check-label" for="agreement">I confirm that the information above is correct.</label></div>
+                            </div>
+                            <div class="col-12 d-flex flex-wrap gap-2 pt-2">
+                                <button class="btn btn-primary btn-lg px-4" type="submit">Submit enrollment</button>
+                                <button class="btn btn-outline-secondary" type="reset">Clear form</button>
                             </div>
                         </div>
-                        <div class="col-12">
-                            <label class="form-label fw-semibold" for="notes">Questions or previous driving experience</label>
-                            <textarea class="form-control" id="notes" name="notes" rows="4" placeholder="Tell us about your driving experience"></textarea>
-                        </div>
-                        <div class="col-12">
-                            <div class="form-check"><input class="form-check-input" type="checkbox" id="agreement" name="agreement" required><label class="form-check-label" for="agreement">I confirm that the information above is correct.</label></div>
-                        </div>
-                        <div class="col-12 d-flex flex-wrap gap-2">
-                            <button class="btn btn-primary btn-lg" type="submit">Submit registration</button>
-                            <button class="btn btn-outline-secondary" type="reset">Reset form</button>
+                    </fieldset>
+                </form>
+            </div>
+
+            <aside class="col-12 col-lg-4" aria-label="Enrollment information">
+                <div class="side-card rounded-4 p-4 mb-4">
+                    <p class="eyebrow eyebrow-light fw-bold text-uppercase mb-2">Your next steps</p>
+                    <h2 class="h3 text-white mb-4">From application to the road</h2>
+                    <ol class="list-unstyled mb-0 enrollment-steps">
+                        <li class="d-flex gap-3"><span>1</span><div><strong>Share your preferences</strong><p>Choose your start date and transmission.</p></div></li>
+                        <li class="d-flex gap-3"><span>2</span><div><strong>Plan your training</strong><p>Match theory and practice to your week.</p></div></li>
+                        <li class="d-flex gap-3"><span>3</span><div><strong>Build your skills</strong><p>Progress with focused instructor feedback.</p></div></li>
+                    </ol>
+                </div>
+
+                <!-- Bootstrap Card component: adapted as a compact contact and office-hours panel. -->
+                <div class="card border-0 shadow-sm detail-card">
+                    <div class="card-body p-4">
+                        <h2 class="h4">Visit or call Prestige</h2>
+                        <address class="text-body-secondary">
+                            <span lang="ru">Деловой дом Алма-Ата<br>Амангельды Иманова улица, 19<br>707F офис</span>
+                        </address>
+                        <p class="small text-body-secondary">Monday–Saturday: 10 AM–9 PM<br>Break: 1 PM–2 PM<br>Sunday: Closed</p>
+                        <div class="d-grid gap-2">
+                            <a class="btn btn-outline-primary" href="tel:+77058444848">Call +7 (705) 844 4848</a>
+                            <a class="small text-center" href="https://beta.egov.kz/situations/56/intro" target="_blank" rel="noopener noreferrer">Kazakhstan eGov license information</a>
                         </div>
                     </div>
-                </fieldset>
-            </form>
+                </div>
+            </aside>
         </section>
     </main>
 

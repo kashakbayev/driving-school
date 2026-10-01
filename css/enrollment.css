@@ -9,6 +9,9 @@
 body {
     color: #263746;
     font-family: Arial, Helvetica, sans-serif;
+    background:
+        radial-gradient(circle at 8% 8%, rgba(244, 123, 32, 0.09), transparent 26rem),
+        #f4f7fa !important;
 }
 
 .bg-brand {
@@ -43,9 +46,19 @@ body {
     display: block;
 }
 
-.eyebrow {
+.eyebrow,
+.text-brand {
     color: #b64705;
     letter-spacing: 0.12em;
+}
+
+.enrollment-hero {
+    background: linear-gradient(135deg, #fff 0%, #fff 62%, #e9f1f8 100%);
+}
+
+.enrollment-hero h1 {
+    color: var(--prestige-navy);
+    letter-spacing: -0.055em;
 }
 
 .detail-card {
@@ -53,8 +66,80 @@ body {
 }
 
 .enrollment-image {
-    min-height: 16rem;
+    height: clamp(18rem, 42vw, 29rem);
     object-fit: cover;
+}
+
+.enrollment-visual::before {
+    position: absolute;
+    inset: -0.8rem 1.5rem 1.5rem -0.8rem;
+    z-index: 0;
+    border-radius: 1.25rem;
+    background: var(--prestige-orange);
+    content: "";
+}
+
+.enrollment-visual img,
+.enrollment-message {
+    position: relative;
+    z-index: 1;
+}
+
+.enrollment-message {
+    width: min(19rem, 84%);
+    margin: -3rem 0 0 -1.25rem;
+}
+
+.trust-item {
+    padding-left: 0.75rem;
+    border-left: 0.2rem solid var(--prestige-orange);
+}
+
+.trust-item strong,
+.trust-item small {
+    display: block;
+}
+
+.trust-item small {
+    color: #687888;
+}
+
+.enrollment-form {
+    border-top: 0.35rem solid var(--prestige-orange) !important;
+}
+
+.side-card {
+    background: linear-gradient(135deg, var(--prestige-navy), #123f66);
+}
+
+.eyebrow-light {
+    color: #ffb578;
+}
+
+.enrollment-steps li:not(:last-child) {
+    margin-bottom: 1.2rem;
+}
+
+.enrollment-steps span {
+    display: grid;
+    flex: 0 0 2.2rem;
+    width: 2.2rem;
+    height: 2.2rem;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--prestige-orange);
+    color: #fff;
+    font-weight: 800;
+}
+
+.enrollment-steps strong {
+    color: #fff;
+}
+
+.enrollment-steps p {
+    margin: 0.2rem 0 0;
+    color: rgba(255, 255, 255, 0.65);
+    font-size: 0.9rem;
 }
 
 .btn-primary {
@@ -105,5 +190,14 @@ body {
 
     .main-navigation .nav-link {
         padding-left: 0.75rem;
+    }
+
+    .enrollment-message {
+        width: calc(100% - 2rem);
+        margin: -2rem auto 0;
+    }
+
+    .enrollment-visual::before {
+        inset: -0.55rem 0.75rem 1rem -0.55rem;
     }
 }
