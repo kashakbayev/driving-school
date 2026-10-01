@@ -6,183 +6,112 @@
     <meta name="description" content="Weekly Category B class schedule for Prestige Driving School in Astana.">
     <meta name="author" content="Aidos">
     <title>Prestige Weekly Class Schedule | Astana Driving School</title>
+    <!-- Bootstrap 5.3.8 is used for the responsive grid, navigation, table, cards, and utilities. -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/schedule.css">
 </head>
-<body>
-    <!-- The navigation is repeated so every page works as a static HTML page. -->
-    <header class="site-header">
-        <p class="site-name"><strong><a href="index.html">Prestige Driving School</a></strong></p>
-        <nav class="main-navigation" aria-label="Main navigation">
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="courses.html">Courses</a></li>
-                <li><a href="coursedetail.html">Course Details</a></li>
-                <li><a class="active" href="schedule.html">Schedule</a></li>
-                <li><a href="enrollment.html">Enrollment</a></li>
-                <li><a href="instructors.html">Instructors</a></li>
-                <li><a href="reviews.html">Reviews</a></li>
-            </ul>
-        </nav>
+<body class="bg-body-tertiary d-flex flex-column min-vh-100">
+    <header class="navbar navbar-expand-md navbar-dark bg-brand shadow-sm">
+        <!-- container-fluid lets the navigation use the full screen width. -->
+        <div class="container-fluid px-3 px-lg-5">
+            <a class="navbar-brand fw-bold" href="index.html"><span class="brand-mark"></span>Prestige Driving School</a>
+            <input class="visually-hidden nav-toggle" type="checkbox" id="schedule-nav-toggle">
+            <label class="navbar-toggler d-md-none" for="schedule-nav-toggle">
+                <span class="navbar-toggler-icon"></span>
+                <span class="visually-hidden">Toggle navigation</span>
+            </label>
+            <nav class="navbar-collapse main-navigation" aria-label="Main navigation">
+                <ul class="navbar-nav ms-md-auto gap-md-1">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="courses.html">Courses</a></li>
+                    <li class="nav-item"><a class="nav-link" href="courseDetail.html">Course Details</a></li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="schedule.html">Schedule</a></li>
+                    <li class="nav-item"><a class="nav-link" href="enrollment.html">Enrollment</a></li>
+                    <li class="nav-item"><a class="nav-link" href="instructors.html">Instructors</a></li>
+                    <li class="nav-item"><a class="nav-link" href="reviews.html">Reviews</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
-    <main class="schedule-main">
-        <section class="schedule-overview">
-            <h1>Weekly Class Schedule</h1>
-
-            <!-- The weekly table comes first because students need appointment times before reading the extra notes. -->
-            <p class="schedule-intro">
-                Prestige offers <strong>flexible Category B driving lessons</strong> and
-                <em>online theory classes</em>. The school teaches the <b>Category B</b>
-                driving program and helps students follow the <i>Road Safety Education Program</i>.
-                <mark>Theory lessons are online</mark>, while practical lessons are available
-                at the Astana-Burabay highway and Astana streets. Electric vehicles can also help reduce
-                CO<sub>2</sub> emissions during training.
-            </p>
-
-            <p class="jump-links">
-                <a href="#weekday-classes">Jump to classes by weekday</a> &mdash;
-                <a href="#schedule-notes">Jump to schedule notes</a>
-            </p>
-
-            <img class="schedule-image" src="images/theory.jpg" alt="Student attending an online driving theory lesson">
-
-            <table class="schedule-table">
-                <caption>Prestige weekly class timetable</caption>
-                <thead>
-                    <tr>
-                        <th scope="col">Day</th>
-                        <th scope="col">Time</th>
-                        <th scope="col">Instructor</th>
-                        <th scope="col">Location</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">Monday</th>
-                        <td>10:00 AM&ndash;9:00 PM, by appointment</td>
-                        <td>Prestige instructor</td>
-                        <td>Astana-Burabay highway</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Tuesday</th>
-                        <td>5:00 PM, Theory</td>
-                        <td>Prestige instructor</td>
-                        <td>Online</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Tuesday</th>
-                        <td>7:00 PM, Theory</td>
-                        <td>Bilingual Prestige instructor</td>
-                        <td>Online</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Wednesday</th>
-                        <td>10:00 AM&ndash;9:00 PM, by appointment</td>
-                        <td>Prestige instructor</td>
-                        <td>Left side of Astana</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Thursday</th>
-                        <td>10:00 AM&ndash;9:00 PM, by appointment</td>
-                        <td>Prestige instructor</td>
-                        <td>The closed training facility</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Friday</th>
-                        <td>10:00 AM&ndash;9:00 PM, by appointment</td>
-                        <td>Prestige instructor</td>
-                        <td>Right-side of Astana</td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <p class="availability-note"><small>Practical lesson times depend on student and instructor availability.</small></p>
-
+    <!-- container keeps the schedule aligned and readable on wide screens. -->
+    <main class="container py-5 flex-grow-1">
+        <section class="row g-4 g-lg-5 align-items-center" aria-labelledby="schedule-title">
+            <div class="col-12 col-lg-7 text-center text-lg-start">
+                <p class="eyebrow fw-bold text-uppercase mb-2">Plan your training</p>
+                <h1 class="display-4 fw-bold mb-3" id="schedule-title">Weekly Class Schedule</h1>
+                <p class="lead text-body-secondary">Online theory classes and flexible practical Category B lessons throughout Astana.</p>
+                <div class="d-flex flex-wrap justify-content-center justify-content-lg-start gap-2">
+                    <span class="badge rounded-pill text-bg-primary p-2">Online theory</span>
+                    <span class="badge rounded-pill text-bg-warning p-2">Practice by appointment</span>
+                    <span class="badge rounded-pill text-bg-light border p-2 d-none d-md-inline">Monday–Saturday support</span>
+                </div>
+            </div>
+            <div class="col-12 col-lg-5">
+                <img class="schedule-image img-fluid w-100 rounded-4 shadow" src="images/theory.jpg" alt="Student attending an online driving theory lesson">
+            </div>
         </section>
 
-        <hr class="section-divider">
-
-        <section class="weekday-section" id="weekday-classes">
-            <h2>Classes by Weekday</h2>
-
-            <ul class="weekday-list">
-                <!-- Days are nested so repeated lesson details stay attached to each weekday. -->
-                <li>
-                    Monday
-                    <ul>
-                        <li>Practical driving lessons by appointment</li>
-                    </ul>
-                </li>
-                <li>
-                    Tuesday
-                    <ul>
-                        <li>Practical driving lessons by appointment</li>
-                        <li>Theory class at 5:00 PM</li>
-                        <li>Theory class at 7:00 PM</li>
-                    </ul>
-                </li>
-                <li>
-                    Wednesday
-                    <ul>
-                        <li>Practical driving lessons by appointment</li>
-                    </ul>
-                </li>
-                <li>
-                    Thursday
-                    <ul>
-                        <li>Practical driving lessons by appointment</li>
-                    </ul>
-                </li>
-                <li>
-                    Friday
-                    <ul>
-                        <li>Practical driving lessons by appointment</li>
-                    </ul>
-                </li>
-            </ul>
-
-    
-            <p class="office-hours">
-                Office hours: Monday to Saturday, 10:00 AM to 9:00 PM.<br>
-                Break: 1:00 PM to 2:00 PM. Sunday is a day off.
-            </p>
+        <section class="mt-5" aria-labelledby="timetable-title">
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-end gap-2 mb-3">
+                <div>
+                    <h2 class="h3 mb-1" id="timetable-title">Class timetable</h2>
+                    <p class="text-body-secondary mb-0 small">Practical times depend on student and instructor availability.</p>
+                </div>
+                <a class="btn btn-primary" href="enrollment.html">Reserve a lesson</a>
+            </div>
+            <!-- Bootstrap Table component: striped rows, hover feedback, and Prestige heading colours were added. -->
+            <div class="table-responsive rounded-3 shadow-sm border">
+                <table class="table table-striped table-hover align-middle mb-0 schedule-table">
+                    <caption class="caption-top px-3 py-2 fw-bold">Prestige weekly class timetable</caption>
+                    <thead>
+                        <tr>
+                            <th scope="col">Day</th>
+                            <th scope="col">Time</th>
+                            <th scope="col" class="d-none d-md-table-cell">Instructor</th>
+                            <th scope="col">Location</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><th scope="row">Monday</th><td>10 AM–9 PM, appointment</td><td class="d-none d-md-table-cell">Prestige instructor</td><td>Astana–Burabay highway</td></tr>
+                        <tr><th scope="row">Tuesday</th><td>5 PM, theory</td><td class="d-none d-md-table-cell">Prestige instructor</td><td>Online</td></tr>
+                        <tr><th scope="row">Tuesday</th><td>7 PM, theory</td><td class="d-none d-md-table-cell">Bilingual instructor</td><td>Online</td></tr>
+                        <tr><th scope="row">Wednesday</th><td>10 AM–9 PM, appointment</td><td class="d-none d-md-table-cell">Prestige instructor</td><td>Left side of Astana</td></tr>
+                        <tr><th scope="row">Thursday</th><td>10 AM–9 PM, appointment</td><td class="d-none d-md-table-cell">Prestige instructor</td><td>Closed training facility</td></tr>
+                        <tr><th scope="row">Friday</th><td>10 AM–9 PM, appointment</td><td class="d-none d-md-table-cell">Prestige instructor</td><td>Right side of Astana</td></tr>
+                    </tbody>
+                </table>
+            </div>
         </section>
 
-        <section class="schedule-notes" id="schedule-notes">
-            <h2>Schedule Notes</h2>
+        <section class="mt-5" aria-labelledby="weekday-title">
+            <h2 class="h3 mb-3" id="weekday-title">Classes by weekday</h2>
+            <div class="row g-3">
+                <div class="col-12 col-md-6 col-lg-4">
+                    <article class="card h-100 border-0 shadow-sm schedule-card"><div class="card-body"><h3 class="h5">Monday &amp; Wednesday</h3><p class="text-body-secondary mb-0">Practical driving lessons by appointment.</p></div></article>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                    <article class="card h-100 border-0 shadow-sm schedule-card"><div class="card-body"><h3 class="h5">Tuesday</h3><ul class="list-group list-group-flush"><li class="list-group-item px-0">Practice by appointment</li><li class="list-group-item px-0">Theory at 5 PM and 7 PM</li></ul></div></article>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                    <article class="card h-100 border-0 shadow-sm schedule-card"><div class="card-body"><h3 class="h5">Thursday &amp; Friday</h3><p class="text-body-secondary mb-0">Practical driving lessons by appointment.</p></div></article>
+                </div>
+            </div>
+        </section>
 
-            <p>
-                Practical lessons are scheduled according to availability.<br>
-                Contact the school before visiting to confirm your lesson time.
-            </p>
-
-            <p class="status-note">
-                Current status: Flexible scheduling available.
-            </p>
-
-            <p>
-                Questions? Email
-                <a href="mailto:info@prestige-auto.com">info@prestige-auto.com</a>
-                or call
-                <a href="tel:+77058444848">+7 (705) 844 4848</a>.
-            </p>
+        <section class="alert alert-warning border-0 shadow-sm mt-4 mb-0" aria-labelledby="notes-title">
+            <h2 class="h5 alert-heading" id="notes-title">Schedule notes</h2>
+            <p class="mb-2">Contact the school before visiting to confirm your lesson time.</p>
+            <p class="mb-0 small">Email <a class="alert-link" href="mailto:info@prestige-auto.com">info@prestige-auto.com</a> or call <a class="alert-link" href="tel:+77058444848">+7 (705) 844 4848</a>.</p>
         </section>
     </main>
 
-    <!-- Contact details are written directly in HTML so they remain available on this page. -->
-    <footer class="site-footer">
-        <address>
-            Prestige Driving School<br>
-            <span lang="ru">Деловой дом Алма-Ата, Амангельды Иманова улица, 19, 707F офис</span><br>
-            Phone: <a href="tel:+77058444848">+7 (705) 844 4848</a><br>
-            Email: <a href="mailto:info@prestige-auto.com">info@prestige-auto.com</a>
-        </address>
-        <p>
-            Monday&ndash;Saturday: 10:00 AM&ndash;9:00 PM<br>
-            Break: 1:00 PM&ndash;2:00 PM<br>
-            Sunday: Closed
-        </p>
-        <p>&copy; 2026 Prestige Driving School</p>
+    <footer class="site-footer bg-brand text-white-50 py-4 mt-auto">
+        <div class="container"><div class="row g-4 align-items-start">
+            <address class="col-12 col-md-6 col-lg-5 mb-0"><strong class="text-white">Prestige Driving School</strong><br><span lang="ru">Деловой дом Алма-Ата, Амангельды Иманова улица, 19, 707F офис</span><br><a href="tel:+77058444848">+7 (705) 844 4848</a> · <a href="mailto:info@prestige-auto.com">info@prestige-auto.com</a></address>
+            <p class="col-12 col-md-6 col-lg-4 mb-0 small">Monday–Saturday: 10:00 AM–9:00 PM<br>Break: 1:00 PM–2:00 PM<br>Sunday: Closed</p>
+            <p class="col-12 col-lg-3 mb-0 text-lg-end small">&copy; 2026 Prestige Driving School</p>
+        </div></div>
     </footer>
 </body>
 </html>
