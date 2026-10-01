@@ -6,147 +6,139 @@
     <meta name="description" content="Enrollment page for Category B lessons at Prestige Driving School in Astana.">
     <meta name="author" content="Aidos">
     <title>Enrollment | Prestige Driving School</title>
+    <!-- Bootstrap 5.3.8 is used for the responsive grid, navigation, forms, alert, buttons, and utilities. -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/enrollment.css">
 </head>
-<body>
-    <!-- The navigation is repeated so every page works as a static HTML page. -->
-    <header class="site-header">
-        <p class="site-name"><strong><a href="index.html">Prestige Driving School</a></strong></p>
-        <nav class="main-navigation" aria-label="Main navigation">
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="courses.html">Courses</a></li>
-                <li><a href="coursedetail.html">Course Details</a></li>
-                <li><a href="schedule.html">Schedule</a></li>
-                <li><a class="active" href="enrollment.html">Enrollment</a></li>
-                <li><a href="instructors.html">Instructors</a></li>
-                <li><a href="reviews.html">Reviews</a></li>
-            </ul>
-        </nav>
+<body class="bg-body-tertiary d-flex flex-column min-vh-100">
+    <header class="navbar navbar-expand-md navbar-dark bg-brand shadow-sm">
+        <!-- container-fluid lets the navigation use the full screen width. -->
+        <div class="container-fluid px-3 px-lg-5">
+            <a class="navbar-brand fw-bold" href="index.html"><span class="brand-mark"></span>Prestige Driving School</a>
+            <input class="visually-hidden nav-toggle" type="checkbox" id="enrollment-nav-toggle">
+            <label class="navbar-toggler d-md-none" for="enrollment-nav-toggle">
+                <span class="navbar-toggler-icon"></span>
+                <span class="visually-hidden">Toggle navigation</span>
+            </label>
+            <nav class="navbar-collapse main-navigation" aria-label="Main navigation">
+                <ul class="navbar-nav ms-md-auto gap-md-1">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="courses.html">Courses</a></li>
+                    <li class="nav-item"><a class="nav-link" href="courseDetail.html">Course Details</a></li>
+                    <li class="nav-item"><a class="nav-link" href="schedule.html">Schedule</a></li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="enrollment.html">Enrollment</a></li>
+                    <li class="nav-item"><a class="nav-link" href="instructors.html">Instructors</a></li>
+                    <li class="nav-item"><a class="nav-link" href="reviews.html">Reviews</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
-    <main class="enrollment-main">
-        <h1 class="page-title">Category B Enrollment</h1>
-
-        <section class="school-details">
-            <h2>Visit the School</h2>
-
-            <address class="school-address">
-                Prestige Driving School<br>
-                <span lang="ru">Деловой дом Алма-Ата<br>
-                Амангельды Иманова улица, 19, 707F офис</span><br>
-                Monday-Saturday: 10 AM - 9 PM<br>
-                Break: 1 PM - 2 PM<br>
-                Sunday: Closed
-            </address>
-
-            <h2>Office Hours</h2>
-            <dl class="hours-list">
-                <dt>Monday-Saturday</dt>
-                <dd>10 AM - 9 PM (break from 1 PM to 2 PM)</dd>
-
-                <dt>Sunday</dt>
-                <dd>Closed</dd>
-            </dl>
-
-            <!-- The office hours use a definition list because each day label is paired with one exact visiting status. -->
-            <p class="official-link">
-                For official information about getting a driver's license in Kazakhstan,
-                visit the
-                <a href="https://beta.egov.kz/situations/56/intro" target="_blank" rel="noopener noreferrer">Kazakhstan eGov driver's license page</a>.
-            </p>
-            <img class="enrollment-image" src="images/practice.jpg" alt="Student practising driving with an instructor">
+    <!-- container keeps the form at a comfortable reading width. -->
+    <main class="container py-5 flex-grow-1">
+        <section class="text-center text-md-start mb-4" aria-labelledby="enrollment-title">
+            <p class="eyebrow fw-bold text-uppercase mb-2">Start your training</p>
+            <h1 class="display-4 fw-bold mb-3" id="enrollment-title">Category B Enrollment</h1>
+            <p class="lead text-body-secondary mb-0">Tell us how to contact you and when you would like to begin.</p>
         </section>
 
-        <section class="form-section">
-            <h2>Registration Form</h2>
+        <section class="row g-4 align-items-stretch mb-5" aria-labelledby="visit-title">
+            <div class="col-12 col-md-6 col-lg-4">
+                <article class="card h-100 border-0 shadow-sm detail-card">
+                    <div class="card-body p-4">
+                        <h2 class="h4" id="visit-title">Visit the school</h2>
+                        <address class="mb-3">
+                            <strong>Prestige Driving School</strong><br>
+                            <span lang="ru">Деловой дом Алма-Ата<br>Амангельды Иманова улица, 19<br>707F офис</span>
+                        </address>
+                        <a class="btn btn-outline-primary btn-sm" href="https://beta.egov.kz/situations/56/intro" target="_blank" rel="noopener noreferrer">Kazakhstan eGov information</a>
+                    </div>
+                </article>
+            </div>
+            <div class="col-12 col-md-6 col-lg-4">
+                <article class="card h-100 border-0 shadow-sm detail-card">
+                    <div class="card-body p-4">
+                        <h2 class="h4">Office hours</h2>
+                        <dl class="row mb-0">
+                            <dt class="col-12">Monday–Saturday</dt>
+                            <dd class="col-12 text-body-secondary">10 AM–9 PM<br><small>Break: 1 PM–2 PM</small></dd>
+                            <dt class="col-12">Sunday</dt>
+                            <dd class="col-12 text-body-secondary mb-0">Closed</dd>
+                        </dl>
+                    </div>
+                </article>
+            </div>
+            <div class="col-12 col-md-6 col-lg-4">
+                <img class="enrollment-image img-fluid w-100 h-100 rounded-4 shadow" src="images/practice.jpg" alt="Student practising driving with an instructor">
+            </div>
+        </section>
 
-            <form class="enrollment-form" method="post" action="#">
-                <!-- This practice form does not send data yet because no server is connected. -->
+        <section class="form-section mt-4" aria-labelledby="form-title">
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-end gap-2 mb-3">
+                <div><h2 class="h3 mb-1" id="form-title">Registration form</h2><p class="text-body-secondary mb-0">Fields marked required must be completed.</p></div>
+                <a class="btn btn-outline-secondary btn-sm" href="tel:+77058444848">Prefer to call?</a>
+            </div>
 
-                <fieldset class="form-card">
-                    <legend>Student Information</legend>
-
-                    <p>
-                        <label for="full-name">Full name:</label><br>
-                        <input type="text" id="full-name" name="full-name"
-                               placeholder="Aidos Kashakbayev" required>
-                    </p>
-
-                    <p>
-                        <label for="email">Email:</label><br>
-                        <input type="email" id="email" name="email"
-                               placeholder="aidos@example.com" required>
-                    </p>
-
-                    <p>
-                        <label for="phone">Phone:</label><br>
-                        <input type="tel" id="phone" name="phone"
-                               placeholder="+7 701 000 00 00" required>
-                    </p>
-
-                    <p>
-                        <label for="age">Age:</label><br>
-                        <input type="number" id="age" name="age"
-                               min="16" max="100" placeholder="18" required>
-                    </p>
-
-                    <p>
-                        <label for="start-date">Preferred start date:</label><br>
-                        <input type="date" id="start-date" name="start-date" required>
-                    </p>
-
-                    <p>Preferred transmission:</p>
-
-                    <input type="radio" id="automatic" name="transmission"
-                           value="automatic" required>
-                    <label for="automatic">Automatic</label>
-
-                    <input type="radio" id="manual" name="transmission"
-                           value="manual">
-                    <label for="manual">Manual</label>
-
-                    <p>
-                        <label for="category">License category:</label><br>
-                        <select id="category" name="category" required>
-                            <option value="B">Category B</option>
-                        </select>
-                    </p>
-
-                    <p>
-                        <label for="notes">Questions or previous driving experience:</label><br>
-                        <textarea id="notes" name="notes" rows="5" cols="35"
-                                  placeholder="Tell us about your driving experience"></textarea>
-                    </p>
-
-                    <p>
-                        <input type="checkbox" id="agreement" name="agreement" required>
-                        <label for="agreement">
-                            I confirm that the information above is correct.
-                        </label>
-                    </p>
-
-                    <button type="submit">Submit Registration</button>
-                    <button type="reset">Reset Form</button>
+            <form class="bg-white border rounded-4 shadow-sm p-3 p-md-4" method="post" action="#">
+                <fieldset>
+                    <legend class="h5 mb-4">Student information</legend>
+                    <div class="row g-3">
+                        <div class="col-12 col-md-6">
+                            <label class="form-label fw-semibold" for="full-name">Full name</label>
+                            <input class="form-control" type="text" id="full-name" name="full-name" placeholder="Aidos Kashakbayev" required>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <label class="form-label fw-semibold" for="email">Email</label>
+                            <input class="form-control" type="email" id="email" name="email" placeholder="aidos@example.com" required>
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-4">
+                            <label class="form-label fw-semibold" for="phone">Phone</label>
+                            <input class="form-control" type="tel" id="phone" name="phone" placeholder="+7 701 000 00 00" required>
+                        </div>
+                        <div class="col-6 col-md-3 col-lg-2">
+                            <label class="form-label fw-semibold" for="age">Age</label>
+                            <input class="form-control" type="number" id="age" name="age" min="16" max="100" placeholder="18" required>
+                        </div>
+                        <div class="col-6 col-md-3 col-lg-3">
+                            <label class="form-label fw-semibold" for="start-date">Start date</label>
+                            <input class="form-control" type="date" id="start-date" name="start-date" required>
+                        </div>
+                        <div class="col-12 col-lg-3">
+                            <label class="form-label fw-semibold" for="category">License category</label>
+                            <select class="form-select" id="category" name="category" required>
+                                <option value="B">Category B</option>
+                            </select>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <p class="form-label fw-semibold mb-2">Preferred transmission</p>
+                            <div class="d-flex flex-wrap gap-3">
+                                <div class="form-check"><input class="form-check-input" type="radio" id="automatic" name="transmission" value="automatic" required><label class="form-check-label" for="automatic">Automatic</label></div>
+                                <div class="form-check"><input class="form-check-input" type="radio" id="manual" name="transmission" value="manual"><label class="form-check-label" for="manual">Manual</label></div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label fw-semibold" for="notes">Questions or previous driving experience</label>
+                            <textarea class="form-control" id="notes" name="notes" rows="4" placeholder="Tell us about your driving experience"></textarea>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-check"><input class="form-check-input" type="checkbox" id="agreement" name="agreement" required><label class="form-check-label" for="agreement">I confirm that the information above is correct.</label></div>
+                        </div>
+                        <div class="col-12 d-flex flex-wrap gap-2">
+                            <button class="btn btn-primary btn-lg" type="submit">Submit registration</button>
+                            <button class="btn btn-outline-secondary" type="reset">Reset form</button>
+                        </div>
+                    </div>
                 </fieldset>
             </form>
         </section>
     </main>
 
-    <!-- Contact details are written directly in HTML so they remain available on this page. -->
-    <footer class="site-footer">
-        <address>
-            Prestige Driving School<br>
-            <span lang="ru">Деловой дом Алма-Ата, Амангельды Иманова улица, 19, 707F офис</span><br>
-            Phone: <a href="tel:+77058444848">+7 (705) 844 4848</a><br>
-            Email: <a href="mailto:info@prestige-auto.com">info@prestige-auto.com</a>
-        </address>
-        <p>
-            Monday&ndash;Saturday: 10:00 AM&ndash;9:00 PM<br>
-            Break: 1:00 PM&ndash;2:00 PM<br>
-            Sunday: Closed
-        </p>
-        <p>&copy; 2026 Prestige Driving School</p>
+    <footer class="site-footer bg-brand text-white-50 py-4 mt-auto">
+        <div class="container"><div class="row g-4 align-items-start">
+            <address class="col-12 col-md-6 col-lg-5 mb-0"><strong class="text-white">Prestige Driving School</strong><br><span lang="ru">Деловой дом Алма-Ата, Амангельды Иманова улица, 19, 707F офис</span><br><a href="tel:+77058444848">+7 (705) 844 4848</a> · <a href="mailto:info@prestige-auto.com">info@prestige-auto.com</a></address>
+            <p class="col-12 col-md-6 col-lg-4 mb-0 small">Monday–Saturday: 10:00 AM–9:00 PM<br>Break: 1:00 PM–2:00 PM<br>Sunday: Closed</p>
+            <p class="col-12 col-lg-3 mb-0 text-lg-end small">&copy; 2026 Prestige Driving School</p>
+        </div></div>
     </footer>
 </body>
 </html>
