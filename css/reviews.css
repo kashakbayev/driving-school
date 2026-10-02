@@ -1,205 +1,105 @@
-* {
-  box-sizing: border-box;
+/* Bootstrap handles the grid, cards, forms, spacing, typography, and buttons.
+   This stylesheet adds only the Prestige reviews-page visuals. */
+.reviews-hero {
+    background: linear-gradient(135deg, #fff 0%, #fff 62%, #e9f1f8 100%);
 }
 
-html {
-  scroll-behavior: smooth;
+.reviews-hero h1 {
+    color: var(--prestige-navy);
+    letter-spacing: -0.055em;
 }
 
-body {
-  margin: 0;
-  background-color: #f4f7fb;
-  color: #1f2937;
-  font-family: Arial, Helvetica, sans-serif;
-  line-height: 1.6;
+.reviews-image {
+    height: clamp(18rem, 42vw, 29rem);
+    object-fit: cover;
 }
 
-header {
-  min-height: 80px;
-  padding: 0 7%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 30px;
-  background-color: #0f172a;
-  box-shadow: 0 4px 18px rgba(15, 23, 42, 0.18);
+.reviews-visual::before {
+    position: absolute;
+    inset: -0.8rem 1.5rem 1.5rem -0.8rem;
+    z-index: 0;
+    border-radius: 1.25rem;
+    background: var(--prestige-orange);
+    content: "";
 }
 
-header > p {
-  margin: 0;
-  flex-shrink: 0;
+.reviews-visual img,
+.reviews-message {
+    position: relative;
+    z-index: 1;
 }
 
-header > p a {
-  color: #ffffff;
-  text-decoration: none;
-  font-size: 1.25rem;
-  font-weight: 700;
-  letter-spacing: -0.3px;
+.reviews-message {
+    display: flex;
+    width: min(20rem, 86%);
+    margin: -3rem 0 0 -1.25rem;
+    gap: 1rem;
+    align-items: center;
 }
 
-header > p a:hover {
-  color: #60a5fa;
+.rating-number,
+.rating-card > span {
+    color: var(--prestige-orange);
+    font-weight: 800;
+    line-height: 1;
 }
 
-header nav ul {
-  margin: 0;
-  padding: 0;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  list-style: none;
+.rating-number {
+    font-size: 2.6rem;
 }
 
-header nav li {
-  margin: 0;
+.section-heading {
+    max-width: 42rem;
 }
 
-header nav a {
-  display: block;
-  padding: 9px 12px;
-  color: #cbd5e1;
-  text-decoration: none;
-  font-size: 0.9rem;
-  font-weight: 600;
-  border-radius: 8px;
-  transition:
-    background-color 0.2s ease,
-    color 0.2s ease,
-    transform 0.2s ease;
+.rating-card {
+    border-top: 0.3rem solid var(--prestige-orange) !important;
 }
 
-header nav a:hover {
-  background-color: #1e293b;
-  color: #ffffff;
-  transform: translateY(-1px);
+.rating-card > span {
+    font-size: 2.8rem;
 }
 
-header nav a:active {
-  transform: translateY(0);
+.quote-panel {
+    background: linear-gradient(135deg, var(--prestige-navy), #123f66);
 }
 
-header nav a:focus-visible {
-  outline: 3px solid #60a5fa;
-  outline-offset: 3px;
+.quote-panel blockquote p {
+    letter-spacing: -0.03em;
 }
 
-header nav a[href="reviews.html"] {
-  background-color: #2563eb;
-  color: #ffffff;
+.top-instructors-card {
+    border-top: 0.3rem solid var(--prestige-orange) !important;
 }
 
-/* ================= MAIN (Assignment 3) =================
-   The layout, spacing, table, list group, form and buttons in <main> now come from Bootstrap classes
-   and the shared css/index.css; the old main rules are listed in css/removed-rules-instructors-reviews.md.
-   Only the brand detail Bootstrap has no class for is kept here. */
-
-/* Orange bar on the left of the student quote (Bootstrap's border colours have no brand orange) */
-.review-quote {
-  border-left: 0.3rem solid var(--prestige-orange);
+.top-instructors-card a:not(.btn) {
+    color: var(--prestige-blue);
+    font-weight: 700;
 }
 
-body > footer {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
-  gap: 40px;
-  padding: 45px 7% 35px;
-  background-color: #0f172a;
-  color: #cbd5e1;
-  border-top: 4px solid #2563eb;
+.review-form-panel {
+    background: #eaf1f7;
 }
 
-body > footer address {
-  margin: 0;
-  color: #cbd5e1;
-  font-style: normal;
-  line-height: 1.9;
+.form-control:focus,
+.form-select:focus,
+.form-check-input:focus {
+    border-color: var(--prestige-orange);
+    box-shadow: 0 0 0 0.25rem rgba(244, 123, 32, 0.2);
 }
 
-body > footer address::first-line {
-  color: #ffffff;
-  font-size: 1.15rem;
-  font-weight: 700;
+.form-check-input:checked {
+    border-color: var(--prestige-orange);
+    background-color: var(--prestige-orange);
 }
 
-body > footer p {
-  margin: 0;
-  color: #94a3b8;
-  font-size: 0.9rem;
-  line-height: 1.8;
-}
+@media (max-width: 767.98px) {
+    .reviews-message {
+        width: calc(100% - 2rem);
+        margin: -2rem auto 0;
+    }
 
-body > footer a {
-  color: #60a5fa;
-  text-decoration: none;
-  font-weight: 600;
-}
-
-body > footer a:hover {
-  color: #93c5fd;
-  text-decoration: underline;
-}
-
-body > footer a:focus-visible {
-  outline: 3px solid #60a5fa;
-  outline-offset: 3px;
-}
-
-@media (max-width: 1000px) {
-  header {
-    flex-direction: column;
-    align-items: flex-start;
-    padding-top: 20px;
-    padding-bottom: 20px;
-  }
-
-  header nav {
-    width: 100%;
-  }
-
-  header nav ul {
-    flex-wrap: wrap;
-  }
-
-  body > footer {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-@media (max-width: 700px) {
-  header {
-    padding: 18px 20px;
-  }
-
-  header > p a {
-    font-size: 1.15rem;
-  }
-
-  header nav ul {
-    gap: 5px;
-  }
-
-  header nav a {
-    padding: 7px 9px;
-    font-size: 0.8rem;
-  }
-
-  body > footer {
-    grid-template-columns: 1fr;
-    gap: 25px;
-    padding: 35px 20px;
-  }
-}
-
-@media (max-width: 480px) {
-  header nav ul {
-    flex-direction: column;
-    align-items: stretch;
-    width: 100%;
-  }
-
-  header nav a {
-    width: 100%;
-  }
-
+    .reviews-visual::before {
+        inset: -0.55rem 0.75rem 1rem -0.55rem;
+    }
 }
