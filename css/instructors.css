@@ -13,68 +13,230 @@
     background: linear-gradient(135deg, var(--prestige-navy), #123f66);
 }
 
-.promise-list li {
-    position: relative;
-    padding: 0.8rem 0 0.8rem 1.6rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+/* ================= HEADER ================= */
+
+header {
+  background-color: #0f172a;
+  padding: 0 7%;
+  min-height: 80px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+
+  box-shadow: 0 4px 18px rgba(15, 23, 42, 0.18);
 }
 
-.promise-list li::before {
-    position: absolute;
-    left: 0;
-    color: #ffb578;
-    content: "✓";
-    font-weight: 800;
+header > p {
+  margin: 0;
+  flex-shrink: 0;
 }
 
-.section-heading {
-    max-width: 44rem;
+header > p a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.3px;
 }
 
+header > p a:hover {
+  color: #60a5fa;
+}
+
+header nav ul {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+}
+
+header nav li {
+  margin: 0;
+}
+
+header nav a {
+  display: block;
+
+  padding: 9px 12px;
+
+  color: #cbd5e1;
+  text-decoration: none;
+
+  font-size: 0.9rem;
+  font-weight: 600;
+
+  border-radius: 8px;
+
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+header nav a:hover {
+  background-color: #1e293b;
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+header nav a:active {
+  transform: translateY(0);
+}
+
+header nav a:focus-visible {
+  outline: 3px solid #60a5fa;
+  outline-offset: 3px;
+}
+
+/* Current page */
+
+header nav a[href="instructors.html"] {
+  background-color: #2563eb;
+  color: #ffffff;
+}
+
+/* ================= MAIN (Assignment 3) =================
+   The layout, spacing, cards, badges and buttons in <main> now come from Bootstrap classes
+   and the shared css/index.css; the old main rules are listed in css/removed-rules-instructors-reviews.md.
+   Only the brand detail Bootstrap has no class for is kept here. */
+
+/* Orange top edge on each instructor card, like the info cards on the other pages
+   (Bootstrap's border colours have no brand orange) */
 .instructor-card {
-    transition: transform 180ms ease, box-shadow 180ms ease;
+  border: 0;
+  border-top: 0.3rem solid var(--prestige-orange);
 }
 
-.instructor-card:hover {
-    transform: translateY(-0.35rem);
-    box-shadow: 0 1rem 2.5rem rgba(7, 26, 45, 0.15) !important;
+/* ================= FOOTER ================= */
+
+footer {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 40px;
+
+  padding: 45px 7% 35px;
+
+  background-color: #0f172a;
+  color: #cbd5e1;
+
+  border-top: 4px solid #2563eb;
 }
 
-.instructor-photo {
-    height: 22rem;
-    object-fit: cover;
-    object-position: center 20%;
+footer address {
+  margin: 0;
+
+  color: #cbd5e1;
+
+  font-style: normal;
+  line-height: 1.9;
 }
 
-.role-label,
-.specialty-badge {
-    border-radius: 999px;
-    font-size: 0.78rem;
-    font-weight: 800;
+footer address::first-line {
+  color: #ffffff;
+
+  font-size: 1.15rem;
+  font-weight: 700;
 }
 
-.role-label {
-    padding: 0.4rem 0.7rem;
-    background: #fff0e5;
-    color: #b64705;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
+footer p {
+  margin: 0;
+
+  color: #94a3b8;
+
+  font-size: 0.9rem;
+  line-height: 1.8;
 }
 
-.specialty-badge {
-    padding: 0.45rem 0.7rem;
-    border: 1px solid #d6e1e9;
-    background: #f2f6f9;
-    color: var(--prestige-navy);
+footer a {
+  color: #60a5fa;
+  text-decoration: none;
+  font-weight: 600;
 }
 
-.instructors-cta {
-    background: linear-gradient(135deg, #f47b20, #ff9b4f);
-    color: #1d2d3b;
+footer a:hover {
+  color: #93c5fd;
+  text-decoration: underline;
 }
 
-@media (max-width: 767.98px) {
-    .instructor-photo {
-        height: 18rem;
-    }
+footer a:focus-visible {
+  outline: 3px solid #60a5fa;
+  outline-offset: 3px;
+}
+
+/* ================= TABLET ================= */
+
+@media (max-width: 1000px) {
+
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  header nav {
+    width: 100%;
+  }
+
+  header nav ul {
+    flex-wrap: wrap;
+  }
+
+  footer {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 700px) {
+
+  header {
+    padding: 18px 20px;
+  }
+
+  header > p a {
+    font-size: 1.15rem;
+  }
+
+  header nav ul {
+    gap: 5px;
+  }
+
+  header nav a {
+    padding: 7px 9px;
+    font-size: 0.8rem;
+  }
+
+  footer {
+    grid-template-columns: 1fr;
+
+    gap: 25px;
+
+    padding: 35px 20px;
+  }
+}
+
+/* ================= SMALL MOBILE ================= */
+
+@media (max-width: 480px) {
+
+  header nav ul {
+    flex-direction: column;
+    align-items: stretch;
+
+    width: 100%;
+  }
+
+  header nav a {
+    width: 100%;
+  }
+
 }

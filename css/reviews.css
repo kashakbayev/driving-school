@@ -72,34 +72,117 @@
     border-top: 0.3rem solid var(--prestige-orange) !important;
 }
 
-.top-instructors-card a:not(.btn) {
-    color: var(--prestige-blue);
-    font-weight: 700;
+/* ================= MAIN (Assignment 3) =================
+   The layout, spacing, table, list group, form and buttons in <main> now come from Bootstrap classes
+   and the shared css/index.css; the old main rules are listed in css/removed-rules-instructors-reviews.md.
+   Only the brand detail Bootstrap has no class for is kept here. */
+
+/* Orange bar on the left of the student quote (Bootstrap's border colours have no brand orange) */
+.review-quote {
+  border-left: 0.3rem solid var(--prestige-orange);
 }
 
-.review-form-panel {
-    background: #eaf1f7;
+body > footer {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 40px;
+  padding: 45px 7% 35px;
+  background-color: #0f172a;
+  color: #cbd5e1;
+  border-top: 4px solid #2563eb;
 }
 
-.form-control:focus,
-.form-select:focus,
-.form-check-input:focus {
-    border-color: var(--prestige-orange);
-    box-shadow: 0 0 0 0.25rem rgba(244, 123, 32, 0.2);
+body > footer address {
+  margin: 0;
+  color: #cbd5e1;
+  font-style: normal;
+  line-height: 1.9;
 }
 
-.form-check-input:checked {
-    border-color: var(--prestige-orange);
-    background-color: var(--prestige-orange);
+body > footer address::first-line {
+  color: #ffffff;
+  font-size: 1.15rem;
+  font-weight: 700;
 }
 
-@media (max-width: 767.98px) {
-    .reviews-message {
-        width: calc(100% - 2rem);
-        margin: -2rem auto 0;
-    }
+body > footer p {
+  margin: 0;
+  color: #94a3b8;
+  font-size: 0.9rem;
+  line-height: 1.8;
+}
 
-    .reviews-visual::before {
-        inset: -0.55rem 0.75rem 1rem -0.55rem;
-    }
+body > footer a {
+  color: #60a5fa;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+body > footer a:hover {
+  color: #93c5fd;
+  text-decoration: underline;
+}
+
+body > footer a:focus-visible {
+  outline: 3px solid #60a5fa;
+  outline-offset: 3px;
+}
+
+@media (max-width: 1000px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  header nav {
+    width: 100%;
+  }
+
+  header nav ul {
+    flex-wrap: wrap;
+  }
+
+  body > footer {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 700px) {
+  header {
+    padding: 18px 20px;
+  }
+
+  header > p a {
+    font-size: 1.15rem;
+  }
+
+  header nav ul {
+    gap: 5px;
+  }
+
+  header nav a {
+    padding: 7px 9px;
+    font-size: 0.8rem;
+  }
+
+  body > footer {
+    grid-template-columns: 1fr;
+    gap: 25px;
+    padding: 35px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  header nav ul {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+  }
+
+  header nav a {
+    width: 100%;
+  }
+
 }
