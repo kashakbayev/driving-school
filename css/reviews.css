@@ -1,580 +1,105 @@
-* {
-  box-sizing: border-box;
+/* Bootstrap handles the grid, cards, forms, spacing, typography, and buttons.
+   This stylesheet adds only the Prestige reviews-page visuals. */
+.reviews-hero {
+    background: linear-gradient(135deg, #fff 0%, #fff 62%, #e9f1f8 100%);
 }
 
-html {
-  scroll-behavior: smooth;
+.reviews-hero h1 {
+    color: var(--prestige-navy);
+    letter-spacing: -0.055em;
 }
 
-body {
-  margin: 0;
-  background-color: #f4f7fb;
-  color: #1f2937;
-  font-family: Arial, Helvetica, sans-serif;
-  line-height: 1.6;
+.reviews-image {
+    height: clamp(18rem, 42vw, 29rem);
+    object-fit: cover;
 }
 
-header {
-  min-height: 80px;
-  padding: 0 7%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 30px;
-  background-color: #0f172a;
-  box-shadow: 0 4px 18px rgba(15, 23, 42, 0.18);
+.reviews-visual::before {
+    position: absolute;
+    inset: -0.8rem 1.5rem 1.5rem -0.8rem;
+    z-index: 0;
+    border-radius: 1.25rem;
+    background: var(--prestige-orange);
+    content: "";
 }
 
-header > p {
-  margin: 0;
-  flex-shrink: 0;
+.reviews-visual img,
+.reviews-message {
+    position: relative;
+    z-index: 1;
 }
 
-header > p a {
-  color: #ffffff;
-  text-decoration: none;
-  font-size: 1.25rem;
-  font-weight: 700;
-  letter-spacing: -0.3px;
+.reviews-message {
+    display: flex;
+    width: min(20rem, 86%);
+    margin: -3rem 0 0 -1.25rem;
+    gap: 1rem;
+    align-items: center;
 }
 
-header > p a:hover {
-  color: #60a5fa;
+.rating-number,
+.rating-card > span {
+    color: var(--prestige-orange);
+    font-weight: 800;
+    line-height: 1;
 }
 
-header nav ul {
-  margin: 0;
-  padding: 0;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  list-style: none;
+.rating-number {
+    font-size: 2.6rem;
 }
 
-header nav li {
-  margin: 0;
+.section-heading {
+    max-width: 42rem;
 }
 
-header nav a {
-  display: block;
-  padding: 9px 12px;
-  color: #cbd5e1;
-  text-decoration: none;
-  font-size: 0.9rem;
-  font-weight: 600;
-  border-radius: 8px;
-  transition:
-    background-color 0.2s ease,
-    color 0.2s ease,
-    transform 0.2s ease;
+.rating-card {
+    border-top: 0.3rem solid var(--prestige-orange) !important;
 }
 
-header nav a:hover {
-  background-color: #1e293b;
-  color: #ffffff;
-  transform: translateY(-1px);
+.rating-card > span {
+    font-size: 2.8rem;
 }
 
-header nav a:active {
-  transform: translateY(0);
+.quote-panel {
+    background: linear-gradient(135deg, var(--prestige-navy), #123f66);
 }
 
-header nav a:focus-visible {
-  outline: 3px solid #60a5fa;
-  outline-offset: 3px;
+.quote-panel blockquote p {
+    letter-spacing: -0.03em;
 }
 
-header nav a[href="reviews.html"] {
-  background-color: #2563eb;
-  color: #ffffff;
+.top-instructors-card {
+    border-top: 0.3rem solid var(--prestige-orange) !important;
 }
 
-main {
-  max-width: 1050px;
-  margin: 0 auto;
-  padding: 60px 24px 80px;
+.top-instructors-card a:not(.btn) {
+    color: var(--prestige-blue);
+    font-weight: 700;
 }
 
-main > h1 {
-  margin: 0 0 15px;
-  text-align: center;
-  color: #0f172a;
-  font-size: clamp(2rem, 5vw, 3.2rem);
-  line-height: 1.1;
-  letter-spacing: -1px;
+.review-form-panel {
+    background: #eaf1f7;
 }
 
-main > h1 + p {
-  max-width: 700px;
-  margin: 0 auto 35px;
-  text-align: center;
-  color: #64748b;
-  font-size: 1.05rem;
+.form-control:focus,
+.form-select:focus,
+.form-check-input:focus {
+    border-color: var(--prestige-orange);
+    box-shadow: 0 0 0 0.25rem rgba(244, 123, 32, 0.2);
 }
 
-main a {
-  color: #2563eb;
-  font-weight: 600;
+.form-check-input:checked {
+    border-color: var(--prestige-orange);
+    background-color: var(--prestige-orange);
 }
 
-main a:hover {
-  color: #1e40af;
-}
-
-main aside {
-  margin: 30px auto;
-  padding: 25px 30px;
-  background-color: #ffffff;
-  border: 1px solid #dbeafe;
-  border-left: 5px solid #2563eb;
-  border-radius: 14px;
-  box-shadow: 0 8px 25px rgba(15, 23, 42, 0.07);
-}
-
-main aside h2 {
-  margin: 0 0 8px;
-  color: #0f172a;
-  font-size: 1.35rem;
-}
-
-main aside p {
-  margin: 0;
-  color: #475569;
-}
-
-main mark {
-  display: inline-block;
-  padding: 4px 12px;
-  background-color: #dcfce7;
-  color: #166534;
-  border-radius: 20px;
-  font-weight: 700;
-}
-
-main blockquote {
-  position: relative;
-  margin: 35px 0;
-  padding: 30px 35px;
-  background-color: #ffffff;
-  border-radius: 16px;
-  border: 1px solid #e2e8f0;
-  box-shadow: 0 8px 25px rgba(15, 23, 42, 0.07);
-}
-
-main blockquote::before {
-  content: "“";
-  position: absolute;
-  top: -5px;
-  left: 18px;
-  color: #bfdbfe;
-  font-family: Georgia, serif;
-  font-size: 5rem;
-  line-height: 1;
-}
-
-main blockquote > p {
-  position: relative;
-  margin: 0 0 15px;
-  color: #334155;
-  font-size: 1.15rem;
-  font-style: italic;
-  line-height: 1.8;
-}
-
-main blockquote footer {
-  display: block;
-  padding: 0;
-  background: none;
-  border: 0;
-  color: #64748b;
-  font-size: 0.9rem;
-}
-
-main > img {
-  display: block;
-  width: 100%;
-  max-width: 600px;
-  height: 340px;
-  margin: 35px auto;
-  object-fit: cover;
-  border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.12);
-}
-
-main > h2 {
-  margin: 50px 0 20px;
-  color: #0f172a;
-  font-size: 1.8rem;
-}
-
-main table {
-  width: 100%;
-  margin: 20px 0 40px;
-  border-collapse: collapse;
-  overflow: hidden;
-  background-color: #ffffff;
-  border-radius: 14px;
-  box-shadow: 0 8px 25px rgba(15, 23, 42, 0.07);
-}
-
-main table caption {
-  padding: 15px;
-  background-color: #0f172a;
-  color: #ffffff;
-  font-size: 1.05rem;
-  font-weight: 700;
-  text-align: left;
-}
-
-main table th,
-main table td {
-  padding: 16px 20px;
-  border-bottom: 1px solid #e2e8f0;
-  text-align: left;
-}
-
-main table thead th {
-  background-color: #eff6ff;
-  color: #1e3a8a;
-  font-size: 0.9rem;
-}
-
-main table tbody th {
-  color: #334155;
-}
-
-main table tbody td {
-  color: #166534;
-  font-weight: 700;
-}
-
-main table tbody tr:last-child th,
-main table tbody tr:last-child td {
-  border-bottom: none;
-}
-
-main table tbody tr:hover {
-  background-color: #f8fafc;
-}
-
-main > ol {
-  margin: 20px 0 40px;
-  padding: 0;
-  list-style-position: inside;
-}
-
-main > ol li {
-  margin-bottom: 10px;
-  padding: 14px 18px;
-  background-color: #ffffff;
-  color: #334155;
-  border: 1px solid #e2e8f0;
-  border-radius: 10px;
-  font-weight: 600;
-  box-shadow: 0 3px 10px rgba(15, 23, 42, 0.04);
-}
-
-main hr {
-  margin: 45px 0;
-  border: 0;
-  border-top: 1px solid #e2e8f0;
-}
-
-main form {
-  margin-top: 20px;
-}
-
-main form > fieldset {
-  margin: 0;
-  padding: 30px;
-  background-color: #ffffff;
-  border: 1px solid #e2e8f0;
-  border-radius: 18px;
-  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
-}
-
-main form > fieldset > legend {
-  padding: 0 12px;
-  color: #0f172a;
-  font-size: 1.25rem;
-  font-weight: 700;
-}
-
-main form p {
-  margin: 0 0 20px;
-}
-
-main form label {
-  color: #334155;
-  font-size: 0.95rem;
-  font-weight: 600;
-}
-
-main form input[type="text"],
-main form input[type="email"],
-main form input[type="tel"],
-main form input[type="number"],
-main form input[type="date"],
-main form select,
-main form textarea {
-  width: 100%;
-  margin-top: 7px;
-  padding: 12px 14px;
-  background-color: #f8fafc;
-  color: #1f2937;
-  font: inherit;
-  border: 1px solid #cbd5e1;
-  border-radius: 9px;
-  outline: none;
-  transition:
-    border-color 0.2s ease,
-    box-shadow 0.2s ease,
-    background-color 0.2s ease;
-}
-
-main form textarea {
-  min-height: 130px;
-  resize: vertical;
-}
-
-main form input:focus,
-main form select:focus,
-main form textarea:focus {
-  background-color: #ffffff;
-  border-color: #2563eb;
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
-}
-
-main form fieldset fieldset {
-  margin: 20px 0;
-  padding: 18px 20px;
-  background-color: #f8fafc;
-  border: 1px solid #e2e8f0;
-  border-radius: 10px;
-}
-
-main form fieldset fieldset legend {
-  padding: 0 8px;
-  color: #334155;
-  font-weight: 700;
-}
-
-main form fieldset fieldset label {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  margin-right: 25px;
-  cursor: pointer;
-}
-
-main input[type="radio"],
-main input[type="checkbox"] {
-  width: 17px;
-  height: 17px;
-  accent-color: #2563eb;
-}
-
-main button {
-  padding: 11px 22px;
-  border: 0;
-  border-radius: 9px;
-  font: inherit;
-  font-weight: 700;
-  cursor: pointer;
-  transition:
-    background-color 0.2s ease,
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
-}
-
-main button[type="submit"] {
-  background-color: #2563eb;
-  color: #ffffff;
-  box-shadow: 0 5px 15px rgba(37, 99, 235, 0.25);
-}
-
-main button[type="submit"]:hover {
-  background-color: #1d4ed8;
-  transform: translateY(-2px);
-}
-
-main button[type="reset"] {
-  margin-left: 8px;
-  background-color: #e2e8f0;
-  color: #334155;
-}
-
-main button[type="reset"]:hover {
-  background-color: #cbd5e1;
-  transform: translateY(-2px);
-}
-
-main button:active {
-  transform: translateY(0);
-}
-
-main button:focus-visible {
-  outline: 3px solid #93c5fd;
-  outline-offset: 3px;
-}
-
-main > p:last-child {
-  margin-top: 30px;
-  padding: 15px;
-  text-align: center;
-  background-color: #dcfce7;
-  color: #166534;
-  border-radius: 10px;
-  font-weight: 600;
-}
-
-body > footer {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
-  gap: 40px;
-  padding: 45px 7% 35px;
-  background-color: #0f172a;
-  color: #cbd5e1;
-  border-top: 4px solid #2563eb;
-}
-
-body > footer address {
-  margin: 0;
-  color: #cbd5e1;
-  font-style: normal;
-  line-height: 1.9;
-}
-
-body > footer address::first-line {
-  color: #ffffff;
-  font-size: 1.15rem;
-  font-weight: 700;
-}
-
-body > footer p {
-  margin: 0;
-  color: #94a3b8;
-  font-size: 0.9rem;
-  line-height: 1.8;
-}
-
-body > footer a {
-  color: #60a5fa;
-  text-decoration: none;
-  font-weight: 600;
-}
-
-body > footer a:hover {
-  color: #93c5fd;
-  text-decoration: underline;
-}
-
-body > footer a:focus-visible {
-  outline: 3px solid #60a5fa;
-  outline-offset: 3px;
-}
-
-@media (max-width: 1000px) {
-  header {
-    flex-direction: column;
-    align-items: flex-start;
-    padding-top: 20px;
-    padding-bottom: 20px;
-  }
-
-  header nav {
-    width: 100%;
-  }
-
-  header nav ul {
-    flex-wrap: wrap;
-  }
-
-  body > footer {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-@media (max-width: 700px) {
-  header {
-    padding: 18px 20px;
-  }
-
-  header > p a {
-    font-size: 1.15rem;
-  }
-
-  header nav ul {
-    gap: 5px;
-  }
-
-  header nav a {
-    padding: 7px 9px;
-    font-size: 0.8rem;
-  }
-
-  main {
-    padding: 40px 16px 60px;
-  }
-
-  main > h1 {
-    font-size: 2.2rem;
-  }
-
-  main aside,
-  main blockquote,
-  main form > fieldset {
-    padding: 20px;
-  }
-
-  main > img {
-    height: 260px;
-  }
-
-  main table {
-    font-size: 0.85rem;
-  }
-
-  main table th,
-  main table td {
-    padding: 12px 10px;
-  }
-
-  body > footer {
-    grid-template-columns: 1fr;
-    gap: 25px;
-    padding: 35px 20px;
-  }
-}
-
-@media (max-width: 480px) {
-  header nav ul {
-    flex-direction: column;
-    align-items: stretch;
-    width: 100%;
-  }
-
-  header nav a {
-    width: 100%;
-  }
-
-  main {
-    padding: 30px 14px 50px;
-  }
-
-  main > h1 {
-    font-size: 1.9rem;
-  }
-
-  main > h2 {
-    font-size: 1.5rem;
-  }
-
-  main button {
-    width: 100%;
-  }
+@media (max-width: 767.98px) {
+    .reviews-message {
+        width: calc(100% - 2rem);
+        margin: -2rem auto 0;
+    }
 
-  main button[type="reset"] {
-    margin: 10px 0 0;
-  }
+    .reviews-visual::before {
+        inset: -0.55rem 0.75rem 1rem -0.55rem;
+    }
 }
