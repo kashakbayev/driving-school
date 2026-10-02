@@ -1,212 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Meet the Category B instructors at Prestige Driving School.">
-  <meta name="author" content="Baygali">
-  <title>Instructors | Prestige Driving School</title>
-
-  <!-- Bootstrap v5.3.8 (CDN); the shared css/index.css and the page stylesheet come after it so their rules win -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-  <link rel="stylesheet" href="css/index.css">
-  <link rel="stylesheet" href="css/instructors.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Meet the Category B instructors at Prestige Driving School in Astana.">
+    <meta name="author" content="Baygali">
+    <title>Instructors | Prestige Driving School</title>
+    <!-- Bootstrap 5.3.8 is used for the responsive grid, navigation, cards, buttons, and utilities. -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/instructors.css">
 </head>
-
-<body>
-
-  <!-- The navigation is repeated so every page works as a static HTML page. -->
-  <header>
-    <p><strong><a href="index.html">Prestige Driving School</a></strong></p>
-
-    <nav aria-label="Main navigation">
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="courses.html">Courses</a></li>
-        <li><a href="coursedetail.html">Course Details</a></li>
-        <li><a href="schedule.html">Schedule</a></li>
-        <li><a href="enrollment.html">Enrollment</a></li>
-        <li><a href="instructors.html">Instructors</a></li>
-        <li><a href="reviews.html">Reviews</a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <main class="container py-4 py-lg-5">
-
-    <!-- .hero-panel comes from the shared css/index.css, so this title block matches the other pages -->
-    <section class="hero-panel rounded-5 shadow p-4 p-lg-5 mb-5 text-center text-lg-start">
-      <h1 class="display-4 fw-bold mb-3">Meet Our Instructors</h1>
-
-      <p class="lead text-body-secondary mb-0">
-        All Prestige instructors are <strong>licensed</strong> and
-        <em>regularly re-certified</em> by the traffic authority.
-        <mark class="bg-warning-subtle rounded-2 px-1">Both instructors below currently have open slots</mark>
-        for new students this month.
-      </p>
-    </section>
-
-    <!-- Responsive block: one instructor per row on phones and tablets, two side by side from lg (desktop) up -->
-    <div class="row g-4">
-      <article class="col-12 col-lg-6">
-        <!-- Bootstrap component: Card (https://getbootstrap.com/docs/5.3/components/card/).
-             Changed: the instructor name is the card header, the photo is a <figure> with a caption
-             instead of a plain card-img-top, and the card has no button, only text and lists. -->
-        <div class="card instructor-card h-100 shadow-sm overflow-hidden">
-          <h2 class="card-header h3 fw-bold bg-white border-0 pt-4 px-4">Nurlan Idrisov</h2>
-
-          <figure class="mb-0">
-            <!-- .ratio keeps both photos the same 4:3 shape so the two cards line up -->
-            <div class="ratio ratio-4x3">
-              <img
-                src="images/nurlan.jpg"
-                alt="Nurlan Idrisov, Senior Instructor"
-                class="object-fit-cover"
-              >
-            </div>
-            <figcaption class="small text-body-secondary px-4 pt-2">Nurlan Idrisov, Senior Instructor</figcaption>
-          </figure>
-
-          <div class="card-body p-4">
-            <p class="card-text">
-              Nurlan has taught Category B courses for
-              <b>over 12 years</b> and holds an
-              <abbr title="Advanced Driving Instructor Certificate">ADIC</abbr>.
-            </p>
-
-            <!-- Nested grid: a row inside the card; the two lists sit side by side from sm up -->
-            <ul class="row g-3 list-unstyled mb-4">
-              <li class="col-12 col-sm-6 small fw-bold text-body-secondary">
-                Categories taught
-                <ul class="list-unstyled d-flex flex-wrap gap-2 mt-2 mb-0">
-                  <li class="badge rounded-pill text-bg-light border fw-normal fs-6 text-wrap text-start">Category B (Car)</li>
+<body class="bg-body-tertiary d-flex flex-column min-vh-100">
+    <header class="navbar navbar-expand-md navbar-dark bg-brand shadow-sm">
+        <div class="container-fluid px-3 px-lg-5">
+            <a class="navbar-brand fw-bold" href="index.html"><span class="brand-mark"></span>Prestige Driving School</a>
+            <input class="visually-hidden nav-toggle" type="checkbox" id="instructors-nav-toggle">
+            <label class="navbar-toggler d-md-none" for="instructors-nav-toggle">
+                <span class="navbar-toggler-icon"></span>
+                <span class="visually-hidden">Toggle navigation</span>
+            </label>
+            <nav class="navbar-collapse main-navigation" aria-label="Main navigation">
+                <ul class="navbar-nav ms-md-auto gap-md-1">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="courses.html">Courses</a></li>
+                    <li class="nav-item"><a class="nav-link" href="courseDetail.html">Course Details</a></li>
+                    <li class="nav-item"><a class="nav-link" href="schedule.html">Schedule</a></li>
+                    <li class="nav-item"><a class="nav-link" href="enrollment.html">Enrollment</a></li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="instructors.html">Instructors</a></li>
+                    <li class="nav-item"><a class="nav-link" href="reviews.html">Reviews</a></li>
                 </ul>
-              </li>
-              
-
-              <li class="col-12 col-sm-6 small fw-bold text-body-secondary">
-                Specialties
-                <ul class="list-unstyled d-flex flex-wrap gap-2 mt-2 mb-0">
-                  <li class="badge rounded-pill text-bg-light border fw-normal fs-6 text-wrap text-start">Night driving</li>
-                  <li class="badge rounded-pill text-bg-light border fw-normal fs-6 text-wrap text-start">Highway driving</li>
-                </ul>
-              </li>
-            </ul>
-
-            <!-- Horizontal description list from the Bootstrap docs: label and value side by side from sm up -->
-            <dl class="row g-0 mb-0 pt-3 border-top">
-              <dt class="col-12 col-sm-4">Office Hours</dt>
-              <dd class="col-12 col-sm-8">
-                Mon&ndash;Sat, 10:00&ndash;21:00
-                (break 13:00&ndash;14:00)
-              </dd>
-
-              <dt class="col-12 col-sm-4">Contact</dt>
-              <dd class="col-12 col-sm-8 mb-0">
-                <a href="mailto:info@prestige-auto.com" class="btn btn-outline-primary btn-sm">
-                  info@prestige-auto.com
-                </a>
-              </dd>
-            </dl>
-          </div>
+            </nav>
         </div>
-      </article>
+    </header>
 
-      <!-- The divider is only needed when the cards are stacked; from lg up they sit side by side -->
-      <hr class="col-12 d-lg-none my-0">
-
-      <article class="col-12 col-lg-6">
-        <div class="card instructor-card h-100 shadow-sm overflow-hidden">
-          <h2 class="card-header h3 fw-bold bg-white border-0 pt-4 px-4">Aliya Sadykova</h2>
-
-          <figure class="mb-0">
-            <div class="ratio ratio-4x3">
-              <img
-                src="images/aliya.jpg"
-                alt="Aliya Sadykova, Defensive Driving Instructor"
-                class="object-fit-cover"
-              >
+    <main class="container py-4 py-lg-5 flex-grow-1">
+        <section class="instructors-hero row g-4 g-lg-5 align-items-center rounded-5 shadow overflow-hidden p-3 p-md-4 p-lg-5" aria-labelledby="instructors-title">
+            <div class="col-12 col-lg-7 text-center text-lg-start">
+                <p class="eyebrow fw-bold text-uppercase mb-2">Guidance that builds confidence</p>
+                <h1 class="display-3 fw-bold lh-1 mb-4" id="instructors-title">Meet the people behind your progress</h1>
+                <p class="lead text-body-secondary mb-4">Learn Category B driving with patient instructors who turn road knowledge into practical, repeatable skills.</p>
+                <div class="d-flex flex-wrap justify-content-center justify-content-lg-start gap-2">
+                    <a class="btn btn-primary btn-lg px-4" href="enrollment.html">Start enrollment</a>
+                    <a class="btn btn-outline-primary btn-lg px-4" href="schedule.html">See lesson times</a>
+                </div>
             </div>
-            <figcaption class="small text-body-secondary px-4 pt-2">Aliya Sadykova, Defensive Driving Instructor</figcaption>
-          </figure>
+            <div class="col-12 col-lg-5">
+                <aside class="instructor-promise rounded-4 p-4 text-white" aria-label="What students can expect">
+                    <p class="eyebrow eyebrow-light fw-bold text-uppercase mb-2">What to expect</p>
+                    <h2 class="h3 mb-4">Support at every stage</h2>
+                    <ul class="promise-list list-unstyled mb-0">
+                        <li>Clear explanations</li>
+                        <li>Practical feedback</li>
+                        <li>Training at your pace</li>
+                    </ul>
+                </aside>
+            </div>
+        </section>
 
-          <div class="card-body p-4">
-            <p class="card-text">
-              Aliya specializes in
-              <i>defensive and refresher driving</i>
-              and holds a
-              <abbr title="Certified Defensive Driving Trainer">CDDT</abbr>
-              qualification.
-            </p>
+        <section class="py-5" aria-labelledby="team-title">
+            <div class="text-center mx-auto section-heading mb-4">
+                <p class="eyebrow fw-bold text-uppercase mb-2">Your training team</p>
+                <h2 class="display-6 fw-bold mb-2" id="team-title">Choose the right guidance</h2>
+                <p class="text-body-secondary mb-0">Different specialties, one goal: helping you become a calmer, safer driver.</p>
+            </div>
 
-            <ul class="row g-3 list-unstyled mb-4">
-              <li class="col-12 col-sm-6 small fw-bold text-body-secondary">
-                Categories taught
-                <ul class="list-unstyled d-flex flex-wrap gap-2 mt-2 mb-0">
-                  <li class="badge rounded-pill text-bg-light border fw-normal fs-6 text-wrap text-start">Category B Refresher / Defensive Driving</li>
-                </ul>
-              </li>
+            <!-- Bootstrap Card component: adapted as responsive instructor profiles. -->
+            <div class="row g-4 justify-content-center">
+                <div class="col-12 col-md-6">
+                    <article class="card instructor-card h-100 border-0 shadow-sm overflow-hidden">
+                        <img class="card-img-top instructor-photo" src="images/nurlan.jpg" alt="Nurlan Idrisov, senior driving instructor">
+                        <div class="card-body p-4 d-flex flex-column">
+                            <span class="role-label align-self-start">Senior instructor</span>
+                            <h3 class="h2 mt-3 mb-2">Nurlan Idrisov</h3>
+                            <p class="text-body-secondary">More than 12 years of Category B teaching experience with a focus on confident road decisions.</p>
+                            <div class="d-flex flex-wrap gap-2 mb-4" aria-label="Nurlan's specialties">
+                                <span class="specialty-badge">Highway driving</span>
+                                <span class="specialty-badge">Night driving</span>
+                            </div>
+                            <a class="btn btn-outline-primary mt-auto align-self-start" href="enrollment.html">Train with Prestige</a>
+                        </div>
+                    </article>
+                </div>
 
-              <li class="col-12 col-sm-6 small fw-bold text-body-secondary">
-                Specialties
-                <ul class="list-unstyled d-flex flex-wrap gap-2 mt-2 mb-0">
-                  <li class="badge rounded-pill text-bg-light border fw-normal fs-6 text-wrap text-start">Winter road conditions</li>
-                  <li class="badge rounded-pill text-bg-light border fw-normal fs-6 text-wrap text-start">Anxious first-time drivers</li>
-                </ul>
-              </li>
-            </ul>
+                <div class="col-12 col-md-6">
+                    <article class="card instructor-card h-100 border-0 shadow-sm overflow-hidden">
+                        <img class="card-img-top instructor-photo" src="images/aliya.jpg" alt="Aliya Sadykova, defensive driving instructor">
+                        <div class="card-body p-4 d-flex flex-column">
+                            <span class="role-label align-self-start">Defensive driving instructor</span>
+                            <h3 class="h2 mt-3 mb-2">Aliya Sadykova</h3>
+                            <p class="text-body-secondary">Focused support for first-time and returning drivers who want to feel more comfortable on the road.</p>
+                            <div class="d-flex flex-wrap gap-2 mb-4" aria-label="Aliya's specialties">
+                                <span class="specialty-badge">Winter conditions</span>
+                                <span class="specialty-badge">Anxious drivers</span>
+                            </div>
+                            <a class="btn btn-outline-primary mt-auto align-self-start" href="enrollment.html">Train with Prestige</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
 
-            <dl class="row g-0 mb-0 pt-3 border-top">
-              <dt class="col-12 col-sm-4">Office Hours</dt>
-              <dd class="col-12 col-sm-8">
-                Mon&ndash;Sat, 10:00&ndash;21:00
-                (break 13:00&ndash;14:00)
-              </dd>
+        <section class="instructors-cta rounded-5 p-4 p-lg-5 text-center shadow-sm" aria-labelledby="instructors-cta-title">
+            <p class="fw-bold text-uppercase small mb-2">Learn with confidence</p>
+            <h2 class="display-6 fw-bold mb-3" id="instructors-cta-title">Ready to meet your instructor?</h2>
+            <p class="lead mb-4">Choose your preferred start date and transmission in the enrollment form.</p>
+            <a class="btn btn-dark btn-lg px-5" href="enrollment.html">Begin your training</a>
+        </section>
+    </main>
 
-              <dt class="col-12 col-sm-4">Contact</dt>
-              <dd class="col-12 col-sm-8 mb-0">
-                <a href="mailto:info@prestige-auto.com" class="btn btn-outline-primary btn-sm">
-                  info@prestige-auto.com
-                </a>
-              </dd>
-            </dl>
-          </div>
+    <footer class="site-footer bg-brand text-white-50 py-4 mt-auto">
+        <div class="container">
+            <div class="row g-4 align-items-start">
+                <address class="col-12 col-md-6 col-lg-5 mb-0">
+                    <strong class="text-white">Prestige Driving School</strong><br>
+                    <span lang="ru">Деловой дом Алма-Ата, Амангельды Иманова улица, 19, 707F офис</span><br>
+                    <a href="tel:+77058444848">+7 (705) 844 4848</a> · <a href="mailto:info@prestige-auto.com">info@prestige-auto.com</a>
+                </address>
+                <p class="col-12 col-md-6 col-lg-4 mb-0 small">Monday–Saturday: 10:00 AM–9:00 PM<br>Break: 1:00 PM–2:00 PM<br>Sunday: Closed</p>
+                <p class="col-12 col-lg-3 mb-0 text-lg-end small">&copy; 2026 Prestige Driving School</p>
+            </div>
         </div>
-      </article>
-    </div>
-    
-
-    <div class="alert alert-light border shadow-sm mt-5 mb-0 text-center text-md-start">
-      <p class="mb-0">
-        <small>
-          Instructor availability may change during exam season.
-        </small>
-      </p>
-    </div>
-
-  </main>
-
-  <!-- Contact details are written directly in HTML so they remain available on this page. -->
-  <footer>
-    <address>
-      Prestige Driving School<br>
-      <span lang="ru">
-        Деловой дом Алма-Ата, Амангельды Иманова улица, 19, 707F офис
-      </span><br>
-      Phone:
-      <a href="tel:+77058444848">+7 (705) 844 4848</a><br>
-      Email:
-      <a href="mailto:info@prestige-auto.com">info@prestige-auto.com</a>
-    </address>
-
-    <p>
-      Monday&ndash;Saturday: 10:00 AM&ndash;9:00 PM<br>
-      Break: 1:00 PM&ndash;2:00 PM<br>
-      Sunday: Closed
-    </p>
-
-    <p>&copy; 2026 Prestige Driving School</p>
-  </footer>
-
+    </footer>
 </body>
 </html>
