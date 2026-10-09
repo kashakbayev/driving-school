@@ -6,12 +6,14 @@
     <meta name="description" content="Start Category B training at Prestige Driving School in Astana with a simple enrollment form and flexible lesson planning.">
     <meta name="author" content="Aidos">
     <title>Enrollment | Prestige Driving School</title>
+    <link rel="icon" type="image/jpeg" href="images/category-b-car.jpg">
     <!-- Bootstrap 5.3.8 is used for the responsive grid, navigation, forms, cards, buttons, and utilities. -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/enrollment.css">
 </head>
 <body class="bg-body-tertiary d-flex flex-column min-vh-100">
-    <header class="navbar navbar-expand-md navbar-dark bg-brand shadow-sm">
+    <a class="visually-hidden-focusable skip-link" href="#main-content">Skip to main content</a>
+    <header class="navbar navbar-expand-md navbar-dark bg-brand shadow-sm" id="site-header">
         <!-- container-fluid lets the navigation use the full screen width. -->
         <div class="container-fluid px-3 px-lg-5">
             <a class="navbar-brand fw-bold" href="index.html"><span class="brand-mark"></span>Prestige Driving School</a>
@@ -20,7 +22,7 @@
                 <span class="navbar-toggler-icon"></span>
                 <span class="visually-hidden">Toggle navigation</span>
             </label>
-            <nav class="navbar-collapse main-navigation" aria-label="Main navigation">
+            <nav class="navbar-collapse main-navigation" id="main-navigation" aria-label="Main navigation">
                 <ul class="navbar-nav ms-md-auto gap-md-1">
                     <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="courses.html">Courses</a></li>
@@ -35,13 +37,13 @@
     </header>
 
     <!-- container keeps the form at a comfortable reading width. -->
-    <main class="container py-4 py-lg-5 flex-grow-1">
-        <section class="enrollment-hero row g-4 g-lg-5 align-items-center rounded-5 shadow overflow-hidden p-3 p-md-4 p-lg-5" aria-labelledby="enrollment-title">
+    <main class="container py-4 py-lg-5 flex-grow-1" id="main-content">
+        <section class="enrollment-hero row g-4 g-lg-5 align-items-center rounded-5 shadow overflow-hidden p-3 p-md-4 p-lg-5" id="enrollment-hero" aria-labelledby="enrollment-title">
             <div class="col-12 col-lg-6 text-center text-lg-start">
                 <p class="eyebrow fw-bold text-uppercase mb-2">Your road starts here</p>
                 <h1 class="display-3 fw-bold lh-1 mb-4" id="enrollment-title">Start your journey to confident driving</h1>
                 <p class="lead text-body-secondary mb-4">Complete one short form to begin planning your Category B theory and practical training with Prestige.</p>
-                <div class="row g-2 text-start" aria-label="Enrollment benefits">
+                <div class="row g-2 text-start" role="group" aria-label="Enrollment benefits">
                     <div class="col-12 col-sm-4"><p class="trust-item mb-0"><strong>Simple</strong><small>Enrollment form</small></p></div>
                     <div class="col-12 col-sm-4"><p class="trust-item mb-0"><strong>Flexible</strong><small>Start date</small></p></div>
                     <div class="col-12 col-sm-4"><p class="trust-item mb-0"><strong>Your choice</strong><small>Manual or automatic</small></p></div>
@@ -58,61 +60,74 @@
             </div>
         </section>
 
-        <section class="row g-4 align-items-start py-5" aria-labelledby="form-title">
+        <section class="row g-4 align-items-start py-5" id="enrollment-section" aria-labelledby="form-title">
             <div class="col-12 col-lg-8">
                 <div class="mb-4">
                     <p class="eyebrow fw-bold text-uppercase mb-2">Take the first step</p>
                     <h2 class="display-6 fw-bold mb-2" id="form-title">Tell us about you</h2>
-                    <p class="text-body-secondary mb-0">Complete the required fields and choose the training options that suit you.</p>
+                    <p class="text-body-secondary mb-0" id="form-instructions">Complete the required fields. After you submit, Prestige will contact you by phone or email to confirm availability and the next steps.</p>
                 </div>
 
-                <form class="enrollment-form bg-white border rounded-4 shadow-sm p-3 p-md-4" method="post" action="#">
+                <form class="enrollment-form bg-white border rounded-4 shadow-sm p-3 p-md-4" id="enrollment-form" method="post" action="enrollment.html" aria-describedby="form-instructions enrollment-form-status">
                     <fieldset>
                         <legend class="h5 mb-4">Student information</legend>
                         <div class="row g-3">
                             <div class="col-12 col-md-6">
                                 <label class="form-label fw-semibold" for="full-name">Full name</label>
-                                <input class="form-control" type="text" id="full-name" name="full-name" placeholder="Aidos Kashakbayev" required>
+                                <input class="form-control" type="text" id="full-name" name="full-name" placeholder="Aidos Kashakbayev" autocomplete="name" aria-describedby="full-name-error" required>
+                                <small class="field-message is-hidden" id="full-name-error">Enter your full name.</small>
                             </div>
                             <div class="col-12 col-md-6">
                                 <label class="form-label fw-semibold" for="email">Email</label>
-                                <input class="form-control" type="email" id="email" name="email" placeholder="aidos@example.com" required>
+                                <input class="form-control" type="email" id="email" name="email" placeholder="aidos@example.com" autocomplete="email" aria-describedby="email-error" required>
+                                <small class="field-message is-hidden" id="email-error">Enter a valid email address.</small>
                             </div>
                             <div class="col-12 col-md-6">
                                 <label class="form-label fw-semibold" for="phone">Phone</label>
-                                <input class="form-control" type="tel" id="phone" name="phone" placeholder="+7 701 000 00 00" required>
+                                <input class="form-control" type="tel" id="phone" name="phone" placeholder="+7 701 000 00 00" autocomplete="tel" inputmode="tel" aria-describedby="phone-error" required>
+                                <small class="field-message is-hidden" id="phone-error">Enter a phone number we can use to contact you.</small>
                             </div>
                             <div class="col-6 col-md-3">
                                 <label class="form-label fw-semibold" for="age">Age</label>
-                                <input class="form-control" type="number" id="age" name="age" min="16" max="100" placeholder="18" required>
+                                <input class="form-control" type="number" id="age" name="age" min="16" max="100" placeholder="18" inputmode="numeric" aria-describedby="age-error" required>
+                                <small class="field-message is-hidden" id="age-error">Enter an age from 16 to 100.</small>
                             </div>
                             <div class="col-6 col-md-3">
                                 <label class="form-label fw-semibold" for="start-date">Start date</label>
-                                <input class="form-control" type="date" id="start-date" name="start-date" required>
+                                <input class="form-control" type="date" id="start-date" name="start-date" aria-describedby="start-date-error" required>
+                                <small class="field-message is-hidden" id="start-date-error">Choose your preferred start date.</small>
                             </div>
                             <div class="col-12 col-md-6">
                                 <label class="form-label fw-semibold" for="category">License category</label>
-                                <select class="form-select" id="category" name="category" required>
+                                <select class="form-select" id="category" name="category" aria-describedby="category-error" required>
+                                    <option value="" selected disabled>Choose a category</option>
                                     <option value="B">Category B</option>
                                 </select>
+                                <small class="field-message is-hidden" id="category-error">Choose a license category.</small>
                             </div>
-                            <div class="col-12 col-md-6">
-                                <p class="form-label fw-semibold mb-2">Preferred transmission</p>
+                            <fieldset class="col-12 col-md-6 border-0 m-0" aria-describedby="transmission-error">
+                                <legend class="form-label fw-semibold mb-2">Preferred transmission</legend>
                                 <div class="d-flex flex-wrap gap-3">
                                     <div class="form-check"><input class="form-check-input" type="radio" id="automatic" name="transmission" value="automatic" required><label class="form-check-label" for="automatic">Automatic</label></div>
                                     <div class="form-check"><input class="form-check-input" type="radio" id="manual" name="transmission" value="manual"><label class="form-check-label" for="manual">Manual</label></div>
                                 </div>
-                            </div>
+                                <small class="field-message is-hidden" id="transmission-error">Choose a preferred transmission.</small>
+                            </fieldset>
                             <div class="col-12">
                                 <label class="form-label fw-semibold" for="notes">Questions or previous driving experience</label>
                                 <textarea class="form-control" id="notes" name="notes" rows="4" placeholder="Tell us what you want help with"></textarea>
                             </div>
                             <div class="col-12">
-                                <div class="form-check"><input class="form-check-input" type="checkbox" id="agreement" name="agreement" required><label class="form-check-label" for="agreement">I confirm that the information above is correct.</label></div>
+                                <div class="form-check"><input class="form-check-input" type="checkbox" id="agreement" name="agreement" aria-describedby="agreement-error" required><label class="form-check-label" for="agreement">I confirm that the information above is correct.</label></div>
+                                <small class="field-message is-hidden" id="agreement-error">Confirm the information before submitting.</small>
                             </div>
                             <div class="col-12 d-flex flex-wrap gap-2 pt-2">
-                                <button class="btn btn-primary btn-lg px-4" type="submit">Submit enrollment</button>
-                                <button class="btn btn-outline-secondary" type="reset">Clear form</button>
+                                <button class="btn btn-primary btn-lg px-4" id="enrollment-submit" type="submit">Submit enrollment</button>
+                                <button class="btn btn-outline-secondary" id="enrollment-reset" type="reset">Clear form</button>
+                            </div>
+                            <div class="col-12" id="enrollment-form-status" aria-live="polite">
+                                <p class="status-message is-hidden is-error mb-0" id="enrollment-error" role="alert">Please review the highlighted fields and try again.</p>
+                                <p class="status-message is-hidden is-success mb-0" id="enrollment-confirmation" role="status">Thank you. Your enrollment request has been received. Prestige will contact you by phone or email to confirm your lesson plan.</p>
                             </div>
                         </div>
                     </fieldset>
@@ -120,7 +135,7 @@
             </div>
 
             <aside class="col-12 col-lg-4" aria-label="Enrollment information">
-                <div class="side-card rounded-4 p-4 mb-4">
+                <div class="side-card rounded-4 p-4 mb-4" id="enrollment-next-steps">
                     <p class="eyebrow eyebrow-light fw-bold text-uppercase mb-2">Your next steps</p>
                     <h2 class="h3 text-white mb-4">From application to the road</h2>
                     <ol class="list-unstyled mb-0 enrollment-steps">
@@ -131,7 +146,7 @@
                 </div>
 
                 <!-- Bootstrap Card component: adapted as a compact contact and office-hours panel. -->
-                <div class="card border-0 shadow-sm detail-card">
+                <div class="card border-0 shadow-sm detail-card" id="contact-details">
                     <div class="card-body p-4">
                         <h2 class="h4">Visit or call Prestige</h2>
                         <address class="text-body-secondary">
@@ -139,8 +154,8 @@
                         </address>
                         <p class="small text-body-secondary">Monday–Saturday: 10 AM–9 PM<br>Break: 1 PM–2 PM<br>Sunday: Closed</p>
                         <div class="d-grid gap-2">
-                            <a class="btn btn-outline-primary" href="tel:+77058444848">Call +7 (705) 844 4848</a>
-                            <a class="small text-center" href="https://beta.egov.kz/situations/56/intro" target="_blank" rel="noopener noreferrer">Kazakhstan eGov license information</a>
+                            <a class="btn btn-outline-primary" id="call-prestige-link" href="tel:+77058444848">Call +7 (705) 844 4848</a>
+                            <a class="small text-center" id="egov-license-link" href="https://beta.egov.kz/situations/56/intro" target="_blank" rel="noopener noreferrer">Kazakhstan eGov license information</a>
                         </div>
                     </div>
                 </div>
@@ -148,7 +163,7 @@
         </section>
     </main>
 
-    <footer class="site-footer bg-brand text-white-50 py-4 mt-auto">
+    <footer class="site-footer bg-brand text-white-50 py-4 mt-auto" id="site-footer">
         <div class="container"><div class="row g-4 align-items-start">
             <address class="col-12 col-md-6 col-lg-5 mb-0"><strong class="text-white">Prestige Driving School</strong><br><span lang="ru">Деловой дом Алма-Ата, Амангельды Иманова улица, 19, 707F офис</span><br><a href="tel:+77058444848">+7 (705) 844 4848</a> · <a href="mailto:info@prestige-auto.com">info@prestige-auto.com</a></address>
             <p class="col-12 col-md-6 col-lg-4 mb-0 small">Monday–Saturday: 10:00 AM–9:00 PM<br>Break: 1:00 PM–2:00 PM<br>Sunday: Closed</p>
