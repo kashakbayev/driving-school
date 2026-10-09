@@ -5,15 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Browse Category B driving courses offered by Prestige, including standard, intensive, and refresher training.">
   <meta name="author" content="Merey">
-  <!-- Bootstrap v5.3.8 (CDN); own stylesheet is linked after it so its rules win -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
   <link rel="stylesheet" href="css/index.css">
   <link rel="stylesheet" href="css/courses.css">
   <title>Category B Courses | Prestige Driving School</title>
 </head>
 <body class="bg-body-tertiary d-flex flex-column min-vh-100">
+  <a class="visually-hidden-focusable skip-link" href="#main-content">Skip to main content</a>
   <header class="navbar navbar-expand-md navbar-dark bg-brand shadow-sm">
-    <!-- container-fluid lets the navigation use the full screen width. -->
     <div class="container-fluid px-3 px-lg-5">
       <a class="navbar-brand fw-bold" href="index.html"><span class="brand-mark"></span>Prestige Driving School</a>
       <input class="visually-hidden nav-toggle" type="checkbox" id="courses-nav-toggle">
@@ -35,13 +34,16 @@
     </div>
   </header>
 
-  <main class="container py-4 py-lg-5 flex-grow-1">
-    <section class="courses-hero row g-4 g-lg-5 align-items-center rounded-5 shadow overflow-hidden p-3 p-md-4 p-lg-5" aria-labelledby="courses-title">
+  <main class="container py-4 py-lg-5 flex-grow-1" id="main-content">
+    <section class="courses-hero row g-4 g-lg-5 align-items-center rounded-5 shadow overflow-hidden p-3 p-md-4 p-lg-5" id="courses-hero" aria-labelledby="courses-title">
       <div class="col-12 col-lg-6 text-center text-lg-start">
         <p class="eyebrow fw-bold text-uppercase mb-2">Choose your training path</p>
         <h1 class="display-3 fw-bold lh-1 mb-4" id="courses-title">A Category B course for your goals</h1>
         <p class="lead text-body-secondary mb-4">Start from the beginning, train at a faster pace, or refresh the skills you already have.</p>
-        <a class="btn btn-primary btn-lg px-4" href="enrollment.html">Start enrollment</a>
+        <div class="d-flex flex-wrap justify-content-center justify-content-lg-start gap-2">
+          <a class="btn btn-primary btn-lg px-4" id="hero-enroll-link" href="enrollment.html#enrollment-form">Start enrollment</a>
+          <a class="btn btn-outline-primary btn-lg px-4" id="hero-compare-link" href="#course-comparison">Compare courses</a>
+        </div>
       </div>
       <div class="col-12 col-lg-6">
         <div class="courses-visual position-relative">
@@ -54,64 +56,173 @@
       </div>
     </section>
 
-    <section class="py-5" aria-labelledby="options-title">
+    <section class="py-5" id="course-catalog" aria-labelledby="options-title">
       <div class="text-center mx-auto section-heading mb-4">
         <p class="eyebrow fw-bold text-uppercase mb-2">Three clear options</p>
         <h2 class="display-6 fw-bold mb-2" id="options-title">Find the right pace</h2>
         <p class="text-body-secondary mb-0">Every option focuses on Category B driving skills.</p>
       </div>
 
-      <!-- Bootstrap Card component: adapted as concise course comparison cards. -->
-      <div class="row g-4">
-        <div class="col-12 col-md-6 col-lg-4">
-          <article class="card course-card featured-course h-100 border-0 shadow-sm">
+      <!-- Search and filter form. JavaScript will later filter the cards in #course-results
+           without reloading; until then the form reloads this page with the chosen values in the URL. -->
+      <form class="course-search bg-white rounded-4 shadow-sm p-3 p-md-4 mb-4" id="course-search-form" role="search" method="get" action="courses.html" aria-describedby="course-search-help">
+        <div class="row g-3 align-items-end">
+          <div class="col-12 col-lg-5">
+            <label class="form-label fw-semibold" for="course-search-input">Search courses</label>
+            <input class="form-control" type="search" id="course-search-input" name="q" placeholder="For example: intensive, parking, 6 weeks" autocomplete="off">
+            <small class="form-text" id="course-search-help">Search by course name, duration or what you want to practise.</small>
+          </div>
+          <fieldset class="col-12 col-lg-5">
+            <legend class="form-label fw-semibold fs-6 mb-2">Who is the course for?</legend>
+            <div class="d-flex flex-wrap gap-2" id="course-audience-filter">
+              <input class="btn-check" type="radio" name="audience" id="audience-all" value="all" checked>
+              <label class="btn btn-outline-primary" for="audience-all">All courses</label>
+              <input class="btn-check" type="radio" name="audience" id="audience-new" value="new">
+              <label class="btn btn-outline-primary" for="audience-new">New drivers</label>
+              <input class="btn-check" type="radio" name="audience" id="audience-returning" value="returning">
+              <label class="btn btn-outline-primary" for="audience-returning">Returning drivers</label>
+            </div>
+          </fieldset>
+          <div class="col-12 col-lg-2 d-grid">
+            <button class="btn btn-primary" type="submit" id="course-search-submit">Search</button>
+          </div>
+        </div>
+      </form>
+
+      <!-- Result area: JavaScript will update this count and switch .is-hidden on the cards and the empty state -->
+      <p class="text-body-secondary small mb-3" id="course-results-status" aria-live="polite">Showing all 3 Category B courses.</p>
+
+      <div class="row g-4" id="course-results">
+        <div class="col-12 col-md-6 col-lg-4 course-item" id="course-category-b" data-course="category-b" data-audience="new" data-price="145000" data-weeks="6" data-hours="56">
+          <article class="card course-card featured-course h-100 border-0" aria-labelledby="course-category-b-title">
             <div class="card-body p-4 d-flex flex-column">
               <span class="course-label align-self-start mb-3">Most complete</span>
-              <h3 class="h3">Category B</h3>
+              <h3 class="h3" id="course-category-b-title">Category B</h3>
               <p class="text-body-secondary">Full training for new drivers.</p>
               <dl class="course-facts row g-2 mt-1 mb-4">
-                <div class="col-6"><dt>Duration</dt><dd>6 weeks</dd></div>
-                <div class="col-6"><dt>Hours</dt><dd>56</dd></div>
+                <div class="col-4"><dt>Category</dt><dd>B (car)</dd></div>
+                <div class="col-4"><dt>Duration</dt><dd>6 weeks</dd></div>
+                <div class="col-4"><dt>Hours</dt><dd>56</dd></div>
               </dl>
               <p class="course-price mt-auto mb-3">145,000 <small>KZT</small></p>
-              <a class="btn btn-primary" href="courseDetail.html">View course details</a>
+              <div class="d-grid gap-2">
+                <a class="btn btn-primary" id="course-category-b-details" href="courseDetail.html">View Category B details</a>
+                <a class="btn btn-outline-primary" id="course-category-b-enroll" href="courseDetail.html?course=category-b#course-booking">Enroll in Category B</a>
+              </div>
             </div>
           </article>
         </div>
-        <div class="col-12 col-md-6 col-lg-4">
-          <article class="card course-card h-100 border-0 shadow-sm">
+        <div class="col-12 col-md-6 col-lg-4 course-item" id="course-intensive" data-course="intensive" data-audience="new" data-price="165000" data-weeks="3" data-hours="56">
+          <article class="card course-card h-100 border-0" aria-labelledby="course-intensive-title">
             <div class="card-body p-4 d-flex flex-column">
               <span class="course-label align-self-start mb-3">Faster pace</span>
-              <h3 class="h3">Intensive Category B</h3>
+              <h3 class="h3" id="course-intensive-title">Intensive Category B</h3>
               <p class="text-body-secondary">The same core hours in a shorter schedule.</p>
               <dl class="course-facts row g-2 mt-1 mb-4">
-                <div class="col-6"><dt>Duration</dt><dd>3 weeks</dd></div>
-                <div class="col-6"><dt>Hours</dt><dd>56</dd></div>
+                <div class="col-4"><dt>Category</dt><dd>B (car)</dd></div>
+                <div class="col-4"><dt>Duration</dt><dd>3 weeks</dd></div>
+                <div class="col-4"><dt>Hours</dt><dd>56</dd></div>
               </dl>
               <p class="course-price mt-auto mb-3">165,000 <small>KZT</small></p>
-              <a class="btn btn-outline-primary" href="enrollment.html">Choose intensive</a>
+              <div class="d-grid gap-2">
+                <!-- There is no separate page for this course yet, so its details live in the comparison table below -->
+                <a class="btn btn-primary" id="course-intensive-details" href="#compare-intensive">Compare intensive details</a>
+                <a class="btn btn-outline-primary" id="course-intensive-enroll" href="courseDetail.html?course=intensive#course-booking">Enroll in Intensive</a>
+              </div>
             </div>
           </article>
         </div>
-        <div class="col-12 col-md-6 col-lg-4">
-          <article class="card course-card h-100 border-0 shadow-sm">
+        <div class="col-12 col-md-6 col-lg-4 course-item" id="course-refresher" data-course="refresher" data-audience="returning" data-price="45000" data-weeks="1" data-hours="10">
+          <article class="card course-card h-100 border-0" aria-labelledby="course-refresher-title">
             <div class="card-body p-4 d-flex flex-column">
               <span class="course-label align-self-start mb-3">Skill refresh</span>
-              <h3 class="h3">Defensive Driving</h3>
+              <h3 class="h3" id="course-refresher-title">Defensive Driving</h3>
               <p class="text-body-secondary">Focused practice for returning drivers.</p>
               <dl class="course-facts row g-2 mt-1 mb-4">
-                <div class="col-6"><dt>Duration</dt><dd>1 week</dd></div>
-                <div class="col-6"><dt>Hours</dt><dd>10</dd></div>
+                <div class="col-4"><dt>Category</dt><dd>B (car)</dd></div>
+                <div class="col-4"><dt>Duration</dt><dd>1 week</dd></div>
+                <div class="col-4"><dt>Hours</dt><dd>10</dd></div>
               </dl>
               <p class="course-price mt-auto mb-3">45,000 <small>KZT</small></p>
-              <a class="btn btn-outline-primary" href="enrollment.html">Choose refresher</a>
+              <div class="d-grid gap-2">
+                <a class="btn btn-primary" id="course-refresher-details" href="#compare-refresher">Compare refresher details</a>
+                <a class="btn btn-outline-primary" id="course-refresher-enroll" href="courseDetail.html?course=refresher#course-booking">Enroll in Defensive Driving</a>
+              </div>
             </div>
           </article>
         </div>
       </div>
+
+      <!-- Empty state: hidden now; JavaScript removes .is-hidden when no card matches the search -->
+      <div class="empty-state is-hidden text-center rounded-4 p-4 p-md-5 mt-4" id="course-empty-state" role="status">
+        <h3 class="h4 fw-bold mb-2">No courses match your search</h3>
+        <p class="text-body-secondary mb-3">Try another word or choose &ldquo;All courses&rdquo;. You can also ask us which course fits you.</p>
+        <a class="btn btn-outline-primary" id="empty-state-call-link" href="tel:+77058444848">Call +7 (705) 844 4848</a>
+      </div>
     </section>
 
-    <section class="included-panel rounded-5 p-4 p-lg-5 mb-5 text-white" aria-labelledby="included-title">
+    <section class="pb-5" id="course-comparison" aria-labelledby="comparison-title">
+      <div class="text-center mx-auto section-heading mb-4">
+        <p class="eyebrow fw-bold text-uppercase mb-2">Side by side</p>
+        <h2 class="display-6 fw-bold mb-2" id="comparison-title">Compare the courses</h2>
+        <p class="text-body-secondary mb-0">Price, length, content and the kind of driver each course is made for.</p>
+      </div>
+
+      <!-- Bootstrap Tables component, wrapped in .table-responsive so it scrolls inside itself on phones -->
+      <div class="table-responsive bg-white rounded-4 shadow-sm">
+        <table class="table table-hover align-middle mb-0 comparison-table" id="course-comparison-table">
+          <caption class="visually-hidden">Comparison of Prestige Category B courses</caption>
+          <thead>
+            <tr>
+              <th scope="col">Criteria</th>
+              <th scope="col" id="compare-category-b">Category B</th>
+              <th scope="col" id="compare-intensive">Intensive Category B</th>
+              <th scope="col" id="compare-refresher">Defensive Driving</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Price</th>
+              <td class="fw-bold">145,000 KZT</td>
+              <td class="fw-bold">165,000 KZT</td>
+              <td class="fw-bold">45,000 KZT</td>
+            </tr>
+            <tr>
+              <th scope="row">Duration</th>
+              <td>6 weeks</td>
+              <td>3 weeks</td>
+              <td>1 week</td>
+            </tr>
+            <tr>
+              <th scope="row">Academic hours</th>
+              <td>56</td>
+              <td>56</td>
+              <td>10</td>
+            </tr>
+            <tr>
+              <th scope="row">What the training includes</th>
+              <td>Theory (traffic rules, road signs, first aid basics) and practice (vehicle control, parking, city driving)</td>
+              <td>The same core hours as Category B in a shorter schedule</td>
+              <td>Focused driving practice</td>
+            </tr>
+            <tr>
+              <th scope="row">Who it is for</th>
+              <td>New drivers who want full training</td>
+              <td>New drivers who want a faster pace</td>
+              <td>Returning drivers who want to refresh their skills</td>
+            </tr>
+            <tr>
+              <th scope="row">Next step</th>
+              <td><a class="btn btn-primary btn-sm" id="compare-category-b-details" href="courseDetail.html">Category B details</a></td>
+              <td><a class="btn btn-outline-primary btn-sm" id="compare-intensive-enroll" href="courseDetail.html?course=intensive#course-booking">Enroll in Intensive</a></td>
+              <td><a class="btn btn-outline-primary btn-sm" id="compare-refresher-enroll" href="courseDetail.html?course=refresher#course-booking">Enroll in Defensive Driving</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="included-panel rounded-5 p-4 p-lg-5 mb-5 text-white" id="course-included" aria-labelledby="included-title">
       <div class="row g-4 align-items-center">
         <div class="col-12 col-lg-5">
           <p class="eyebrow eyebrow-light fw-bold text-uppercase mb-2">Balanced preparation</p>
@@ -127,12 +238,12 @@
       </div>
     </section>
 
-    <section class="courses-cta rounded-5 p-4 p-lg-5 text-center shadow-sm" aria-labelledby="courses-cta-title">
+    <section class="courses-cta rounded-5 p-4 p-lg-5 text-center shadow-sm" id="courses-cta" aria-labelledby="courses-cta-title">
       <p class="fw-bold text-uppercase small mb-2">Ready to choose?</p>
       <h2 class="display-6 fw-bold mb-3" id="courses-cta-title">Start with the course that fits you</h2>
       <div class="d-flex flex-wrap justify-content-center gap-2">
-        <a class="btn btn-dark btn-lg px-5" href="enrollment.html">Enroll at Prestige</a>
-        <a class="btn btn-outline-dark btn-lg" href="https://www.gov.kz" target="_blank" rel="noopener noreferrer">Official driving information</a>
+        <a class="btn btn-dark btn-lg px-5" id="cta-enroll-link" href="enrollment.html#enrollment-form">Enroll at Prestige</a>
+        <a class="btn btn-outline-dark btn-lg" id="cta-official-info-link" href="https://beta.egov.kz/situations/56/intro" target="_blank" rel="noopener noreferrer">Official license information (eGov)</a>
       </div>
     </section>
   </main>
