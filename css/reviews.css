@@ -1,105 +1,98 @@
-/* Bootstrap handles the grid, cards, forms, spacing, typography, and buttons.
-   This stylesheet adds only the Prestige reviews-page visuals. */
+
 .reviews-hero {
-    background: linear-gradient(135deg, #fff 0%, #fff 62%, #e9f1f8 100%);
+    background: linear-gradient(130deg, #ffffff, #eff6ff);
 }
 
 .reviews-hero h1 {
-    color: var(--prestige-navy);
-    letter-spacing: -0.055em;
+    color: #0f172a;
+    overflow-wrap: anywhere;
 }
 
-.reviews-image {
-    height: clamp(18rem, 42vw, 29rem);
-    object-fit: cover;
+.reviews-feature {
+    color: #0f172a;
+    background: #fde68a;
+    border: 1px solid #fbbf24;
 }
 
-.reviews-visual::before {
-    position: absolute;
-    inset: -0.8rem 1.5rem 1.5rem -0.8rem;
-    z-index: 0;
-    border-radius: 1.25rem;
-    background: var(--prestige-orange);
-    content: "";
+.reviews-feature .eyebrow {
+    color: #854d0e;
 }
 
-.reviews-visual img,
-.reviews-message {
-    position: relative;
-    z-index: 1;
+.topic-card {
+    border-radius: 1.1rem;
 }
 
-.reviews-message {
-    display: flex;
-    width: min(20rem, 86%);
-    margin: -3rem 0 0 -1.25rem;
-    gap: 1rem;
-    align-items: center;
-}
-
-.rating-number,
-.rating-card > span {
-    color: var(--prestige-orange);
+.topic-number {
+    color: #9a6100;
     font-weight: 800;
-    line-height: 1;
+    font-size: 1.5rem;
 }
 
-.rating-number {
-    font-size: 2.6rem;
+.review-tools {
+    box-shadow: 0 4px 18px rgb(15 23 42 / 4%);
 }
 
-.section-heading {
-    max-width: 42rem;
+.empty-review-panel {
+    background: #ffffff;
+    border-style: dashed !important;
+    border-color: #cbd5e1 !important;
 }
 
-.rating-card {
-    border-top: 0.3rem solid var(--prestige-orange) !important;
+.review-item {
+    border-radius: 1rem;
 }
 
-.rating-card > span {
-    font-size: 2.8rem;
-}
-
-.quote-panel {
-    background: linear-gradient(135deg, var(--prestige-navy), #123f66);
-}
-
-.quote-panel blockquote p {
-    letter-spacing: -0.03em;
-}
-
-.top-instructors-card {
-    border-top: 0.3rem solid var(--prestige-orange) !important;
-}
-
-.top-instructors-card a:not(.btn) {
-    color: var(--prestige-blue);
-    font-weight: 700;
+.review-stars {
+    color: #a16207;
+    letter-spacing: .12em;
 }
 
 .review-form-panel {
-    background: #eaf1f7;
+    background: #eff6ff;
+    border: 1px solid #dbeafe;
 }
 
-.form-control:focus,
-.form-select:focus,
-.form-check-input:focus {
-    border-color: var(--prestige-orange);
-    box-shadow: 0 0 0 0.25rem rgba(244, 123, 32, 0.2);
+.review-preview {
+    padding: 1rem;
+    background: #f8fafc;
+    border: 1px solid #cbd5e1;
+    border-radius: .75rem;
 }
 
-.form-check-input:checked {
-    border-color: var(--prestige-orange);
-    background-color: var(--prestige-orange);
+.review-form-panel fieldset {
+    min-width: 0;
 }
 
-@media (max-width: 767.98px) {
-    .reviews-message {
-        width: calc(100% - 2rem);
-        margin: -2rem auto 0;
+.review-form-panel .form-control,
+.review-form-panel .form-select {
+    min-height: 44px;
+}
+
+.review-form-panel textarea.form-control {
+    min-height: 135px;
+}
+
+.review-form-panel .form-control:focus,
+.review-form-panel .form-select:focus {
+    border-color: #1d4ed8;
+    box-shadow: 0 0 0 .22rem rgb(29 78 216 / 14%);
+}
+
+.review-form-panel .form-check-input:checked {
+    background-color: #1d4ed8;
+    border-color: #1d4ed8;
+}
+
+.review-form-panel .form-check-input:focus {
+    box-shadow: 0 0 0 .2rem rgb(29 78 216 / 17%);
+}
+
+@media (max-width: 575.98px) {
+    .review-tools {
+        padding: 1rem !important;
     }
 
-    .reviews-visual::before {
-        inset: -0.55rem 0.75rem 1rem -0.55rem;
+    .review-form-panel {
+        border-radius: 1.3rem !important;
     }
 }

@@ -1,26 +1,27 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Read student reviews of Prestige Driving School and leave your own feedback.">
+    <meta name="description" content="Read student feedback about Prestige Driving School and prepare your own review.">
     <meta name="author" content="Baygali">
     <title>Reviews | Prestige Driving School</title>
-    <!-- Bootstrap 5.3.8 is used for the responsive grid, navigation, cards, forms, buttons, and utilities. -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/midterm-states.css">
     <link rel="stylesheet" href="css/reviews.css">
 </head>
 <body class="bg-body-tertiary d-flex flex-column min-vh-100">
-    <header class="navbar navbar-expand-md navbar-dark bg-brand shadow-sm">
+    <header class="navbar navbar-expand-md navbar-dark bg-brand shadow-sm" id="site-header">
         <div class="container-fluid px-3 px-lg-5">
-            <a class="navbar-brand fw-bold" href="index.html"><span class="brand-mark"></span>Prestige Driving School</a>
-            <input class="visually-hidden nav-toggle" type="checkbox" id="reviews-nav-toggle">
+            <a class="navbar-brand fw-bold" href="index.html"><span class="brand-mark" aria-hidden="true"></span>Prestige Driving School</a>
+            <input class="visually-hidden nav-toggle" type="checkbox" id="reviews-nav-toggle" aria-label="Open or close navigation">
             <label class="navbar-toggler d-md-none" for="reviews-nav-toggle">
-                <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Toggle navigation</span>
             </label>
-            <nav class="navbar-collapse main-navigation" aria-label="Main navigation">
+            <nav class="navbar-collapse main-navigation" id="main-navigation" aria-label="Main navigation">
                 <ul class="navbar-nav ms-md-auto gap-md-1">
                     <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="courses.html">Courses</a></li>
@@ -34,67 +35,105 @@
         </div>
     </header>
 
-    <main class="container py-4 py-lg-5 flex-grow-1">
+    <main class="container py-4 py-lg-5 flex-grow-1" id="main-content">
         <section class="reviews-hero row g-4 g-lg-5 align-items-center rounded-5 shadow overflow-hidden p-3 p-md-4 p-lg-5" aria-labelledby="reviews-title">
-            <div class="col-12 col-lg-6 text-center text-lg-start">
+            <div class="col-12 col-lg-7 text-center text-lg-start">
                 <p class="eyebrow fw-bold text-uppercase mb-2">Student experiences</p>
-                <h1 class="display-3 fw-bold lh-1 mb-4" id="reviews-title">Confidence shared by Prestige students</h1>
-                <p class="lead text-body-secondary mb-4">See how students describe their instructors, lessons, and progress behind the wheel.</p>
+                <h1 class="display-3 fw-bold lh-1 mb-4" id="reviews-title">Hear from our learners</h1>
+                <p class="lead text-body-secondary mb-4">Learn what students say about lessons and their progress, and share your own experience.</p>
                 <div class="d-flex flex-wrap justify-content-center justify-content-lg-start gap-2">
-                    <a class="btn btn-primary btn-lg px-4" href="#leave-review">Leave a review</a>
-                    <a class="btn btn-outline-primary btn-lg px-4" href="instructors.html">Meet instructors</a>
+                    <a class="btn btn-primary btn-lg px-4" id="leave-review-link" href="#leave-review">Leave a review</a>
+                    <a class="btn btn-outline-primary btn-lg px-4" id="meet-instructors-link" href="instructors.html">Meet instructors</a>
                 </div>
-            </div>
-            <div class="col-12 col-lg-6">
-                <div class="reviews-visual position-relative">
-                    <img class="reviews-image img-fluid w-100 rounded-4" src="images/graduate-photo.jpg" alt="Graduate holding a new driving license">
-                    <div class="reviews-message bg-white rounded-3 shadow p-3">
-                        <span class="rating-number">4.7</span>
-                        <div><strong class="d-block text-brand">Overall rating</strong><small class="text-body-secondary">Based on 63 reviews</small></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="py-5" aria-labelledby="ratings-title">
-            <div class="text-center mx-auto section-heading mb-4">
-                <p class="eyebrow fw-bold text-uppercase mb-2">What students value</p>
-                <h2 class="display-6 fw-bold mb-2" id="ratings-title">Ratings at a glance</h2>
-                <p class="text-body-secondary mb-0">Feedback across the parts of training that matter most.</p>
-            </div>
-
-            <!-- Bootstrap Card component: adapted as three compact rating cards. -->
-            <div class="row g-4">
-                <div class="col-12 col-md-4"><article class="card rating-card h-100 border-0 shadow-sm p-4"><span>4.8</span><h3 class="h5 mt-3 mb-1">Instructor knowledge</h3><p class="small text-body-secondary mb-0">Clear explanations and guidance</p></article></div>
-                <div class="col-12 col-md-4"><article class="card rating-card h-100 border-0 shadow-sm p-4"><span>4.6</span><h3 class="h5 mt-3 mb-1">Vehicle condition</h3><p class="small text-body-secondary mb-0">Comfort during practical lessons</p></article></div>
-                <div class="col-12 col-md-4"><article class="card rating-card h-100 border-0 shadow-sm p-4"><span>4.5</span><h3 class="h5 mt-3 mb-1">Scheduling</h3><p class="small text-body-secondary mb-0">Flexible lesson planning</p></article></div>
-            </div>
-        </section>
-
-        <section class="row g-4 align-items-stretch mb-5" aria-label="Student feedback and instructors">
-            <div class="col-12 col-lg-7">
-                <article class="quote-panel h-100 rounded-4 p-4 p-lg-5 text-white">
-                    <p class="eyebrow eyebrow-light fw-bold text-uppercase mb-3">Student story</p>
-                    <blockquote class="mb-4">
-                        <p class="display-6 fw-semibold">“Nurlan made me feel confident behind the wheel within two weeks.”</p>
-                        <footer class="text-white-50">— <cite>Zhanna T.</cite>, March 2026</footer>
-                    </blockquote>
-                    <p class="mb-0 text-white-50">Another student described Prestige as the “best driving school in Astana.”</p>
-                </article>
             </div>
             <div class="col-12 col-lg-5">
-                <article class="card h-100 border-0 shadow-sm top-instructors-card">
-                    <div class="card-body p-4 p-lg-5">
-                        <p class="eyebrow fw-bold text-uppercase mb-2">Student favourites</p>
-                        <h2 class="h2 mb-4">Top-rated instructors</h2>
-                        <ol class="list-group list-group-numbered list-group-flush mb-4">
-                            <li class="list-group-item px-0 py-3"><a href="instructors.html">Aliya Sadykova</a></li>
-                            <li class="list-group-item px-0 py-3"><a href="instructors.html">Nurlan Idrisov</a></li>
-                        </ol>
-                        <a class="btn btn-outline-primary" href="instructors.html">View instructor profiles</a>
-                    </div>
-                </article>
+                <aside class="reviews-feature rounded-4 p-4 p-lg-5" aria-labelledby="reviews-feature-title">
+                    <p class="eyebrow fw-bold text-uppercase mb-2">Your voice matters</p>
+                    <h2 class="h3 fw-bold" id="reviews-feature-title">Feedback about the whole learning experience</h2>
+                    <p class="mb-0">Share your impressions of the teaching, practical lessons, and training organization.</p>
+                </aside>
             </div>
+        </section>
+
+        <section class="py-5" id="review-highlights" aria-labelledby="highlights-title">
+            <div class="text-center mx-auto section-heading mb-4">
+                <p class="eyebrow fw-bold text-uppercase mb-2">What to look for</p>
+                <h2 class="display-6 fw-bold mb-2" id="highlights-title">Explore the training experience</h2>
+                <p class="text-body-secondary mb-0">These are three useful topics to consider when reading or writing a review.</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-12 col-md-4">
+                    <article class="card topic-card h-100 border-0 shadow-sm p-4">
+                        <span class="topic-number">01</span>
+                        <h3 class="h5 mt-3 mb-2">Instructor guidance</h3>
+                        <p class="text-body-secondary mb-0">Were the explanations clear and useful during lessons?</p>
+                    </article>
+                </div>
+                <div class="col-12 col-md-4">
+                    <article class="card topic-card h-100 border-0 shadow-sm p-4">
+                        <span class="topic-number">02</span>
+                        <h3 class="h5 mt-3 mb-2">Practical training</h3>
+                        <p class="text-body-secondary mb-0">What driving skills did you practice and develop?</p>
+                    </article>
+                </div>
+                <div class="col-12 col-md-4">
+                    <article class="card topic-card h-100 border-0 shadow-sm p-4">
+                        <span class="topic-number">03</span>
+                        <h3 class="h5 mt-3 mb-2">Lesson organization</h3>
+                        <p class="text-body-secondary mb-0">How did timing and communication work for you?</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-5" id="student-reviews" aria-labelledby="student-reviews-title">
+            <div class="d-flex flex-wrap justify-content-between align-items-end gap-3 mb-4">
+                <div>
+                    <p class="eyebrow fw-bold text-uppercase mb-2">Student feedback</p>
+                    <h2 class="display-6 fw-bold mb-0" id="student-reviews-title">Reviews and experiences</h2>
+                </div>
+                <a class="btn btn-outline-primary" href="instructors.html">View instructor profiles</a>
+            </div>
+
+            <div class="review-tools rounded-4 border bg-white p-3 p-md-4 mb-4" role="search" aria-label="Review search and filters">
+                <div class="row g-3 align-items-end">
+                    <div class="col-12 col-md-7">
+                        <label for="review-search" class="form-label fw-semibold">Search reviews</label>
+                        <input id="review-search" type="search" class="form-control" placeholder="Search review text" autocomplete="off">
+                    </div>
+                    <div class="col-12 col-md-5">
+                        <label for="review-filter" class="form-label fw-semibold">Filter by rating</label>
+                        <select id="review-filter" class="form-select">
+                            <option value="all">All ratings</option>
+                            <option value="5">5 stars</option>
+                            <option value="4">4 stars</option>
+                            <option value="3">3 stars</option>
+                            <option value="2">2 stars</option>
+                            <option value="1">1 star</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div id="reviews-list" class="row g-4" aria-live="polite">
+                <div class="col-12 col-lg-8" id="review-zhanna">
+                    <article class="card review-item border-0 shadow-sm h-100" data-review-id="zhanna" data-instructor="nurlan">
+                        <div class="card-body p-4 p-lg-5">
+                            <h3 class="h5 fw-bold mb-3">Learning with Nurlan</h3>
+                            <blockquote class="mb-0">
+                                <p class="fs-5">“Nurlan made me feel confident behind the wheel within two weeks.”</p>
+                                <footer class="text-body-secondary small">— <cite>Zhanna T.</cite>, March 2026</footer>
+                            </blockquote>
+                        </div>
+                    </article>
+                </div>
+            </div>
+
+            <div id="reviews-empty" class="empty-review-panel rounded-4 border p-4 p-md-5 text-center is-hidden" role="status">
+                <h3 class="h5 fw-bold mb-2">No matching reviews</h3>
+                <p class="text-body-secondary mb-0">Try a different search term or choose another rating.</p>
+            </div>
+            <div id="reviews-results" class="status-message is-hidden mt-3" role="status" aria-live="polite"></div>
         </section>
 
         <section class="review-form-panel rounded-5 p-3 p-md-4 p-lg-5" id="leave-review" aria-labelledby="review-form-title">
@@ -102,20 +141,24 @@
                 <div class="col-12 col-lg-4">
                     <p class="eyebrow fw-bold text-uppercase mb-2">Share your experience</p>
                     <h2 class="display-6 fw-bold mb-3" id="review-form-title">Leave a review</h2>
-                    <p class="text-body-secondary mb-0">Your feedback helps future students choose their training with confidence.</p>
+                    <p class="text-body-secondary mb-3">Tell future students about the lessons you attended and what was most useful.</p>
+                    <p class="small text-body-secondary mb-0" id="review-form-note">This form does not send or publish information in the current website version. Review submission will need to be activated before use.</p>
                 </div>
                 <div class="col-12 col-lg-8">
-                    <form action="#" method="post" class="bg-white rounded-4 shadow-sm p-3 p-md-4">
+                    <form id="review-form" class="bg-white rounded-4 shadow-sm p-3 p-md-4" aria-describedby="review-form-note">
                         <fieldset>
                             <legend class="h5 mb-4">Your feedback</legend>
                             <div class="row g-3">
                                 <div class="col-12 col-md-6">
                                     <label for="reviewer-name" class="form-label fw-semibold">Full name</label>
-                                    <input type="text" id="reviewer-name" name="reviewer-name" placeholder="Baygali Zhumabay" required class="form-control">
+                                    <input type="text" id="reviewer-name" name="reviewer-name" autocomplete="name" maxlength="80" required class="form-control">
+                                    <div id="reviewer-name-error" class="invalid-feedback">Please enter your name.</div>
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <label for="reviewer-email" class="form-label fw-semibold">Email</label>
-                                    <input type="email" id="reviewer-email" name="reviewer-email" placeholder="you@example.com" required class="form-control">
+                                    <input type="email" id="reviewer-email" name="reviewer-email" autocomplete="email" maxlength="120" required class="form-control">
+                                    <div id="reviewer-email-error" class="invalid-feedback">Please enter a valid email address.</div>
+                                    <div class="form-text">Your email is not part of your public review.</div>
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <label for="rating" class="form-label fw-semibold">Rating</label>
@@ -127,32 +170,54 @@
                                         <option value="2">2 — Below average</option>
                                         <option value="1">1 — Poor</option>
                                     </select>
+                                    <div id="rating-error" class="invalid-feedback">Please choose a rating.</div>
                                 </div>
                                 <div class="col-12 col-md-6">
-                                    <label for="course-reviewed" class="form-label fw-semibold">Course</label>
-                                    <select id="course-reviewed" name="course-reviewed" class="form-select">
+                                    <label for="course-reviewed" class="form-label fw-semibold">Course taken</label>
+                                    <select id="course-reviewed" name="course-reviewed" class="form-select" required>
+                                        <option value="">Select your course</option>
                                         <option value="category-b">Category B</option>
                                         <option value="intensive">Intensive Category B</option>
                                         <option value="refresher">Defensive Driving</option>
                                     </select>
+                                    <div id="course-reviewed-error" class="invalid-feedback">Please select your course.</div>
                                 </div>
                                 <fieldset class="col-12">
                                     <legend class="form-label fs-6 fw-semibold mb-2">Would you recommend Prestige?</legend>
-                                    <div class="d-flex gap-3">
-                                        <div class="form-check"><input type="radio" id="recommend-yes" name="recommend" value="yes" checked class="form-check-input"><label for="recommend-yes" class="form-check-label">Yes</label></div>
-                                        <div class="form-check"><input type="radio" id="recommend-no" name="recommend" value="no" class="form-check-input"><label for="recommend-no" class="form-check-label">No</label></div>
+                                    <div class="d-flex flex-wrap gap-3">
+                                        <div class="form-check">
+                                            <input type="radio" id="recommend-yes" name="recommend" value="yes" class="form-check-input" required>
+                                            <label for="recommend-yes" class="form-check-label">Yes</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input type="radio" id="recommend-no" name="recommend" value="no" class="form-check-input">
+                                            <label for="recommend-no" class="form-check-label">No</label>
+                                        </div>
                                     </div>
+                                    <div id="recommend-error" class="field-message is-hidden">Please select an option.</div>
                                 </fieldset>
                                 <div class="col-12">
                                     <label for="review-text" class="form-label fw-semibold">Your review</label>
-                                    <textarea id="review-text" name="review-text" rows="4" placeholder="Tell us about your experience" required class="form-control"></textarea>
+                                    <textarea id="review-text" name="review-text" rows="5" minlength="20" maxlength="1200" required class="form-control" aria-describedby="review-length-hint"></textarea>
+                                    <div id="review-length-hint" class="form-text">Write at least 20 characters.</div>
+                                    <div id="review-text-error" class="invalid-feedback">Please write a review with at least 20 characters.</div>
+                                    <div id="review-character-count" class="form-text" aria-live="polite"></div>
                                 </div>
                                 <div class="col-12">
-                                    <div class="form-check"><input type="checkbox" id="publish-consent" name="publish-consent" required class="form-check-input"><label for="publish-consent" class="form-check-label">I agree that this review may be published.</label></div>
+                                    <div class="form-check">
+                                        <input type="checkbox" id="publish-consent" name="publish-consent" required class="form-check-input">
+                                        <label for="publish-consent" class="form-check-label">I agree that my review and name may be published.</label>
+                                    </div>
+                                    <div id="publish-consent-error" class="field-message is-hidden">Consent is required before publishing.</div>
+                                </div>
+                                <div class="col-12">
+                                    <div id="review-form-error" class="status-message is-hidden" role="alert" aria-live="assertive"></div>
+                                    <div id="review-form-success" class="status-message is-hidden" role="status" aria-live="polite"></div>
+                                    <div id="review-preview" class="review-preview is-hidden" aria-live="polite"></div>
                                 </div>
                                 <div class="col-12 d-flex flex-wrap gap-2 pt-2">
-                                    <button type="submit" class="btn btn-primary btn-lg px-4">Submit review</button>
-                                    <button type="reset" class="btn btn-outline-secondary">Clear form</button>
+                                    <button type="button" id="review-submit" class="btn btn-primary btn-lg px-4">Submit review</button>
+                                    <button type="reset" id="review-reset" class="btn btn-outline-secondary">Clear form</button>
                                 </div>
                             </div>
                         </fieldset>
@@ -160,9 +225,18 @@
                 </div>
             </div>
         </section>
+
+        <section class="pt-5 text-center" id="reviews-next-step" aria-labelledby="reviews-next-step-title">
+            <h2 class="h3 fw-bold mb-2" id="reviews-next-step-title">Thinking about your first lesson?</h2>
+            <p class="text-body-secondary mb-3">Meet the instructors, compare courses, and continue to enrollment.</p>
+            <div class="d-flex flex-wrap justify-content-center gap-2">
+                <a class="btn btn-outline-primary" href="instructors.html">Meet instructors</a>
+                <a class="btn btn-primary" href="courses.html">Browse courses</a>
+            </div>
+        </section>
     </main>
 
-    <footer class="site-footer bg-brand text-white-50 py-4 mt-auto">
+    <footer class="site-footer bg-brand text-white-50 py-4 mt-auto" id="site-footer">
         <div class="container">
             <div class="row g-4 align-items-start">
                 <address class="col-12 col-md-6 col-lg-5 mb-0">
