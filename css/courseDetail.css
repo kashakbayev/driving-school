@@ -1,5 +1,3 @@
-/* Bootstrap handles the grid, forms, cards, spacing, typography, and buttons.
-   This stylesheet adds only the Prestige course-detail visuals. */
 .detail-hero {
   background: linear-gradient(135deg, #fff 0%, #fff 62%, #e9f1f8 100%);
 }
@@ -57,8 +55,10 @@
   color: #687888;
 }
 
+/* Orange top edge on the info cards; the cards no longer use .border-0, so no !important is needed */
 .info-card {
-  border-top: 0.3rem solid var(--prestige-orange) !important;
+  border: 0;
+  border-top: 0.3rem solid var(--prestige-orange);
 }
 
 .skill-item {
@@ -88,8 +88,62 @@
   font-weight: 800;
 }
 
-.booking-panel {
+.course-hero-price {
+  color: var(--prestige-navy);
+  font-size: 1.8rem;
+}
+
+.course-hero-price small {
+  font-size: 0.8rem;
+}
+
+/* Program stages: numbered orange circles generated from the <ol> order */
+.course-program {
+  counter-reset: program-stage;
+}
+
+.program-stage {
+  counter-increment: program-stage;
+}
+
+.program-stage::before {
+  display: grid;
+  width: 2.5rem;
+  height: 2.5rem;
+  margin-bottom: 1rem;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--prestige-orange);
+  color: #fff;
+  content: counter(program-stage);
+  font-weight: 800;
+}
+
+.faq-item summary {
+  cursor: pointer;
+  color: var(--prestige-navy);
+}
+
+.course-booking {
   background: #eaf1f7;
+}
+
+/* Future JavaScript states. .is-hidden, .is-selected, .is-error, .is-success and .status-message
+   already come from the shared css/index.css; only what is missing there is added here. */
+.is-visible {
+  display: block;
+}
+
+/* Error text under a form field */
+.form-message {
+  display: block;
+  margin-top: 0.35rem;
+  color: #8f1d14;
+  font-size: 0.875rem;
+}
+
+.form-message.is-success {
+  color: #185c35;
 }
 
 .form-control:focus,
