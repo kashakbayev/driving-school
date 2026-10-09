@@ -1,80 +1,116 @@
-/* Bootstrap handles the grid, cards, spacing, typography, and buttons.
-   This stylesheet adds only the Prestige instructor-page visuals. */
+
 .instructors-hero {
-    background: linear-gradient(135deg, #fff 0%, #fff 62%, #e9f1f8 100%);
+    background: linear-gradient(130deg, #ffffff 0%, #f2f6ff 100%);
 }
 
 .instructors-hero h1 {
-    color: var(--prestige-navy);
-    letter-spacing: -0.055em;
+    color: #0f172a;
+    overflow-wrap: anywhere;
 }
 
 .instructor-promise {
-    background: linear-gradient(135deg, var(--prestige-navy), #123f66);
+    background: linear-gradient(145deg, #0f172a, #1e3a5f);
+    min-height: 280px;
 }
 
 .promise-list li {
+    padding: .75rem 0 .75rem 1.7rem;
+    border-top: 1px solid rgb(255 255 255 / 19%);
     position: relative;
-    padding: 0.8rem 0 0.8rem 1.6rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 .promise-list li::before {
+    content: "✓";
     position: absolute;
     left: 0;
-    color: #ffb578;
-    content: "✓";
-    font-weight: 800;
-}
-
-.section-heading {
-    max-width: 44rem;
+    color: #fcd34d;
+    font-weight: 700;
 }
 
 .instructor-card {
-    transition: transform 180ms ease, box-shadow 180ms ease;
+    border-radius: 1.15rem;
+    transition: box-shadow .2s ease, transform .2s ease;
 }
 
 .instructor-card:hover {
-    transform: translateY(-0.35rem);
-    box-shadow: 0 1rem 2.5rem rgba(7, 26, 45, 0.15) !important;
+    box-shadow: 0 12px 30px rgb(15 23 42 / 12%) !important;
+    transform: translateY(-3px);
 }
 
 .instructor-photo {
-    height: 22rem;
+    width: 100%;
+    height: 310px;
     object-fit: cover;
-    object-position: center 20%;
-}
-
-.role-label,
-.specialty-badge {
-    border-radius: 999px;
-    font-size: 0.78rem;
-    font-weight: 800;
+    object-position: center 25%;
+    background: #e2e8f0;
 }
 
 .role-label {
-    padding: 0.4rem 0.7rem;
-    background: #fff0e5;
-    color: #b64705;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
+    background: #fef3c7;
+    color: #854d0e;
+    border-radius: 100px;
+    font-size: .75rem;
+    font-weight: 700;
+    padding: .45rem .8rem;
 }
 
 .specialty-badge {
-    padding: 0.45rem 0.7rem;
-    border: 1px solid #d6e1e9;
-    background: #f2f6f9;
-    color: var(--prestige-navy);
+    border: 1px solid #cbd5e1;
+    border-radius: 100px;
+    color: #334155;
+    background: #f8fafc;
+    font-size: .85rem;
+    padding: .45rem .75rem;
+}
+
+.next-step-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+}
+
+.next-step-card a {
+    color: #1d4ed8;
+    font-weight: 600;
+    text-underline-offset: 3px;
+}
+
+.step-number {
+    font-weight: 800;
+    font-size: 1.35rem;
+    color: #9a6100;
 }
 
 .instructors-cta {
-    background: linear-gradient(135deg, #f47b20, #ff9b4f);
-    color: #1d2d3b;
+    background: linear-gradient(120deg, #fcd34d, #f59e0b);
+    color: #0f172a;
+}
+
+.instructors-cta .lead {
+    max-width: 700px;
+    margin-inline: auto;
+}
+
+.cta-contact-link {
+    color: #0f172a;
+    font-weight: 700;
 }
 
 @media (max-width: 767.98px) {
     .instructor-photo {
-        height: 18rem;
+        height: 260px;
+    }
+
+    .instructor-promise {
+        min-height: auto;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .instructor-card {
+        transition: none;
+    }
+
+    .instructor-card:hover {
+        transform: none;
     }
 }

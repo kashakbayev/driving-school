@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,21 +7,21 @@
     <meta name="description" content="Meet the Category B instructors at Prestige Driving School in Astana.">
     <meta name="author" content="Baygali">
     <title>Instructors | Prestige Driving School</title>
-    <!-- Bootstrap 5.3.8 is used for the responsive grid, navigation, cards, buttons, and utilities. -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/midterm-states.css">
     <link rel="stylesheet" href="css/instructors.css">
 </head>
 <body class="bg-body-tertiary d-flex flex-column min-vh-100">
-    <header class="navbar navbar-expand-md navbar-dark bg-brand shadow-sm">
+    <header class="navbar navbar-expand-md navbar-dark bg-brand shadow-sm" id="site-header">
         <div class="container-fluid px-3 px-lg-5">
-            <a class="navbar-brand fw-bold" href="index.html"><span class="brand-mark"></span>Prestige Driving School</a>
-            <input class="visually-hidden nav-toggle" type="checkbox" id="instructors-nav-toggle">
+            <a class="navbar-brand fw-bold" href="index.html"><span class="brand-mark" aria-hidden="true"></span>Prestige Driving School</a>
+            <input class="visually-hidden nav-toggle" type="checkbox" id="instructors-nav-toggle" aria-label="Open or close navigation">
             <label class="navbar-toggler d-md-none" for="instructors-nav-toggle">
-                <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Toggle navigation</span>
             </label>
-            <nav class="navbar-collapse main-navigation" aria-label="Main navigation">
+            <nav class="navbar-collapse main-navigation" id="main-navigation" aria-label="Main navigation">
                 <ul class="navbar-nav ms-md-auto gap-md-1">
                     <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="courses.html">Courses</a></li>
@@ -34,21 +35,21 @@
         </div>
     </header>
 
-    <main class="container py-4 py-lg-5 flex-grow-1">
+    <main class="container py-4 py-lg-5 flex-grow-1" id="main-content">
         <section class="instructors-hero row g-4 g-lg-5 align-items-center rounded-5 shadow overflow-hidden p-3 p-md-4 p-lg-5" aria-labelledby="instructors-title">
             <div class="col-12 col-lg-7 text-center text-lg-start">
                 <p class="eyebrow fw-bold text-uppercase mb-2">Guidance that builds confidence</p>
                 <h1 class="display-3 fw-bold lh-1 mb-4" id="instructors-title">Meet the people behind your progress</h1>
-                <p class="lead text-body-secondary mb-4">Learn Category B driving with patient instructors who turn road knowledge into practical, repeatable skills.</p>
+                <p class="lead text-body-secondary mb-4">Learn Category B driving with instructors who focus on practical skills and clear explanations.</p>
                 <div class="d-flex flex-wrap justify-content-center justify-content-lg-start gap-2">
-                    <a class="btn btn-primary btn-lg px-4" href="enrollment.html">Start enrollment</a>
-                    <a class="btn btn-outline-primary btn-lg px-4" href="schedule.html">See lesson times</a>
+                    <a class="btn btn-primary btn-lg px-4" id="hero-enroll-link" href="enrollment.html">Start enrollment</a>
+                    <a class="btn btn-outline-primary btn-lg px-4" id="hero-schedule-link" href="schedule.html">See lesson times</a>
                 </div>
             </div>
             <div class="col-12 col-lg-5">
-                <aside class="instructor-promise rounded-4 p-4 text-white" aria-label="What students can expect">
+                <aside class="instructor-promise rounded-4 p-4 text-white" aria-labelledby="instructor-promise-title">
                     <p class="eyebrow eyebrow-light fw-bold text-uppercase mb-2">What to expect</p>
-                    <h2 class="h3 mb-4">Support at every stage</h2>
+                    <h2 class="h3 mb-4" id="instructor-promise-title">Support at every stage</h2>
                     <ul class="promise-list list-unstyled mb-0">
                         <li>Clear explanations</li>
                         <li>Practical feedback</li>
@@ -58,58 +59,89 @@
             </div>
         </section>
 
-        <section class="py-5" aria-labelledby="team-title">
+        <section class="py-5" id="instructor-team" aria-labelledby="team-title">
             <div class="text-center mx-auto section-heading mb-4">
                 <p class="eyebrow fw-bold text-uppercase mb-2">Your training team</p>
-                <h2 class="display-6 fw-bold mb-2" id="team-title">Choose the right guidance</h2>
-                <p class="text-body-secondary mb-0">Different specialties, one goal: helping you become a calmer, safer driver.</p>
+                <h2 class="display-6 fw-bold mb-2" id="team-title">Meet our instructors</h2>
+                <p class="text-body-secondary mb-0">Learn about their teaching focus before choosing a course.</p>
             </div>
 
-            <!-- Bootstrap Card component: adapted as responsive instructor profiles. -->
-            <div class="row g-4 justify-content-center">
-                <div class="col-12 col-md-6">
-                    <article class="card instructor-card h-100 border-0 shadow-sm overflow-hidden">
-                        <img class="card-img-top instructor-photo" src="images/nurlan.jpg" alt="Nurlan Idrisov, senior driving instructor">
+            <div class="row g-4 justify-content-center" id="instructors-list">
+                <div class="col-12 col-md-6" id="nurlan-profile">
+                    <article class="card instructor-card h-100 border-0 shadow-sm overflow-hidden" data-instructor="nurlan" data-specialty="highway night">
+                        <img class="card-img-top instructor-photo" id="nurlan-photo" src="images/nurlan.jpg" alt="Nurlan Idrisov, driving instructor" loading="lazy">
                         <div class="card-body p-4 d-flex flex-column">
                             <span class="role-label align-self-start">Senior instructor</span>
-                            <h3 class="h2 mt-3 mb-2">Nurlan Idrisov</h3>
+                            <h3 class="h2 mt-3 mb-2" id="nurlan-name">Nurlan Idrisov</h3>
                             <p class="text-body-secondary">More than 12 years of Category B teaching experience with a focus on confident road decisions.</p>
                             <div class="d-flex flex-wrap gap-2 mb-4" aria-label="Nurlan's specialties">
                                 <span class="specialty-badge">Highway driving</span>
                                 <span class="specialty-badge">Night driving</span>
                             </div>
-                            <a class="btn btn-outline-primary mt-auto align-self-start" href="enrollment.html">Train with Prestige</a>
+                            <a class="btn btn-outline-primary mt-auto align-self-start" id="nurlan-enroll-link" data-instructor="nurlan" href="enrollment.html">Explore enrollment</a>
                         </div>
                     </article>
                 </div>
 
-                <div class="col-12 col-md-6">
-                    <article class="card instructor-card h-100 border-0 shadow-sm overflow-hidden">
-                        <img class="card-img-top instructor-photo" src="images/aliya.jpg" alt="Aliya Sadykova, defensive driving instructor">
+                <div class="col-12 col-md-6" id="aliya-profile">
+                    <article class="card instructor-card h-100 border-0 shadow-sm overflow-hidden" data-instructor="aliya" data-specialty="winter beginner">
+                        <img class="card-img-top instructor-photo" id="aliya-photo" src="images/aliya.jpg" alt="Aliya Sadykova, driving instructor" loading="lazy">
                         <div class="card-body p-4 d-flex flex-column">
                             <span class="role-label align-self-start">Defensive driving instructor</span>
-                            <h3 class="h2 mt-3 mb-2">Aliya Sadykova</h3>
+                            <h3 class="h2 mt-3 mb-2" id="aliya-name">Aliya Sadykova</h3>
                             <p class="text-body-secondary">Focused support for first-time and returning drivers who want to feel more comfortable on the road.</p>
                             <div class="d-flex flex-wrap gap-2 mb-4" aria-label="Aliya's specialties">
                                 <span class="specialty-badge">Winter conditions</span>
                                 <span class="specialty-badge">Anxious drivers</span>
                             </div>
-                            <a class="btn btn-outline-primary mt-auto align-self-start" href="enrollment.html">Train with Prestige</a>
+                            <a class="btn btn-outline-primary mt-auto align-self-start" id="aliya-enroll-link" data-instructor="aliya" href="enrollment.html">Explore enrollment</a>
                         </div>
                     </article>
+                </div>
+            </div>
+            <div class="status-message is-hidden mt-4" id="instructors-results" role="status" aria-live="polite"></div>
+        </section>
+
+        <section class="row g-4 mb-5" id="instructor-next-steps" aria-labelledby="next-steps-title">
+            <div class="col-12">
+                <h2 class="h3 fw-bold mb-3" id="next-steps-title">How to get started</h2>
+            </div>
+            <div class="col-12 col-md-4">
+                <div class="next-step-card h-100 rounded-4 p-4">
+                    <span class="step-number">01</span>
+                    <h3 class="h5 mt-3">Compare courses</h3>
+                    <p class="text-body-secondary mb-3">Review the available training options and their details.</p>
+                    <a href="courses.html">View courses</a>
+                </div>
+            </div>
+            <div class="col-12 col-md-4">
+                <div class="next-step-card h-100 rounded-4 p-4">
+                    <span class="step-number">02</span>
+                    <h3 class="h5 mt-3">Check lesson times</h3>
+                    <p class="text-body-secondary mb-3">Use the schedule page to plan around your routine.</p>
+                    <a href="schedule.html">Open schedule</a>
+                </div>
+            </div>
+            <div class="col-12 col-md-4">
+                <div class="next-step-card h-100 rounded-4 p-4">
+                    <span class="step-number">03</span>
+                    <h3 class="h5 mt-3">Start enrollment</h3>
+                    <p class="text-body-secondary mb-3">Continue to the enrollment page to enter your details.</p>
+                    <a href="enrollment.html">Enrollment page</a>
                 </div>
             </div>
         </section>
 
         <section class="instructors-cta rounded-5 p-4 p-lg-5 text-center shadow-sm" aria-labelledby="instructors-cta-title">
             <p class="fw-bold text-uppercase small mb-2">Learn with confidence</p>
-            <h2 class="display-6 fw-bold mb-3" id="instructors-cta-title">Ready to meet your instructor?</h2>
-            <p class="lead mb-4">Choose your preferred start date and transmission in the enrollment form.</p>
-            <a class="btn btn-dark btn-lg px-5" href="enrollment.html">Begin your training</a>
+            <h2 class="display-6 fw-bold mb-3" id="instructors-cta-title">Ready to begin?</h2>
+            <p class="lead mb-4">Explore the available courses, then complete your enrollment details.</p>
+            <a class="btn btn-dark btn-lg px-5" id="instructors-cta-enroll" href="enrollment.html">Begin your training</a>
+            <p class="mt-3 mb-0">Have a question? <a class="cta-contact-link" href="tel:+77058444848">Call the school</a>.</p>
         </section>
     </main>
 
-    <footer class="site-footer bg-brand text-white-50 py-4 mt-auto">
+    <footer class="site-footer bg-brand text-white-50 py-4 mt-auto" id="site-footer">
         <div class="container">
             <div class="row g-4 align-items-start">
                 <address class="col-12 col-md-6 col-lg-5 mb-0">
