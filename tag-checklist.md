@@ -13,18 +13,18 @@ Line references were regenerated for the HTML-and-CSS-only version.
 | description meta | index.html:6 | Aidos |
 | author meta | index.html:7 | Aidos |
 | unique title | index.html:8 | Aidos |
-| header | index.html:12 | Aidos |
-| site name | index.html:8 | Aidos |
-| nav | index.html:14 | Aidos |
-| nav list | index.html:15 | Aidos |
-| relative links | index.html:13 | Aidos |
-| main | index.html:27 | Aidos |
-| one h1 | index.html:29 | Aidos |
-| footer | index.html:52 | Aidos |
-| address | index.html:53 | Aidos |
-| copyright entity | index.html:64 | Aidos |
-| why comment 1 | index.html:11 | Aidos |
-| why comment 2 | index.html:51 | Aidos |
+| header | index.html:16 | Aidos |
+| site name | index.html:19 | Aidos |
+| nav | index.html:25 | Aidos |
+| nav list | index.html:26 | Aidos |
+| relative links | index.html:19 | Aidos |
+| main | index.html:40 | Aidos |
+| one h1 | index.html:44 | Aidos |
+| footer | index.html:210 | Aidos |
+| address | index.html:213 | Aidos |
+| copyright entity | index.html:219 | Aidos |
+| why comment 1 | index.html:10 | Aidos |
+| why comment 2 | index.html:39 | Aidos |
 | doctype | courses.html:1 | Merey |
 | lang | courses.html:2 | Merey |
 | charset | courses.html:4 | Merey |
@@ -44,25 +44,25 @@ Line references were regenerated for the HTML-and-CSS-only version.
 | copyright entity | courses.html:140 | Merey |
 | why comment 1 | courses.html:11 | Merey |
 | why comment 2 | courses.html:127 | Merey |
-| doctype | coursedetail.html:1 | Merey |
-| lang | coursedetail.html:2 | Merey |
-| charset | coursedetail.html:4 | Merey |
-| viewport | coursedetail.html:5 | Merey |
-| description meta | coursedetail.html:6 | Merey |
-| author meta | coursedetail.html:7 | Merey |
-| unique title | coursedetail.html:8 | Merey |
-| header | coursedetail.html:12 | Merey |
-| site name | coursedetail.html:6 | Merey |
-| nav | coursedetail.html:14 | Merey |
-| nav list | coursedetail.html:15 | Merey |
-| relative links | coursedetail.html:13 | Merey |
-| main | coursedetail.html:27 | Merey |
-| one h1 | coursedetail.html:28 | Merey |
-| footer | coursedetail.html:157 | Merey |
-| address | coursedetail.html:158 | Merey |
-| copyright entity | coursedetail.html:169 | Merey |
-| why comment 1 | coursedetail.html:11 | Merey |
-| why comment 2 | coursedetail.html:156 | Merey |
+| doctype | courseDetail.html:1 | Merey |
+| lang | courseDetail.html:2 | Merey |
+| charset | courseDetail.html:4 | Merey |
+| viewport | courseDetail.html:5 | Merey |
+| description meta | courseDetail.html:6 | Merey |
+| author meta | courseDetail.html:7 | Merey |
+| unique title | courseDetail.html:11 | Merey |
+| header | courseDetail.html:15 | Merey |
+| site name | courseDetail.html:17 | Merey |
+| nav | courseDetail.html:23 | Merey |
+| nav list | courseDetail.html:24 | Merey |
+| relative links | courseDetail.html:17 | Merey |
+| main | courseDetail.html:37 | Merey |
+| one h1 | courseDetail.html:41 | Merey |
+| footer | courseDetail.html:270 | Merey |
+| address | courseDetail.html:273 | Merey |
+| copyright entity | courseDetail.html:279 | Merey |
+| why comment 1 | courseDetail.html:62 | Merey |
+| why comment 2 | courseDetail.html:112 | Merey |
 | doctype | schedule.html:1 | Aidos |
 | lang | schedule.html:2 | Aidos |
 | charset | schedule.html:4 | Aidos |
@@ -89,18 +89,18 @@ Line references were regenerated for the HTML-and-CSS-only version.
 | description meta | enrollment.html:6 | Aidos |
 | author meta | enrollment.html:7 | Aidos |
 | unique title | enrollment.html:8 | Aidos |
-| header | enrollment.html:12 | Aidos |
-| site name | enrollment.html:6 | Aidos |
-| nav | enrollment.html:14 | Aidos |
-| nav list | enrollment.html:15 | Aidos |
-| relative links | enrollment.html:13 | Aidos |
-| main | enrollment.html:27 | Aidos |
-| one h1 | enrollment.html:28 | Aidos |
-| footer | enrollment.html:135 | Aidos |
-| address | enrollment.html:33 | Aidos |
-| copyright entity | enrollment.html:147 | Aidos |
-| why comment 1 | enrollment.html:11 | Aidos |
-| why comment 2 | enrollment.html:134 | Aidos |
+| header | enrollment.html:16 | Aidos |
+| site name | enrollment.html:19 | Aidos |
+| nav | enrollment.html:25 | Aidos |
+| nav list | enrollment.html:26 | Aidos |
+| relative links | enrollment.html:19 | Aidos |
+| main | enrollment.html:40 | Aidos |
+| one h1 | enrollment.html:44 | Aidos |
+| footer | enrollment.html:131 | Aidos |
+| address | enrollment.html:133 | Aidos |
+| copyright entity | enrollment.html:135 | Aidos |
+| why comment 1 | enrollment.html:10 | Aidos |
+| why comment 2 | enrollment.html:39 | Aidos |
 | doctype | instructors.html:1 | Baygali |
 | lang | instructors.html:2 | Baygali |
 | charset | instructors.html:4 | Baygali |
@@ -146,7 +146,7 @@ Line references were regenerated for the HTML-and-CSS-only version.
 | --- | --- | --- |
 | section | schedule.html:28 | Aidos |
 | article | instructors.html:36 | Baygali |
-| aside | coursedetail.html:63 | Merey |
+| aside | courseDetail.html:63 | Merey |
 | figure | index.html:35 | Aidos |
 | figcaption | index.html:41 | Aidos |
 | table | courses.html:38 | Merey |
@@ -174,8 +174,8 @@ Line references were regenerated for the HTML-and-CSS-only version.
 | small | courses.html:35 | Merey |
 | sub | schedule.html:38 | Aidos |
 | sup | courses.html:116 | Merey |
-| abbr 1 with title | coursedetail.html:32 | Merey |
-| abbr 2 with title | coursedetail.html:43 | Merey |
+| abbr 1 with title | courseDetail.html:32 | Merey |
+| abbr 2 with title | courseDetail.html:43 | Merey |
 | blockquote with real quote | index.html:36 | Aidos |
 | inline q | index.html:46 | Aidos |
 | cite | index.html:41 | Aidos |
@@ -184,48 +184,29 @@ Line references were regenerated for the HTML-and-CSS-only version.
 | entity euro | courses.html:72 | Merey |
 | entity right arrow | courses.html:107 | Merey |
 | div with why comment | courses.html:112 | Merey |
-| span with why comment | coursedetail.html:85 | Merey |
+| span with why comment | courseDetail.html:85 | Merey |
 
 ## Forms
 
 | Requirement | File:line | Student |
 | --- | --- | --- |
-| Aidos form | enrollment.html:62 | Aidos |
-| method and action | enrollment.html:62 | Aidos |
-| no-server comment | enrollment.html:63 | Aidos |
-| fieldset | enrollment.html:65 | Aidos |
-| legend | enrollment.html:66 | Aidos |
-| labels by id | enrollment.html:69 | Aidos |
-| text input | enrollment.html:70 | Aidos |
-| email input | enrollment.html:76 | Aidos |
-| tel input | enrollment.html:82 | Aidos |
-| number input | enrollment.html:88 | Aidos |
-| date input | enrollment.html:94 | Aidos |
-| radio group | enrollment.html:99 | Aidos |
-| checkbox | enrollment.html:121 | Aidos |
-| select with options | enrollment.html:109 | Aidos |
-| textarea | enrollment.html:116 | Aidos |
-| required and placeholder | enrollment.html:71 | Aidos |
-| submit button | enrollment.html:127 | Aidos |
-| reset button | enrollment.html:128 | Aidos |
-| Merey form | coursedetail.html:91 | Merey |
-| method and action | coursedetail.html:91 | Merey |
-| no-server comment | coursedetail.html:92 | Merey |
-| fieldset | coursedetail.html:93 | Merey |
-| legend | coursedetail.html:94 | Merey |
-| labels by id | coursedetail.html:97 | Merey |
-| text input | coursedetail.html:98 | Merey |
-| email input | coursedetail.html:103 | Merey |
-| tel input | coursedetail.html:108 | Merey |
-| number input | coursedetail.html:113 | Merey |
-| date input | coursedetail.html:118 | Merey |
-| radio group | coursedetail.html:123 | Merey |
-| checkbox | coursedetail.html:144 | Merey |
-| select with options | coursedetail.html:131 | Merey |
-| textarea | coursedetail.html:140 | Merey |
-| required and placeholder | coursedetail.html:98 | Merey |
-| submit button | coursedetail.html:149 | Merey |
-| reset button | coursedetail.html:150 | Merey |
+| Aidos form | index.html:146 | Aidos |
+| method and action | index.html:146 | Aidos |
+| no-server comment | index.html:145 | Aidos |
+| fieldset | index.html:147 | Aidos |
+| legend | index.html:148 | Aidos |
+| labels by id | index.html:151 | Aidos |
+| text input | index.html:152 | Aidos |
+| tel input | index.html:157 | Aidos |
+| number input | index.html:162 | Aidos |
+| date input | index.html:167 | Aidos |
+| radio group | index.html:181 | Aidos |
+| checkbox | index.html:191 | Aidos |
+| select with options | index.html:172 | Aidos |
+| textarea | index.html:188 | Aidos |
+| required and placeholder | index.html:152 | Aidos |
+| submit button | index.html:195 | Aidos |
+| reset button | index.html:196 | Aidos |
 | Baygali form | reviews.html:94 | Baygali |
 | method and action | reviews.html:94 | Baygali |
 | no-server comment | reviews.html:95 | Baygali |
