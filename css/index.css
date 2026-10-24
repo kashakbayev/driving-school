@@ -209,9 +209,58 @@ label:focus-visible {
     color: rgba(255, 255, 255, 0.7);
 }
 
-.cta-panel {
-    background: linear-gradient(135deg, #f47b20, #ff9b4f);
-    color: #1d2d3b;
+.enrollment-panel {
+    background: linear-gradient(135deg, #fff4eb 0%, #eaf1f7 100%);
+}
+
+.enrollment-panel h2 {
+    color: var(--prestige-navy);
+}
+
+.enrollment-contact {
+    background: linear-gradient(135deg, var(--prestige-navy), #123f66);
+    color: #fff;
+}
+
+.enrollment-contact p {
+    color: rgba(255, 255, 255, 0.72);
+}
+
+.enrollment-form {
+    border-top: 0.35rem solid var(--prestige-orange) !important;
+}
+
+.field-message {
+    display: block;
+    margin-top: 0.35rem;
+    color: #8f1d14;
+    font-size: 0.875rem;
+}
+
+.enrollment-form .form-control.is-error,
+.enrollment-form .form-select.is-error,
+.enrollment-form .form-check-input.is-error {
+    border-color: #b42318 !important;
+    background-color: #fff;
+}
+
+.enrollment-form .form-control.is-success,
+.enrollment-form .form-select.is-success,
+.enrollment-form .form-check-input.is-success {
+    border-color: #217a46 !important;
+    background-color: #fff;
+}
+
+.form-control:focus,
+.form-select:focus,
+.form-check-input:focus {
+    border-color: var(--prestige-orange);
+    box-shadow: 0 0 0 0.25rem rgba(244, 123, 32, 0.2);
+}
+
+.form-check-input:checked {
+    border-color: var(--prestige-orange);
+    background-color: var(--prestige-orange);
 }
 
 .btn-primary {

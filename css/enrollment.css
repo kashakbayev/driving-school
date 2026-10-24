@@ -1,5 +1,5 @@
-/* Bootstrap replaced the old custom grid, form sizing, buttons, spacing, and responsive alignment.
-   The matching classes are row/col-*, form-*, btn, g-*, spacing, shadow, and text-* utilities. */
+/* Bootstrap replaced the old custom grid, buttons, spacing, and responsive alignment.
+   The matching classes are row/col-*, btn, g-*, spacing, shadow, and text-* utilities. */
 :root {
     --prestige-navy: #071a2d;
     --prestige-blue: #1f5f99;
@@ -28,61 +28,9 @@ body {
 
 a:focus-visible,
 button:focus-visible,
-input:focus-visible,
-select:focus-visible,
-textarea:focus-visible,
 label:focus-visible {
     outline: 0.2rem solid var(--prestige-orange);
     outline-offset: 0.2rem;
-}
-
-.is-hidden {
-    display: none !important;
-}
-
-.is-active,
-.is-selected {
-    outline: 0.2rem solid var(--prestige-orange);
-    outline-offset: 0.2rem;
-}
-
-.status-message {
-    padding: 0.85rem 1rem;
-    border: 1px solid currentColor;
-    border-radius: 0.75rem;
-}
-
-.is-error {
-    border-color: #b42318 !important;
-    color: #8f1d14 !important;
-    background: #fff1f0;
-}
-
-.is-success {
-    border-color: #217a46 !important;
-    color: #185c35 !important;
-    background: #ecf8f0;
-}
-
-.field-message {
-    display: block;
-    margin-top: 0.35rem;
-    color: #8f1d14;
-    font-size: 0.875rem;
-}
-
-.enrollment-form .form-control.is-error,
-.enrollment-form .form-select.is-error,
-.enrollment-form .form-check-input.is-error {
-    border-color: #b42318 !important;
-    background-color: #fff;
-}
-
-.enrollment-form .form-control.is-success,
-.enrollment-form .form-select.is-success,
-.enrollment-form .form-check-input.is-success {
-    border-color: #217a46 !important;
-    background-color: #fff;
 }
 
 .bg-brand {
@@ -175,8 +123,20 @@ label:focus-visible {
     color: #687888;
 }
 
-.enrollment-form {
-    border-top: 0.35rem solid var(--prestige-orange) !important;
+.step-number {
+    display: grid;
+    width: 2.5rem;
+    height: 2.5rem;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--prestige-orange);
+    color: #fff;
+    font-weight: 800;
+}
+
+.application-cta {
+    border: 1px solid #d9e4ed;
+    background: #eaf1f7;
 }
 
 .side-card {
@@ -225,18 +185,6 @@ label:focus-visible {
     --bs-btn-border-color: var(--prestige-blue);
     --bs-btn-hover-bg: var(--prestige-blue);
     --bs-btn-hover-border-color: var(--prestige-blue);
-}
-
-.form-control:focus,
-.form-select:focus,
-.form-check-input:focus {
-    border-color: var(--prestige-orange);
-    box-shadow: 0 0 0 0.25rem rgba(244, 123, 32, 0.2);
-}
-
-.form-check-input:checked {
-    border-color: var(--prestige-orange);
-    background-color: var(--prestige-orange);
 }
 
 .site-footer {
