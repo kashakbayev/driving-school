@@ -1,420 +1,164 @@
 'use strict';
 
-const NAME_MAX_LENGTH = 60;
+$(function () {
+  const COURSES = {
+    'category-b': { title: 'Category B', price: 145000, hours: 56 },
+    intensive: { title: 'Intensive Category B', price: 165000, hours: 56 },
+    refresher: { title: 'Defensive Driving', price: 45000, hours: 10 },
+  };
+  const EXTRA_HOURS = [0, 2, 4, 6];
+  const FADE_MS = 300;
+  const MESSAGE_MS = 5000;
+  const TOTAL_HINT = 'Choose a course and extra hours to see your estimated total.';
+  const kztFormat = new Intl.NumberFormat('en-US');
 
-const NAME_PATTERN = /^\p{L}[\p{L}\p{M}]*(?:(?:[ '’-]|\. ?)\p{L}[\p{L}\p{M}]*)*\.?$/u;
+  const $form = $('#course-booking-form');
+  const $name = $('#booking-name');
+  const $course = $('#booking-course');
+  const $consent = $('#booking-consent');
+  const $submit = $('#booking-submit');
+  const $error = $('#booking-error');
+  const $success = $('#booking-success');
 
-const PHONE_CHARACTERS_PATTERN = /^\+?[\d\s()-]+$/;
-
-const KZ_PHONE_PATTERN = /^(?:\+7|8|7)(7\d{9})$/;
-const PHONE_EXAMPLE = '+7 (701) 123-45-67';
-
-const PHONE_MASK_TEMPLATE = '+7 (7__) ___-__-__';
-const PHONE_SLOT_POSITIONS = Array.from(PHONE_MASK_TEMPLATE)
-  .flatMap((char, index) => (char === '_' ? [index] : []));
-const PHONE_MASK_PREFIX = PHONE_MASK_TEMPLATE.slice(0, PHONE_SLOT_POSITIONS[0]);
-
-const MAX_MONTHS_AHEAD = 12;
-
-function normalizeSpaces(value) {
-  return value.trim().replace(/\s+/g, ' ');
-}
-
-function validateName(value) {
-  const name = normalizeSpaces(value);
-  if (name === '') {
-    return 'Enter your first and last name.';
-  }
-  const letterCount = (name.match(/\p{L}/gu) || []).length;
-  if (letterCount < 2) {
-    return 'The name must contain at least 2 letters.';
-  }
-  if (name.length > NAME_MAX_LENGTH) {
-    return `The name must be ${NAME_MAX_LENGTH} characters or fewer.`;
-  }
-  if (!NAME_PATTERN.test(name)) {
-    return 'Use only letters, spaces, hyphens and apostrophes.';
-  }
-  return '';
-}
-
-function compactPhone(value) {
-  return value.trim().replace(/[\s()-]/g, '');
-}
-
-function validatePhone(value) {
-  const phone = value.replace(/_/g, '').trim();
-  if (phone === '' || value === PHONE_MASK_TEMPLATE) {
-    return 'Enter a phone number we can call you on.';
-  }
-  if (!PHONE_CHARACTERS_PATTERN.test(phone)) {
-    return 'Use digits only; spaces, brackets and hyphens are allowed.';
-  }
-  const digitCount = phone.replace(/\D/g, '').length;
-  if (digitCount < 11) {
-    return `The number is incomplete. Example: ${PHONE_EXAMPLE}.`;
-  }
-  if (digitCount > 11) {
-    return `The number has too many digits. Example: ${PHONE_EXAMPLE}.`;
-  }
-  if (!KZ_PHONE_PATTERN.test(compactPhone(phone))) {
-    return `Enter a Kazakhstan number, for example ${PHONE_EXAMPLE}.`;
-  }
-  return '';
-}
-
-function formatPhone(value) {
-  const nationalNumber = compactPhone(value).match(KZ_PHONE_PATTERN)[1];
-  return renderPhoneMask(nationalNumber.slice(1));
-}
-
-function renderPhoneMask(digits) {
-  const chars = Array.from(PHONE_MASK_TEMPLATE);
-  Array.from(digits).forEach((digit, index) => {
-    chars[PHONE_SLOT_POSITIONS[index]] = digit;
-  });
-  return chars.join('');
-}
-
-function readMaskDigits(value) {
-  return PHONE_SLOT_POSITIONS
-    .map((position) => value.charAt(position))
-    .filter((char) => /\d/.test(char))
-    .join('');
-}
-
-function isPhoneMask(value) {
-  return value === renderPhoneMask(readMaskDigits(value));
-}
-
-function getMaskDigitsFromText(text) {
-  const digits = text.replace(/\D/g, '');
-
-  const hasCountryCode = text.trim().startsWith('+7') || (digits.length === 11 && /^[78]/.test(digits));
-  const nationalNumber = hasCountryCode ? digits.slice(1) : digits;
-  if (nationalNumber.length > 10 || (nationalNumber.length === 10 && !nationalNumber.startsWith('7'))) {
-    return null;
+  function formatKzt(amount) {
+    return `${kztFormat.format(amount)} KZT`;
   }
 
-  const isWrittenInFull = hasCountryCode || nationalNumber.length === 10;
-  return isWrittenInFull && nationalNumber.startsWith('7') ? nationalNumber.slice(1) : nationalNumber;
-}
-
-function getSlotIndex(position) {
-  return PHONE_SLOT_POSITIONS.filter((slot) => slot < position).length;
-}
-
-function getCaretPosition(slotIndex) {
-  return slotIndex < PHONE_SLOT_POSITIONS.length ? PHONE_SLOT_POSITIONS[slotIndex] : PHONE_MASK_TEMPLATE.length;
-}
-
-function initPhoneMask(input) {
-  let valueOnFocus = '';
-
-  function showDigits(digits, caretSlot) {
-    input.value = renderPhoneMask(digits);
-    if (document.activeElement === input) {
-      const caret = getCaretPosition(caretSlot);
-      input.setSelectionRange(caret, caret);
-    }
+  function hourRate(course) {
+    return Math.round(course.price / course.hours);
   }
 
-  function editDigits(event) {
-    const type = event.inputType;
-    const digits = readMaskDigits(input.value);
-    const start = Math.min(getSlotIndex(input.selectionStart), digits.length);
-    const end = Math.min(getSlotIndex(input.selectionEnd), digits.length);
-
-    if (type.startsWith('insert')) {
-      const text = event.data || (event.dataTransfer ? event.dataTransfer.getData('text/plain') : '');
-      const typed = text.replace(/\D/g, '');
-      if (typed === '') {
-        return null;
-      }
-      if (typed.length >= 10 || text.trim().startsWith('+')) {
-        const newDigits = getMaskDigitsFromText(text);
-        return newDigits === null ? null : { digits: newDigits, caret: newDigits.length };
-      }
-      const newDigits = (digits.slice(0, start) + typed + digits.slice(end)).slice(0, PHONE_SLOT_POSITIONS.length);
-      return { digits: newDigits, caret: Math.min(start + typed.length, newDigits.length) };
-    }
-
-    let from = start;
-    let to = end;
-    if (from === to) {
-      if (type === 'deleteContentBackward') {
-        from = Math.max(from - 1, 0);
-      } else if (type === 'deleteContentForward') {
-        to = Math.min(to + 1, digits.length);
-      } else if (type.endsWith('Backward')) {
-        from = 0;
-      } else if (type.endsWith('Forward')) {
-        to = digits.length;
-      }
-    }
-    return { digits: digits.slice(0, from) + digits.slice(to), caret: from };
+  function calculateTotal(course, extraHours) {
+    return course.price + extraHours * hourRate(course);
   }
 
-  input.placeholder = PHONE_MASK_TEMPLATE;
+  function readValue($field) {
+    return ($field.val() || '').trim();
+  }
 
-  input.addEventListener('focus', () => {
-    valueOnFocus = input.value;
-    if (input.value === '') {
-      showDigits('', 0);
-    }
+  const $hours = $('<select>', {
+    id: 'booking-hours',
+    name: 'extra-hours',
+    class: 'form-select',
+    'aria-describedby': 'booking-hours-error',
+  }).append($('<option>', { value: '', text: 'Choose extra hours' }));
+
+  $.each(EXTRA_HOURS, function (index, hours) {
+    $('<option>', { value: hours, text: hours === 0 ? 'No extra hours' : `${hours} extra hours` }).appendTo($hours);
   });
 
-  input.addEventListener('blur', () => {
-    if (input.value === PHONE_MASK_TEMPLATE) {
-      input.value = '';
-    }
-  
-    if (input.value !== valueOnFocus) {
-      input.dispatchEvent(new Event('change', { bubbles: true }));
-    }
-  });
+  const $hoursColumn = $('<div>', { class: 'col-12 col-md-6' })
+    .append(
+      $('<label>', { for: 'booking-hours', class: 'form-label fw-semibold', text: 'Extra practice hours' }),
+      $hours,
+      $('<small>', { id: 'booking-hours-error', class: 'form-message is-hidden' }),
+    )
+    .insertAfter($course.closest('.col-12'));
 
-  input.addEventListener('beforeinput', (event) => {
-    const type = event.inputType;
-    const isEdit = type.startsWith('insert') || type.startsWith('delete');
-    const isMasked = input.value === '' || isPhoneMask(input.value);
-    if (!event.cancelable || !isMasked || !(isEdit || type.startsWith('history'))) {
-      return;
-    }
+  const $total = $('<p>', { id: 'booking-total', class: 'status-message mt-0 mb-0', 'aria-live': 'polite' });
+  $('<div>', { class: 'col-12' }).append($total).insertAfter($hoursColumn);
 
-    event.preventDefault();
-    const result = isEdit ? editDigits(event) : null;
-    if (result !== null) {
-      showDigits(result.digits, result.caret);
-      input.dispatchEvent(new Event('input', { bubbles: true }));
-    }
-  });
+  const $checkedFields = $('#booking-name, #booking-phone, #booking-course, #booking-hours');
 
-  input.addEventListener('input', () => {
-    const { value } = input;
-    if (value === '' || isPhoneMask(value)) {
-      return;
-    }
-    const digits = value.startsWith(PHONE_MASK_PREFIX)
-      ? value.slice(PHONE_MASK_PREFIX.length).replace(/\D/g, '').slice(0, PHONE_SLOT_POSITIONS.length)
-      : getMaskDigitsFromText(value);
-    
-    if (digits !== null) {
-      showDigits(digits, digits.length);
-    }
-  });
-}
-
-function toIsoDate(date) {
-  const month = String(date.getMonth() + 1).padStart(2, '0');
-  const day = String(date.getDate()).padStart(2, '0');
-  return `${date.getFullYear()}-${month}-${day}`;
-}
-
-function parseIsoDate(value) {
-  const parts = /^(\d{4})-(\d{2})-(\d{2})$/.exec(value);
-  if (!parts) {
-    return null;
-  }
-  const [year, month, day] = parts.slice(1).map(Number);
-  const date = new Date(year, month - 1, day);
-  const isRealDay = date.getFullYear() === year && date.getMonth() === month - 1 && date.getDate() === day;
-  return isRealDay ? date : null;
-}
-
-function getDateLimits() {
-  const today = new Date();
-  const latest = new Date(today.getFullYear(), today.getMonth() + MAX_MONTHS_AHEAD, today.getDate());
-  return { min: toIsoDate(today), max: toIsoDate(latest) };
-}
-
-function validateStartDate(value, isIncomplete) {
-  if (isIncomplete) {
-    return 'Enter the full date: day, month and year.';
-  }
-  if (value === '') {
-    return '';
-  }
-  if (parseIsoDate(value) === null) {
-    return 'Enter a valid date.';
-  }
-  const limits = getDateLimits();
-  
-  if (value < limits.min) {
-    return 'The start date cannot be in the past.';
-  }
-  if (value > limits.max) {
-    return `Choose a date within the next ${MAX_MONTHS_AHEAD} months.`;
-  }
-  return '';
-}
-
-function formatDate(isoDate) {
-  return parseIsoDate(isoDate).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
-}
-
-function validateChoice(select, errorText) {
-  const option = select.options[select.selectedIndex];
-  return option && !option.disabled && option.value !== '' ? '' : errorText;
-}
-
-function getSelectedText(select) {
-  return select.options[select.selectedIndex].textContent.trim();
-}
-
-function getStateClasses(control) {
-  return control.tagName === 'SELECT'
-    ? { error: 'is-invalid', success: 'is-valid' }
-    : { error: 'is-error', success: 'is-success' };
-}
-
-function showFieldResult(field, errorText) {
-  const { control, message } = field;
-  const stateClasses = getStateClasses(control);
-  const isValid = errorText === '';
-  control.classList.toggle(stateClasses.error, !isValid);
-  control.classList.toggle(stateClasses.success, isValid && control.type !== 'checkbox' && control.value !== '');
-  control.setAttribute('aria-invalid', String(!isValid));
-  if (!isValid) {
-    message.textContent = errorText;
-  }
-  message.classList.toggle('is-hidden', isValid);
-}
-
-function clearFieldResult(field) {
-  const stateClasses = getStateClasses(field.control);
-  field.control.classList.remove(stateClasses.error, stateClasses.success);
-  field.control.removeAttribute('aria-invalid');
-  field.message.classList.add('is-hidden');
-}
-
-function renderSummary(container, entries) {
-  const title = document.createElement('p');
-  title.classList.add('fw-semibold', 'mb-2');
-  title.textContent = 'Your application';
-
-  const list = document.createElement('dl');
-  list.classList.add('row', 'mb-0');
-  entries.forEach(([term, value]) => {
-    const termElement = document.createElement('dt');
-    termElement.classList.add('col-sm-4');
-    termElement.textContent = term;
-    const valueElement = document.createElement('dd');
-    valueElement.classList.add('col-sm-8');
-    valueElement.textContent = value;
-    list.append(termElement, valueElement);
-  });
-
-  container.replaceChildren(title, list);
-}
-
-function initBookingForm(form) {
-  const byId = (id) => document.getElementById(id);
-  const nameInput = byId('booking-name');
-  const phoneInput = byId('booking-phone');
-  const courseSelect = byId('booking-course');
-  const timeSelect = byId('booking-time');
-  const dateInput = byId('booking-date');
-  const consentInput = byId('booking-consent');
-  const errorStatus = byId('booking-error');
-  const successStatus = byId('booking-success');
-  const resultBox = byId('booking-result');
-
-  const fields = [
-    { control: nameInput, message: byId('booking-name-error'), validate: () => validateName(nameInput.value) },
-    { control: phoneInput, message: byId('booking-phone-error'), validate: () => validatePhone(phoneInput.value) },
-    { control: courseSelect, message: byId('booking-course-error'), validate: () => validateChoice(courseSelect, 'Choose a course.') },
-    { control: timeSelect, message: byId('booking-time-error'), validate: () => validateChoice(timeSelect, 'Choose a preferred lesson time.') },
-    { control: dateInput, message: byId('booking-date-error'), validate: () => validateStartDate(dateInput.value, dateInput.validity.badInput) },
-    {
-      control: consentInput,
-      message: byId('booking-consent-error'),
-      validate: () => (consentInput.checked ? '' : 'Your consent is required to send the application.'),
+  const RULES = {
+    'booking-name': { message: 'Enter your first and last name.', isValid: (value) => value !== '' },
+    'booking-phone': { message: 'Enter a phone number we can call you on.', isValid: (value) => value !== '' },
+    'booking-course': { message: 'Choose a course.', isValid: (value) => Object.hasOwn(COURSES, value) },
+    'booking-hours': {
+      message: 'Choose how many extra hours you want (no extra hours is fine).',
+      isValid: (value) => value !== '' && EXTRA_HOURS.includes(Number(value)),
     },
-  ];
-  const validatedControls = new Set();
+  };
 
-  function showStatus(type) {
-    errorStatus.classList.toggle('is-hidden', type !== 'error');
-    successStatus.classList.toggle('is-hidden', type !== 'success');
-    resultBox.classList.toggle('is-hidden', type !== 'success');
-    if (type !== 'success') {
-      resultBox.replaceChildren();
+  $error.add($success).hide().removeClass('is-hidden');
+
+  function updateTotal() {
+    const course = COURSES[readValue($course)];
+    const hoursValue = readValue($hours);
+    const isReady = course !== undefined && hoursValue !== '';
+
+    $total.toggleClass('is-success', isReady);
+    if (!isReady) {
+      $total.text(TOTAL_HINT);
+      return;
     }
+
+    const extraHours = Number(hoursValue);
+    const details = extraHours === 0
+      ? `${course.title}, no extra hours`
+      : `${course.title} ${formatKzt(course.price)} + ${extraHours} h × ${formatKzt(hourRate(course))}`;
+    $total.text(`Estimated total: ${formatKzt(calculateTotal(course, extraHours))} (${details})`);
   }
 
-  function validateField(field) {
-    const errorText = field.validate();
-    showFieldResult(field, errorText);
-    validatedControls.add(field.control);
-    // The general error goes away once every highlighted field is fixed.
-    if (!fields.some((item) => item.control.getAttribute('aria-invalid') === 'true')) {
-      errorStatus.classList.add('is-hidden');
-    }
-    return errorText === '';
+  function setFieldError($field, message) {
+    const hasError = message !== '';
+    const $message = $field.closest('.col-12').find('.form-message');
+    $field.toggleClass('is-error', hasError).attr('aria-invalid', String(hasError));
+    $message.text(message).toggleClass('is-hidden', !hasError);
   }
 
-  function collectSummary() {
-    const transmission = form.querySelector('input[name="transmission"]:checked');
-    return [
-      ['Name', normalizeSpaces(nameInput.value)],
-      ['Phone', formatPhone(phoneInput.value)],
-      ['Course', getSelectedText(courseSelect)],
-      ['Lesson time', getSelectedText(timeSelect)],
-      ['Start date', dateInput.value === '' ? 'To be agreed by phone' : formatDate(dateInput.value)],
-      ['Transmission', transmission ? transmission.labels[0].textContent.trim() : 'Not specified'],
-    ];
+  function validateField($field) {
+    const rule = RULES[$field.attr('id')];
+    const isValid = rule.isValid(readValue($field));
+    setFieldError($field, isValid ? '' : rule.message);
+    return isValid;
   }
-
-  form.noValidate = true;
-
-  initPhoneMask(phoneInput);
-
-  const dateLimits = getDateLimits();
-  dateInput.min = dateLimits.min;
-  dateInput.max = dateLimits.max;
 
   const requestedCourse = new URLSearchParams(window.location.search).get('course');
-  const hasRequestedCourse = Array.from(courseSelect.options)
-    .some((option) => option.value === requestedCourse && !option.disabled);
-  if (hasRequestedCourse) {
-    courseSelect.value = requestedCourse;
+  if (requestedCourse !== null && Object.hasOwn(COURSES, requestedCourse)) {
+    $course.val(requestedCourse);
   }
+  updateTotal();
 
-  fields.forEach((field) => {
-    field.control.addEventListener('change', () => validateField(field));
-    
-    field.control.addEventListener('input', () => {
-      if (validatedControls.has(field.control)) {
-        validateField(field);
-      }
+  $course.add($hours).on('change', updateTotal);
+
+  $consent.on('change', function () {
+    $submit.prop('disabled', !$(this).prop('checked'));
+  });
+  $consent.trigger('change');
+
+  $form.on('input change', '.is-error', function () {
+    if (validateField($(this)) && $checkedFields.filter('.is-error').length === 0) {
+      $error.stop(true).fadeOut(FADE_MS);
+    }
+  });
+
+  $form.on('submit', function (event) {
+    event.preventDefault();
+
+    const $invalid = $checkedFields.filter(function () {
+      return !validateField($(this));
+    });
+
+    if ($invalid.length > 0) {
+      $success.stop(true).hide();
+      $error.stop(true).fadeIn(FADE_MS);
+      $invalid.first().trigger('focus');
+      return;
+    }
+
+    const course = COURSES[readValue($course)];
+    const total = calculateTotal(course, Number(readValue($hours)));
+
+    $success.html('<strong>Thank you!</strong> Your application has been received.');
+    $('<span>', { class: 'd-block mt-1' })
+      .text(`${readValue($name)}, Prestige will call you to confirm ${course.title}. Estimated total: ${formatKzt(total)}.`)
+      .appendTo($success);
+
+    $error.stop(true).hide();
+    $submit.prop('disabled', true);
+
+    $success.stop(true).fadeIn(FADE_MS).delay(MESSAGE_MS).fadeOut(FADE_MS, function () {
+      $form.trigger('reset');
     });
   });
 
-  form.addEventListener('submit', (event) => {
-    event.preventDefault();
-    const invalidFields = fields.filter((field) => !validateField(field));
-    if (invalidFields.length > 0) {
-      showStatus('error');
-      invalidFields[0].control.focus();
-      return;
-    }
-
-    const summary = collectSummary();
-
-    form.reset();
-    renderSummary(resultBox, summary);
-    showStatus('success');
+  $form.on('reset', function () {
+    $checkedFields.each(function () {
+      setFieldError($(this), '');
+    });
+    $error.add($success).stop(true).hide();
+    $total.removeClass('is-success').text(TOTAL_HINT);
+    $submit.prop('disabled', true);
   });
-
-  form.addEventListener('reset', () => {
-    fields.forEach(clearFieldResult);
-    validatedControls.clear();
-    showStatus(null);
-  });
-}
-
-const bookingForm = document.getElementById('course-booking-form');
-if (bookingForm) {
-  initBookingForm(bookingForm);
-}
+});
