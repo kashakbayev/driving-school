@@ -124,38 +124,8 @@
   color: var(--prestige-navy);
 }
 
-.course-booking {
+.course-enrollment {
   background: #eaf1f7;
-}
-
-/* Future JavaScript states. .is-hidden, .is-selected, .is-error, .is-success and .status-message
-   already come from the shared css/index.css; only what is missing there is added here. */
-.is-visible {
-  display: block;
-}
-
-/* Error text under a form field */
-.form-message {
-  display: block;
-  margin-top: 0.35rem;
-  color: #8f1d14;
-  font-size: 0.875rem;
-}
-
-.form-message.is-success {
-  color: #185c35;
-}
-
-.form-control:focus,
-.form-select:focus,
-.form-check-input:focus {
-  border-color: var(--prestige-orange);
-  box-shadow: 0 0 0 0.25rem rgba(244, 123, 32, 0.2);
-}
-
-.form-check-input:checked {
-  border-color: var(--prestige-orange);
-  background-color: var(--prestige-orange);
 }
 
 @media (max-width: 767.98px) {

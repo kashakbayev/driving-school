@@ -1,3 +1,7 @@
+.section-heading {
+    max-width: 720px;
+}
+
 .instructors-hero {
     background: linear-gradient(130deg, #ffffff 0%, #f2f6ff 100%);
 }
