@@ -1,3 +1,6 @@
+.section-heading {
+    max-width: 720px;
+}
 
 .reviews-hero {
     background: linear-gradient(130deg, #ffffff, #eff6ff);

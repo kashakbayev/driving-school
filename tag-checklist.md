@@ -108,18 +108,16 @@ Line references were regenerated for the HTML-and-CSS-only version.
 | description meta | instructors.html:6 | Baygali |
 | author meta | instructors.html:7 | Baygali |
 | unique title | instructors.html:8 | Baygali |
-| header | instructors.html:12 | Baygali |
-| site name | instructors.html:6 | Baygali |
-| nav | instructors.html:14 | Baygali |
-| nav list | instructors.html:15 | Baygali |
-| relative links | instructors.html:13 | Baygali |
-| main | instructors.html:27 | Baygali |
-| one h1 | instructors.html:28 | Baygali |
-| footer | instructors.html:106 | Baygali |
-| address | instructors.html:107 | Baygali |
-| copyright entity | instructors.html:118 | Baygali |
-| why comment 1 | instructors.html:11 | Baygali |
-| why comment 2 | instructors.html:105 | Baygali |
+| header | instructors.html:15 | Baygali |
+| site name | instructors.html:17 | Baygali |
+| nav | instructors.html:23 | Baygali |
+| nav list | instructors.html:24 | Baygali |
+| relative links | instructors.html:17 | Baygali |
+| main | instructors.html:37 | Baygali |
+| one h1 | instructors.html:41 | Baygali |
+| footer | instructors.html:143 | Baygali |
+| address | instructors.html:146 | Baygali |
+| copyright entity | instructors.html:152 | Baygali |
 | doctype | reviews.html:1 | Baygali |
 | lang | reviews.html:2 | Baygali |
 | charset | reviews.html:4 | Baygali |
@@ -127,25 +125,23 @@ Line references were regenerated for the HTML-and-CSS-only version.
 | description meta | reviews.html:6 | Baygali |
 | author meta | reviews.html:7 | Baygali |
 | unique title | reviews.html:8 | Baygali |
-| header | reviews.html:12 | Baygali |
-| site name | reviews.html:6 | Baygali |
-| nav | reviews.html:14 | Baygali |
-| nav list | reviews.html:15 | Baygali |
-| relative links | reviews.html:13 | Baygali |
-| main | reviews.html:27 | Baygali |
-| one h1 | reviews.html:28 | Baygali |
-| footer | reviews.html:43 | Baygali |
-| address | reviews.html:161 | Baygali |
-| copyright entity | reviews.html:172 | Baygali |
-| why comment 1 | reviews.html:11 | Baygali |
-| why comment 2 | reviews.html:159 | Baygali |
+| header | reviews.html:15 | Baygali |
+| site name | reviews.html:17 | Baygali |
+| nav | reviews.html:23 | Baygali |
+| nav list | reviews.html:24 | Baygali |
+| relative links | reviews.html:17 | Baygali |
+| main | reviews.html:37 | Baygali |
+| one h1 | reviews.html:41 | Baygali |
+| footer | reviews.html:238 | Baygali |
+| address | reviews.html:241 | Baygali |
+| copyright entity | reviews.html:247 | Baygali |
 
 ## Cross-Page Tags
 
 | Requirement | File:line | Student |
 | --- | --- | --- |
 | section | schedule.html:28 | Aidos |
-| article | instructors.html:36 | Baygali |
+| article | instructors.html:70 | Baygali |
 | aside | courseDetail.html:63 | Merey |
 | figure | index.html:35 | Aidos |
 | figcaption | index.html:41 | Aidos |
@@ -165,7 +161,7 @@ Line references were regenerated for the HTML-and-CSS-only version.
 | tel link | schedule.html:164 | Aidos |
 | same-page id link 1 | schedule.html:42 | Aidos |
 | same-page id link 2 | schedule.html:43 | Aidos |
-| image | instructors.html:39 | Baygali |
+| image | instructors.html:71 | Baygali |
 | strong | courses.html:32 | Merey |
 | em | courses.html:33 | Merey |
 | b | courses.html:115 | Merey |
@@ -207,21 +203,16 @@ Line references were regenerated for the HTML-and-CSS-only version.
 | required and placeholder | index.html:152 | Aidos |
 | submit button | index.html:195 | Aidos |
 | reset button | index.html:196 | Aidos |
-| Baygali form | reviews.html:94 | Baygali |
-| method and action | reviews.html:94 | Baygali |
-| no-server comment | reviews.html:95 | Baygali |
-| fieldset | reviews.html:97 | Baygali |
-| legend | reviews.html:98 | Baygali |
-| labels by id | reviews.html:101 | Baygali |
-| text input | reviews.html:102 | Baygali |
-| email input | reviews.html:107 | Baygali |
-| tel input | reviews.html:112 | Baygali |
-| number input | reviews.html:117 | Baygali |
-| date input | reviews.html:122 | Baygali |
-| radio group | reviews.html:127 | Baygali |
-| checkbox | reviews.html:146 | Baygali |
-| select with options | reviews.html:133 | Baygali |
-| textarea | reviews.html:142 | Baygali |
-| required and placeholder | reviews.html:102 | Baygali |
-| submit button | reviews.html:150 | Baygali |
-| reset button | reviews.html:151 | Baygali |
+| Baygali form | reviews.html:147 | Baygali |
+| no-server note | reviews.html:144 | Baygali |
+| fieldset | reviews.html:148 | Baygali |
+| legend | reviews.html:149 | Baygali |
+| labels by id | reviews.html:152 | Baygali |
+| text input | reviews.html:153 | Baygali |
+| email input | reviews.html:158 | Baygali |
+| radio group | reviews.html:188 | Baygali |
+| checkbox | reviews.html:207 | Baygali |
+| select with options | reviews.html:164 | Baygali |
+| textarea | reviews.html:200 | Baygali |
+| review action button | reviews.html:218 | Baygali |
+| reset button | reviews.html:219 | Baygali |
