@@ -75,24 +75,6 @@ const SCHEDULE_SESSIONS = [
     }
 ];
 
-function createScheduleElement(tagName, text, className) {
-    const element = document.createElement(tagName);
-    element.textContent = text;
-
-    if (className) {
-        element.className = className;
-    }
-
-    return element;
-}
-
-function createSelectOption(value, label) {
-    const option = document.createElement('option');
-    option.value = value;
-    option.textContent = label;
-    return option;
-}
-
 function matchesScheduleFilters(session, query, type) {
     const searchable = [
         session.day,
@@ -102,10 +84,9 @@ function matchesScheduleFilters(session, query, type) {
         session.location,
         session.mode
     ].join(' ').toLowerCase();
-    const matchesQuery = searchable.includes(query.trim().toLowerCase());
-    const matchesType = type === 'all' || session.type === type;
 
-    return matchesQuery && matchesType;
+    return searchable.includes(query.trim().toLowerCase()) &&
+        (type === 'all' || session.type === type);
 }
 
 function sortScheduleSessions(sessions, sortMode) {
@@ -123,20 +104,15 @@ function sortScheduleSessions(sessions, sortMode) {
 }
 
 function saveScheduleChoice(session) {
-    const choice = {
-        id: session.id,
-        day: session.day,
-        time: session.time,
-        type: session.type,
-        instructor: session.instructor,
-        location: session.location
-    };
-
     try {
-        sessionStorage.setItem(
-            'prestigeScheduleChoice',
-            JSON.stringify(choice)
-        );
+        sessionStorage.setItem('prestigeScheduleChoice', JSON.stringify({
+            id: session.id,
+            day: session.day,
+            time: session.time,
+            type: session.type,
+            instructor: session.instructor,
+            location: session.location
+        }));
     } catch (error) {
         return false;
     }
@@ -144,238 +120,241 @@ function saveScheduleChoice(session) {
     return true;
 }
 
-function initialiseSchedule() {
-    const table = document.getElementById('weekly-schedule-table');
-    const tableBody = document.getElementById('schedule-table-body');
-    const panel = document.getElementById('timetable');
-    const status = document.getElementById('schedule-status');
+// Rewritten feature 2: jQuery .empty(), .append(), .each() and delegated .on()
+// replace createElement/replaceChildren/addEventListener and reduce repeated code.
+$(function () {
+    const $table = $('#weekly-schedule-table');
+    const $tableBody = $('#schedule-table-body');
+    const $panel = $('#timetable');
+    const $status = $('#schedule-status');
 
-    if (!table || !tableBody || !panel || !status) {
+    if (!$table.length || !$tableBody.length || !$panel.length || !$status.length) {
         return;
     }
 
     let selectedSessionId = '';
+    const $headerRow = $table.find('thead tr:first');
+    $('<th>', {
+        class: 'text-center',
+        scope: 'col',
+        text: 'Choose'
+    }).appendTo($headerRow);
 
-    const tableContainer = table.closest('.table-responsive');
-    const headerRow = table.querySelector('thead tr');
-    const actionHeading = createScheduleElement('th', 'Choose', 'text-center');
-    actionHeading.scope = 'col';
-    headerRow.append(actionHeading);
+    const $controls = $('<section>', {
+        class: 'bg-white border rounded-4 p-3 p-md-4 mb-4',
+        'aria-label': 'Schedule search and filters'
+    });
+    const $controlsHeading = $('<div>', {
+        class: 'd-flex justify-content-between align-items-center gap-3 mb-3'
+    }).appendTo($controls);
+    $('<h3>', {
+        class: 'h5 mb-0',
+        text: 'Find a suitable session'
+    }).appendTo($controlsHeading);
+    const $toggleFilters = $('<button>', {
+        class: 'btn btn-outline-secondary btn-sm',
+        type: 'button',
+        text: 'Hide filters',
+        'aria-expanded': 'true'
+    }).appendTo($controlsHeading);
+    const $controlsRow = $('<div>', {
+        class: 'row g-3 align-items-end',
+        'data-filter-fields': ''
+    }).appendTo($controls);
 
-    const controls = createScheduleElement(
-        'section',
-        '',
-        'bg-white border rounded-4 p-3 p-md-4 mb-4'
-    );
-    controls.setAttribute('aria-label', 'Schedule search and filters');
+    function createControlGroup(columnClass, label, $control) {
+        return $('<div>', { class: columnClass }).append(
+            $('<label>', {
+                class: 'form-label fw-semibold',
+                for: $control.attr('id'),
+                text: label
+            }),
+            $control
+        );
+    }
 
-    const controlsRow = createScheduleElement('div', '', 'row g-3 align-items-end');
-    const searchGroup = createScheduleElement('div', '', 'col-12 col-lg-5');
-    const typeGroup = createScheduleElement('div', '', 'col-12 col-md-5 col-lg-3');
-    const sortGroup = createScheduleElement('div', '', 'col-12 col-md-4 col-lg-2');
-    const resetGroup = createScheduleElement('div', '', 'col-12 col-md-3 col-lg-2 d-grid');
-    const search = createScheduleElement('input', '', 'form-control');
-    const type = createScheduleElement('select', '', 'form-select');
-    const sort = createScheduleElement('select', '', 'form-select');
-    const reset = createScheduleElement('button', 'Reset', 'btn btn-outline-secondary');
+    const $search = $('<input>', {
+        class: 'form-control',
+        id: 'schedule-search',
+        type: 'search',
+        placeholder: 'Search day, instructor or location',
+        autocomplete: 'off'
+    });
+    const $type = $('<select>', {
+        class: 'form-select',
+        id: 'schedule-type'
+    }).append(
+        $('<option>', { value: 'all', text: 'All lesson types' }),
+        $('<option>', { value: 'Theory', text: 'Theory' }),
+        $('<option>', { value: 'Practical', text: 'Practical' })
+    );
+    const $sort = $('<select>', {
+        class: 'form-select',
+        id: 'schedule-sort'
+    }).append(
+        $('<option>', { value: 'day', text: 'Day and time' }),
+        $('<option>', { value: 'availability', text: 'Most availability' })
+    );
+    const $reset = $('<button>', {
+        class: 'btn btn-outline-secondary',
+        type: 'button',
+        text: 'Reset'
+    });
 
-    search.id = 'schedule-search';
-    search.type = 'search';
-    search.placeholder = 'Search day, instructor or location';
-    search.autocomplete = 'off';
-    type.id = 'schedule-type';
-    type.append(
-        createSelectOption('all', 'All lesson types'),
-        createSelectOption('Theory', 'Theory'),
-        createSelectOption('Practical', 'Practical')
+    $controlsRow.append(
+        createControlGroup('col-12 col-lg-5', 'Search schedule', $search),
+        createControlGroup('col-12 col-md-5 col-lg-3', 'Lesson type', $type),
+        createControlGroup('col-12 col-md-4 col-lg-2', 'Sort by', $sort),
+        $('<div>', { class: 'col-12 col-md-3 col-lg-2 d-grid' }).append($reset)
     );
-    sort.id = 'schedule-sort';
-    sort.append(
-        createSelectOption('day', 'Day and time'),
-        createSelectOption('availability', 'Most availability')
-    );
-    reset.type = 'button';
+    $table.closest('.table-responsive').before($controls);
 
-    const searchLabel = createScheduleElement(
-        'label',
-        'Search schedule',
-        'form-label fw-semibold'
+    const $selection = $('<section>', {
+        class: 'status-message bg-white is-hidden',
+        'aria-live': 'polite',
+        tabindex: '-1'
+    }).append(
+        $('<h3>', { class: 'h5', text: 'Your preferred lesson' }),
+        $('<p>', { class: 'mb-2', 'data-selection-detail': '' }),
+        $('<p>', {
+            class: 'small text-body-secondary mb-3',
+            text: 'Availability must be confirmed by Prestige. This is not a booking.'
+        }),
+        $('<a>', {
+            class: 'btn btn-primary',
+            href: 'index.html#enrollment-form',
+            text: 'Continue to enrollment'
+        })
     );
-    searchLabel.htmlFor = search.id;
-    const typeLabel = createScheduleElement(
-        'label',
-        'Lesson type',
-        'form-label fw-semibold'
-    );
-    typeLabel.htmlFor = type.id;
-    const sortLabel = createScheduleElement(
-        'label',
-        'Sort by',
-        'form-label fw-semibold'
-    );
-    sortLabel.htmlFor = sort.id;
-
-    searchGroup.append(searchLabel, search);
-    typeGroup.append(typeLabel, type);
-    sortGroup.append(sortLabel, sort);
-    resetGroup.append(reset);
-    controlsRow.append(searchGroup, typeGroup, sortGroup, resetGroup);
-    controls.append(controlsRow);
-    tableContainer.before(controls);
-
-    const selection = createScheduleElement(
-        'section',
-        '',
-        'status-message bg-white is-hidden'
-    );
-    selection.setAttribute('aria-live', 'polite');
-    selection.append(
-        createScheduleElement('h3', 'Your preferred lesson', 'h5'),
-        createScheduleElement('p', '', 'mb-2'),
-        createScheduleElement(
-            'p',
-            'Availability must be confirmed by Prestige. Selecting a row does not create a booking.',
-            'small text-body-secondary mb-3'
-        )
-    );
-    const continueLink = createScheduleElement(
-        'a',
-        'Continue to enrollment',
-        'btn btn-primary'
-    );
-    continueLink.href = 'index.html#enrollment-form';
-    selection.append(continueLink);
-    status.after(selection);
+    $status.after($selection);
 
     function createScheduleRow(session) {
-        const row = document.createElement('tr');
-        row.dataset.sessionId = session.id;
-        row.classList.toggle('is-selected', session.id === selectedSessionId);
+        const $row = $('<tr>', {
+            'data-session-id': session.id
+        }).toggleClass('is-selected', session.id === selectedSessionId);
+        const $location = $('<span>').text(session.location);
 
-        const day = createScheduleElement('th', session.day, '');
-        day.scope = 'row';
-        const timeCell = createScheduleElement(
-            'td',
-            session.time + ', ' + session.type.toLowerCase(),
-            ''
-        );
-        const instructor = createScheduleElement(
-            'td',
-            session.instructor,
-            'd-none d-md-table-cell'
-        );
-        const location = document.createElement('td');
-        const locationLabel = createScheduleElement(
-            'span',
-            session.location,
-            session.mode === 'Online' ? 'badge text-bg-success' : ''
-        );
-        location.append(locationLabel);
+        if (session.mode === 'Online') {
+            $location.addClass('badge text-bg-success');
+        }
 
-        const action = createScheduleElement('td', '', 'text-center');
-        const choose = createScheduleElement(
-            'button',
-            'Choose',
-            'btn btn-sm btn-outline-primary'
+        $row.append(
+            $('<th>', { scope: 'row', text: session.day }),
+            $('<td>').text(session.time + ', ' + session.type.toLowerCase()),
+            $('<td>', {
+                class: 'd-none d-md-table-cell',
+                text: session.instructor
+            }),
+            $('<td>').append($location),
+            $('<td>', { class: 'text-center' }).append(
+                $('<button>', {
+                    class: 'btn btn-sm btn-outline-primary',
+                    type: 'button',
+                    text: 'Choose',
+                    'data-choose-session': session.id,
+                    'aria-pressed': String(session.id === selectedSessionId),
+                    'aria-label': 'Choose ' + session.day + ' at ' + session.time
+                })
+            )
         );
-        choose.type = 'button';
-        choose.dataset.chooseSession = session.id;
-        choose.setAttribute(
-            'aria-pressed',
-            String(session.id === selectedSessionId)
-        );
-        choose.setAttribute(
-            'aria-label',
-            'Choose ' + session.day + ' at ' + session.time
-        );
-        action.append(choose);
-        row.append(day, timeCell, instructor, location, action);
-        return row;
+
+        return $row;
     }
 
     function renderSchedule() {
         const matches = sortScheduleSessions(
             SCHEDULE_SESSIONS.filter(function (session) {
-                return matchesScheduleFilters(session, search.value, type.value);
+                return matchesScheduleFilters(session, $search.val(), $type.val());
             }),
-            sort.value
+            $sort.val()
         );
 
-        tableBody.replaceChildren();
+        $tableBody.empty();
 
         if (matches.length === 0) {
-            const emptyRow = document.createElement('tr');
-            const emptyCell = createScheduleElement(
-                'td',
-                'No sessions match these filters. Reset the controls to see all times.',
-                'text-center text-body-secondary p-4'
-            );
-            emptyCell.colSpan = 5;
-            emptyRow.append(emptyCell);
-            tableBody.append(emptyRow);
+            $('<tr>').append(
+                $('<td>', {
+                    class: 'text-center text-body-secondary p-4',
+                    colspan: 5,
+                    text: 'No sessions match. Reset the filters to see all times.'
+                })
+            ).appendTo($tableBody);
         } else {
-            for (const session of matches) {
-                tableBody.append(createScheduleRow(session));
-            }
+            $.each(matches, function (index, session) {
+                createScheduleRow(session).appendTo($tableBody);
+            });
         }
 
-        status.textContent = matches.length + ' of ' +
-            SCHEDULE_SESSIONS.length + ' sessions shown.';
-        status.classList.remove('is-hidden', 'is-success');
-        status.classList.toggle('is-error', matches.length === 0);
+        $status
+            .text(matches.length + ' of ' + SCHEDULE_SESSIONS.length +
+                ' sessions shown.')
+            .removeClass('is-hidden is-success')
+            .toggleClass('is-error', matches.length === 0);
     }
 
-    search.addEventListener('input', renderSchedule);
-    type.addEventListener('change', renderSchedule);
-    sort.addEventListener('change', renderSchedule);
+    $search.on('input', renderSchedule);
+    $type.on('change', renderSchedule);
+    $sort.on('change', renderSchedule);
 
-    reset.addEventListener('click', function () {
-        search.value = '';
-        type.value = 'all';
-        sort.value = 'day';
-        renderSchedule();
-        search.focus();
+    $toggleFilters.on('click', function () {
+        const $button = $(this);
+        const willCollapse = !$button.hasClass('is-active');
+
+        $button
+            .toggleClass('is-active', willCollapse)
+            .attr('aria-expanded', String(!willCollapse))
+            .text(willCollapse ? 'Show filters' : 'Hide filters');
+        $controlsRow.stop(true, true).slideToggle(250);
     });
 
-    tableBody.addEventListener('click', function (event) {
-        const button = event.target.closest('button[data-choose-session]');
+    $reset.on('click', function () {
+        $search.val('');
+        $type.val('all');
+        $sort.val('day');
+        renderSchedule();
+        $search.trigger('focus');
+    });
 
-        if (!button) {
-            return;
-        }
-
+    // Delegation is required because the buttons are created again after every
+    // filter. A direct .on('click') on the old buttons would miss the new ones.
+    $tableBody.on('click', 'button[data-choose-session]', function () {
+        const $button = $(this);
         const session = SCHEDULE_SESSIONS.find(function (item) {
-            return item.id === button.dataset.chooseSession;
+            return item.id === $button.attr('data-choose-session');
         });
 
         if (!session) {
             return;
         }
 
-        for (const row of tableBody.querySelectorAll('tr')) {
-            const selected = row.dataset.sessionId === session.id;
-            row.classList.toggle('is-selected', selected);
-            row.querySelector('button[data-choose-session]')?.setAttribute(
-                'aria-pressed',
-                String(selected)
-            );
-        }
-
         selectedSessionId = session.id;
         saveScheduleChoice(session);
-        selection.children[1].textContent = session.day + ' at ' +
-            session.time + ': ' + session.type + ' with ' +
-            session.instructor + ' at ' + session.location + '. ' +
+
+        // Chain: move from the clicked button to its row, select that row, then
+        // reach its sibling rows and remove their selected appearance.
+        $button
+            .closest('tr')
+            .addClass('is-selected')
+            .siblings()
+            .removeClass('is-selected');
+        $tableBody.find('button[data-choose-session]').attr('aria-pressed', 'false');
+        $button.attr('aria-pressed', 'true');
+
+        $selection.find('[data-selection-detail]').text(
+            session.day + ' at ' + session.time + ': ' + session.type +
+            ' with ' + session.instructor + ' at ' + session.location + '. ' +
             session.durationHours + ' academic hours; ' + session.seats +
-            ' demonstration place' + (session.seats === 1 ? '' : 's') +
-            ' shown.';
-        selection.classList.remove('is-hidden');
-        selection.classList.add('is-success');
-        selection.focus();
+            ' demonstration place' + (session.seats === 1 ? '' : 's') + '.'
+        );
+        $selection
+            .removeClass('is-hidden')
+            .addClass('is-success')
+            .stop(true, true)
+            .hide()
+            .slideDown(250, function () {
+                $(this).trigger('focus');
+            });
     });
 
-    selection.tabIndex = -1;
     renderSchedule();
-}
-
-initialiseSchedule();
+});

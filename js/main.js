@@ -1,41 +1,53 @@
 'use strict';
 
-function setNavigationState(toggle, button, expanded) {
-    toggle.checked = expanded;
-    button.setAttribute('aria-expanded', String(expanded));
-}
+// jQuery 3.7.1 is loaded by each page. The ready wrapper waits until the frozen
+// HTML is available before selectors, attributes and event handlers are used.
+$(function () {
+    const $toggle = $('.nav-toggle:first');
+    const $button = $('label[for="' + $toggle.attr('id') + '"]');
+    const $navigation = $('.main-navigation:first');
 
-function initialiseNavigation() {
-    const toggle = document.querySelector('.nav-toggle');
-    const button = document.querySelector('label[for="' + toggle?.id + '"]');
-    const navigation = document.querySelector('.main-navigation');
-
-    if (!toggle || !button || !navigation) {
+    if (!$toggle.length || !$button.length || !$navigation.length) {
         return;
     }
 
-    if (navigation.id) {
-        button.setAttribute('aria-controls', navigation.id);
+    function setNavigationState(expanded) {
+        $toggle.prop('checked', expanded);
+        $button.attr('aria-expanded', String(expanded));
     }
 
-    setNavigationState(toggle, button, toggle.checked);
+    if ($navigation.attr('id')) {
+        $button.attr('aria-controls', $navigation.attr('id'));
+    }
 
-    toggle.addEventListener('change', function () {
-        setNavigationState(toggle, button, toggle.checked);
+    $button.attr({
+        role: 'button',
+        tabindex: '0'
     });
 
-    navigation.addEventListener('click', function (event) {
-        if (event.target.closest('a') && window.innerWidth < 768) {
-            setNavigationState(toggle, button, false);
+    setNavigationState($toggle.prop('checked'));
+
+    $toggle.on('change', function () {
+        setNavigationState($(this).prop('checked'));
+    });
+
+    $navigation.on('click', 'a', function () {
+        if (window.innerWidth < 768) {
+            setNavigationState(false);
         }
     });
 
-    document.addEventListener('keydown', function (event) {
-        if (event.key === 'Escape' && toggle.checked) {
-            setNavigationState(toggle, button, false);
-            button.focus();
+    $button.on('keydown', function (event) {
+        if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            setNavigationState(!$toggle.prop('checked'));
         }
     });
-}
 
-initialiseNavigation();
+    $(document).on('keydown', function (event) {
+        if (event.key === 'Escape' && $toggle.prop('checked')) {
+            setNavigationState(false);
+            $button.trigger('focus');
+        }
+    });
+});
