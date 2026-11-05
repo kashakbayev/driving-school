@@ -13,18 +13,18 @@ Line references were regenerated for the HTML-and-CSS-only version.
 | description meta | index.html:6 | Aidos |
 | author meta | index.html:7 | Aidos |
 | unique title | index.html:8 | Aidos |
-| header | index.html:16 | Aidos |
-| site name | index.html:19 | Aidos |
-| nav | index.html:25 | Aidos |
-| nav list | index.html:26 | Aidos |
-| relative links | index.html:19 | Aidos |
-| main | index.html:40 | Aidos |
-| one h1 | index.html:44 | Aidos |
-| footer | index.html:210 | Aidos |
-| address | index.html:213 | Aidos |
-| copyright entity | index.html:219 | Aidos |
+| header | index.html:18 | Aidos |
+| site name | index.html:21 | Aidos |
+| nav | index.html:27 | Aidos |
+| nav list | index.html:28 | Aidos |
+| relative links | index.html:21 | Aidos |
+| main | index.html:42 | Aidos |
+| one h1 | index.html:46 | Aidos |
+| footer | index.html:212 | Aidos |
+| address | index.html:215 | Aidos |
+| copyright entity | index.html:221 | Aidos |
 | why comment 1 | index.html:10 | Aidos |
-| why comment 2 | index.html:39 | Aidos |
+| why comment 2 | index.html:41 | Aidos |
 | doctype | courses.html:1 | Merey |
 | lang | courses.html:2 | Merey |
 | charset | courses.html:4 | Merey |
@@ -70,18 +70,18 @@ Line references were regenerated for the HTML-and-CSS-only version.
 | description meta | schedule.html:6 | Aidos |
 | author meta | schedule.html:7 | Aidos |
 | unique title | schedule.html:8 | Aidos |
-| header | schedule.html:12 | Aidos |
-| site name | schedule.html:6 | Aidos |
-| nav | schedule.html:14 | Aidos |
-| nav list | schedule.html:15 | Aidos |
-| relative links | schedule.html:13 | Aidos |
-| main | schedule.html:27 | Aidos |
-| one h1 | schedule.html:29 | Aidos |
-| footer | schedule.html:170 | Aidos |
-| address | schedule.html:171 | Aidos |
-| copyright entity | schedule.html:182 | Aidos |
-| why comment 1 | schedule.html:11 | Aidos |
-| why comment 2 | schedule.html:169 | Aidos |
+| header | schedule.html:18 | Aidos |
+| site name | schedule.html:21 | Aidos |
+| nav | schedule.html:27 | Aidos |
+| nav list | schedule.html:28 | Aidos |
+| relative links | schedule.html:21 | Aidos |
+| main | schedule.html:42 | Aidos |
+| one h1 | schedule.html:46 | Aidos |
+| footer | schedule.html:126 | Aidos |
+| address | schedule.html:128 | Aidos |
+| copyright entity | schedule.html:130 | Aidos |
+| why comment 1 | schedule.html:10 | Aidos |
+| why comment 2 | schedule.html:41 | Aidos |
 | doctype | enrollment.html:1 | Aidos |
 | lang | enrollment.html:2 | Aidos |
 | charset | enrollment.html:4 | Aidos |
@@ -89,18 +89,18 @@ Line references were regenerated for the HTML-and-CSS-only version.
 | description meta | enrollment.html:6 | Aidos |
 | author meta | enrollment.html:7 | Aidos |
 | unique title | enrollment.html:8 | Aidos |
-| header | enrollment.html:16 | Aidos |
-| site name | enrollment.html:19 | Aidos |
-| nav | enrollment.html:25 | Aidos |
-| nav list | enrollment.html:26 | Aidos |
-| relative links | enrollment.html:19 | Aidos |
-| main | enrollment.html:40 | Aidos |
-| one h1 | enrollment.html:44 | Aidos |
-| footer | enrollment.html:131 | Aidos |
-| address | enrollment.html:133 | Aidos |
-| copyright entity | enrollment.html:135 | Aidos |
+| header | enrollment.html:18 | Aidos |
+| site name | enrollment.html:21 | Aidos |
+| nav | enrollment.html:27 | Aidos |
+| nav list | enrollment.html:28 | Aidos |
+| relative links | enrollment.html:21 | Aidos |
+| main | enrollment.html:42 | Aidos |
+| one h1 | enrollment.html:46 | Aidos |
+| footer | enrollment.html:133 | Aidos |
+| address | enrollment.html:135 | Aidos |
+| copyright entity | enrollment.html:137 | Aidos |
 | why comment 1 | enrollment.html:10 | Aidos |
-| why comment 2 | enrollment.html:39 | Aidos |
+| why comment 2 | enrollment.html:41 | Aidos |
 | doctype | instructors.html:1 | Baygali |
 | lang | instructors.html:2 | Baygali |
 | charset | instructors.html:4 | Baygali |
@@ -140,7 +140,7 @@ Line references were regenerated for the HTML-and-CSS-only version.
 
 | Requirement | File:line | Student |
 | --- | --- | --- |
-| section | schedule.html:28 | Aidos |
+| section | schedule.html:43 | Aidos |
 | article | instructors.html:70 | Baygali |
 | aside | courseDetail.html:63 | Merey |
 | figure | index.html:35 | Aidos |
@@ -158,9 +158,8 @@ Line references were regenerated for the HTML-and-CSS-only version.
 | dd | enrollment.html:45 | Aidos |
 | external link with target and rel | courses.html:109 | Merey |
 | mailto link | courses.html:123 | Merey |
-| tel link | schedule.html:164 | Aidos |
-| same-page id link 1 | schedule.html:42 | Aidos |
-| same-page id link 2 | schedule.html:43 | Aidos |
+| tel link | schedule.html:128 | Aidos |
+| same-page id link 1 | schedule.html:50 | Aidos |
 | image | instructors.html:71 | Baygali |
 | strong | courses.html:32 | Merey |
 | em | courses.html:33 | Merey |
@@ -186,23 +185,23 @@ Line references were regenerated for the HTML-and-CSS-only version.
 
 | Requirement | File:line | Student |
 | --- | --- | --- |
-| Aidos form | index.html:146 | Aidos |
-| method and action | index.html:146 | Aidos |
-| no-server comment | index.html:145 | Aidos |
-| fieldset | index.html:147 | Aidos |
-| legend | index.html:148 | Aidos |
-| labels by id | index.html:151 | Aidos |
-| text input | index.html:152 | Aidos |
-| tel input | index.html:157 | Aidos |
-| number input | index.html:162 | Aidos |
-| date input | index.html:167 | Aidos |
-| radio group | index.html:181 | Aidos |
-| checkbox | index.html:191 | Aidos |
-| select with options | index.html:172 | Aidos |
-| textarea | index.html:188 | Aidos |
-| required and placeholder | index.html:152 | Aidos |
-| submit button | index.html:195 | Aidos |
-| reset button | index.html:196 | Aidos |
+| Aidos form | index.html:148 | Aidos |
+| method and action | index.html:148 | Aidos |
+| no-server comment | index.html:147 | Aidos |
+| fieldset | index.html:149 | Aidos |
+| legend | index.html:150 | Aidos |
+| labels by id | index.html:153 | Aidos |
+| text input | index.html:154 | Aidos |
+| tel input | index.html:159 | Aidos |
+| number input | index.html:164 | Aidos |
+| date input | index.html:169 | Aidos |
+| radio group | index.html:183 | Aidos |
+| checkbox | index.html:193 | Aidos |
+| select with options | index.html:174 | Aidos |
+| textarea | index.html:190 | Aidos |
+| required and placeholder | index.html:154 | Aidos |
+| submit button | index.html:197 | Aidos |
+| reset button | index.html:198 | Aidos |
 | Baygali form | reviews.html:147 | Baygali |
 | no-server note | reviews.html:144 | Baygali |
 | fieldset | reviews.html:148 | Baygali |
