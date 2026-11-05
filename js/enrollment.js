@@ -26,30 +26,18 @@ const ENROLLMENT_REQUIREMENTS = [
         required: true
     },
     {
-        id: 'phone',
-        label: 'Reachable telephone number',
-        detail: 'Prestige uses the number to discuss availability.',
+        id: 'contact',
+        label: 'Reachable phone and email',
+        detail: 'Prestige uses these details to discuss availability.',
         required: true
     }
 ];
-
-function createReadinessElement(tagName, text, className) {
-    const element = document.createElement(tagName);
-    element.textContent = text;
-
-    if (className) {
-        element.className = className;
-    }
-
-    return element;
-}
 
 function loadSavedRequirements() {
     try {
         const saved = JSON.parse(
             sessionStorage.getItem('prestigeEnrollmentReadiness') || '[]'
         );
-
         return Array.isArray(saved) ? new Set(saved) : new Set();
     } catch (error) {
         return new Set();
@@ -70,142 +58,144 @@ function saveRequirements(selectedIds) {
 }
 
 function calculateReadiness(selectedIds) {
-    const completed = ENROLLMENT_REQUIREMENTS.filter(function (requirement) {
-        return requirement.required && selectedIds.has(requirement.id);
-    }).length;
-    const required = ENROLLMENT_REQUIREMENTS.filter(function (requirement) {
+    const requiredItems = ENROLLMENT_REQUIREMENTS.filter(function (requirement) {
         return requirement.required;
+    });
+    const completed = requiredItems.filter(function (requirement) {
+        return selectedIds.has(requirement.id);
     }).length;
 
     return {
         completed: completed,
-        required: required,
-        percentage: Math.round((completed / required) * 100),
-        ready: completed === required
+        required: requiredItems.length,
+        percentage: Math.round((completed / requiredItems.length) * 100),
+        ready: completed === requiredItems.length
     };
 }
 
-function initialiseReadinessChecklist() {
-    const enrollmentColumn = document.querySelector(
-        '#enrollment-section > .col-12.col-lg-8'
-    );
+// Rewritten feature 3: jQuery creation, .appendTo(), :checked, .each() and
+// effects replace createElement/querySelectorAll. The rendering is more compact.
+$(function () {
+    const $enrollmentColumn = $('#enrollment-section > .col-12.col-lg-8');
 
-    if (!enrollmentColumn) {
+    if (!$enrollmentColumn.length) {
         return;
     }
 
-    const selectedIds = loadSavedRequirements();
-    const card = createReadinessElement(
-        'section',
-        '',
-        'card border-0 shadow-sm detail-card mt-4'
+    $('.application-cta').find('p:first').text(
+        'The application is on the home page and asks for a phone number and email.'
     );
-    card.setAttribute('aria-labelledby', 'readiness-title');
-    const body = createReadinessElement('div', '', 'card-body p-4 p-md-5');
-    const title = createReadinessElement(
-        'h3',
-        'Check your enrollment readiness',
-        'h4'
-    );
-    title.id = 'readiness-title';
-    const introduction = createReadinessElement(
-        'p',
-        'Mark what you already have. This checklist stays only in this browser tab and does not send data.',
-        'text-body-secondary'
-    );
-    const list = createReadinessElement('div', '', 'row g-3');
-    const progress = document.createElement('progress');
-    progress.className = 'w-100 mt-4';
-    progress.max = ENROLLMENT_REQUIREMENTS.length;
-    const status = createReadinessElement(
-        'p',
-        '',
-        'alert alert-info mt-3 mb-3'
-    );
-    status.setAttribute('role', 'status');
-    status.setAttribute('aria-live', 'polite');
-    const reset = createReadinessElement(
-        'button',
-        'Clear checklist',
-        'btn btn-outline-secondary'
-    );
-    reset.type = 'button';
 
-    for (const requirement of ENROLLMENT_REQUIREMENTS) {
-        const column = createReadinessElement('div', '', 'col-12 col-md-6');
-        const wrapper = createReadinessElement(
-            'div',
-            '',
-            'form-check border rounded-3 p-3 ps-5 h-100 bg-white'
-        );
-        const checkbox = document.createElement('input');
-        checkbox.type = 'checkbox';
-        checkbox.className = 'form-check-input';
-        checkbox.id = 'readiness-' + requirement.id;
-        checkbox.value = requirement.id;
-        checkbox.checked = selectedIds.has(requirement.id);
-        const label = createReadinessElement(
-            'label',
-            requirement.label,
-            'form-check-label fw-semibold'
-        );
-        label.htmlFor = checkbox.id;
-        const detail = createReadinessElement(
-            'small',
-            requirement.detail,
-            'd-block text-body-secondary mt-1'
-        );
-        wrapper.append(checkbox, label, detail);
-        column.append(wrapper);
-        list.append(column);
+    const selectedIds = loadSavedRequirements();
+    const $card = $('<section>', {
+        class: 'card border-0 shadow-sm detail-card mt-4',
+        'aria-labelledby': 'readiness-title'
+    }).appendTo($enrollmentColumn);
+    const $body = $('<div>', {
+        class: 'card-body p-4 p-md-5'
+    }).appendTo($card);
+    $('<h3>', {
+        class: 'h4',
+        id: 'readiness-title',
+        text: 'Check your enrollment readiness'
+    }).appendTo($body);
+    $('<p>', {
+        class: 'text-body-secondary',
+        text: 'Mark what you have. This stays in this browser tab and sends no data.'
+    }).appendTo($body);
+    const $list = $('<div>', {
+        class: 'row g-3'
+    }).appendTo($body);
+
+    $.each(ENROLLMENT_REQUIREMENTS, function (index, requirement) {
+        const inputId = 'readiness-' + requirement.id;
+        const $wrapper = $('<div>', {
+            class: 'form-check border rounded-3 p-3 ps-5 h-100 bg-white'
+        });
+
+        $('<input>', {
+            class: 'form-check-input',
+            type: 'checkbox',
+            id: inputId,
+            value: requirement.id
+        }).prop('checked', selectedIds.has(requirement.id)).appendTo($wrapper);
+        $('<label>', {
+            class: 'form-check-label fw-semibold',
+            for: inputId,
+            text: requirement.label
+        }).appendTo($wrapper);
+        $('<small>', {
+            class: 'd-block text-body-secondary mt-1',
+            text: requirement.detail
+        }).appendTo($wrapper);
+        $('<div>', {
+            class: 'col-12 col-md-6'
+        }).append($wrapper).appendTo($list);
+    });
+
+    const $progress = $('<progress>', {
+        class: 'w-100 mt-4',
+        max: ENROLLMENT_REQUIREMENTS.length
+    }).appendTo($body);
+    const $status = $('<p>', {
+        class: 'alert alert-info mt-3 mb-3',
+        role: 'status',
+        'aria-live': 'polite'
+    }).appendTo($body);
+    const $reset = $('<button>', {
+        class: 'btn btn-outline-secondary',
+        type: 'button',
+        text: 'Clear checklist'
+    }).appendTo($body);
+    let firstRender = true;
+
+    function updateStatusContent(readiness) {
+        $status
+            .toggleClass('alert-info', !readiness.ready)
+            .toggleClass('alert-success', readiness.ready)
+            .text(
+                readiness.ready
+                    ? 'Ready: all ' + readiness.required +
+                        ' preparation items are checked.'
+                    : readiness.completed + ' of ' + readiness.required +
+                        ' items checked (' + readiness.percentage + '%).'
+            );
     }
 
     function renderReadiness() {
         const readiness = calculateReadiness(selectedIds);
-        progress.value = readiness.completed;
-        status.classList.toggle('alert-info', !readiness.ready);
-        status.classList.toggle('alert-success', readiness.ready);
-        status.textContent = readiness.ready
-            ? 'Ready: all ' + readiness.required +
-                ' preparation items are checked. You can open the application form.'
-            : readiness.completed + ' of ' + readiness.required +
-                ' items checked (' + readiness.percentage +
-                '%). You may still apply and ask Prestige about missing documents.';
-    }
+        $progress.val(readiness.completed);
 
-    list.addEventListener('change', function (event) {
-        const checkbox = event.target.closest('input[type="checkbox"]');
-
-        if (!checkbox) {
+        if (firstRender) {
+            updateStatusContent(readiness);
+            firstRender = false;
             return;
         }
 
-        if (checkbox.checked) {
-            selectedIds.add(checkbox.value);
-        } else {
-            selectedIds.delete(checkbox.value);
-        }
+        $status.stop(true, true).fadeOut(120, function () {
+            updateStatusContent(readiness);
+            $(this).fadeIn(200);
+        });
+    }
 
-        saveRequirements(selectedIds);
-        renderReadiness();
-    });
-
-    reset.addEventListener('click', function () {
+    $list.on('change', 'input[type="checkbox"]', function () {
         selectedIds.clear();
 
-        for (const checkbox of list.querySelectorAll('input[type="checkbox"]')) {
-            checkbox.checked = false;
-        }
+        $list.find('input[type="checkbox"]:checked').each(function () {
+            selectedIds.add($(this).val());
+        });
 
         saveRequirements(selectedIds);
         renderReadiness();
-        list.querySelector('input')?.focus();
     });
 
-    body.append(title, introduction, list, progress, status, reset);
-    card.append(body);
-    enrollmentColumn.append(card);
-    renderReadiness();
-}
+    $reset.on('click', function () {
+        selectedIds.clear();
+        $list.find('input[type="checkbox"]').prop('checked', false);
+        saveRequirements(selectedIds);
+        renderReadiness();
+        $list.find('input:first').trigger('focus');
+    });
 
-initialiseReadinessChecklist();
+    renderReadiness();
+});
