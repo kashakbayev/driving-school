@@ -9,8 +9,12 @@
   <link rel="stylesheet" href="css/index.css">
   <link rel="stylesheet" href="css/courseDetail.css">
   <title>Category B Course Detail | Prestige Driving School</title>
+  <!-- js/courseDetail.js is jQuery (FAQ), so jQuery 3.7.1 from the official CDN must come before it.
+       js/course-planner.js is plain JavaScript (requirements list and start planner).
+       defer keeps this order and runs all three after the HTML is parsed. -->
   <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous" defer></script>
   <script src="js/courseDetail.js" defer></script>
+  <script src="js/course-planner.js" defer></script>
 </head>
 <body class="bg-body-tertiary d-flex flex-column min-vh-100">
   <a class="visually-hidden-focusable skip-link" href="#main-content">Skip to main content</a>
@@ -98,11 +102,8 @@
         <article class="requirements-card h-100 rounded-4 p-4 p-lg-5 text-white" aria-labelledby="requirements-title">
           <p class="eyebrow eyebrow-light fw-bold text-uppercase mb-2">Before you begin</p>
           <h2 class="h2 mb-4" id="requirements-title">Requirements</h2>
-          <ul class="requirements-list list-unstyled mb-4">
-            <li>Minimum age: 17 (license issued at 18)</li>
-            <li>Valid medical certificate</li>
-            <li>Two passport-style photos</li>
-          </ul>
+          <!-- The items are built by js/course-planner.js from its REQUIREMENTS array -->
+          <ul class="requirements-list list-unstyled mb-4"></ul>
           <a class="btn btn-light" id="requirements-call-link" href="tel:+77058444848">Ask a question: +7 (705) 844 4848</a>
         </article>
       </div>
@@ -216,29 +217,9 @@
     <section class="mb-5" id="course-faq" aria-labelledby="faq-title">
       <p class="eyebrow fw-bold text-uppercase mb-2">FAQ</p>
       <h2 class="display-6 fw-bold mb-4" id="faq-title">Questions before you apply</h2>
-      <!-- Native <details>/<summary> elements open and close without JavaScript -->
-      <div class="bg-white rounded-4 shadow-sm" id="faq-list">
-        <details class="faq-item border-bottom p-3 p-md-4" id="faq-transmission">
-          <summary class="fw-bold">Can I switch from manual to automatic during the course?</summary>
-          <p class="text-body-secondary mt-2 mb-0">Yes, with instructor approval before week 3.</p>
-        </details>
-        <details class="faq-item border-bottom p-3 p-md-4" id="faq-final-test">
-          <summary class="fw-bold">What happens if I fail the final test?</summary>
-          <p class="text-body-secondary mt-2 mb-0">You get two free retake lessons before the next exam attempt.</p>
-        </details>
-        <details class="faq-item border-bottom p-3 p-md-4" id="faq-age">
-          <summary class="fw-bold">How old do I need to be?</summary>
-          <p class="text-body-secondary mt-2 mb-0">You can start the course at 17. The license is issued from age 18.</p>
-        </details>
-        <details class="faq-item border-bottom p-3 p-md-4" id="faq-documents">
-          <summary class="fw-bold">Which documents do I need?</summary>
-          <p class="text-body-secondary mt-2 mb-0">A valid medical certificate and two passport-style photos.</p>
-        </details>
-        <details class="faq-item p-3 p-md-4" id="faq-theory">
-          <summary class="fw-bold">Do I have to come to the office for theory?</summary>
-          <p class="text-body-secondary mt-2 mb-0">No. Theory classes are online on Tuesdays at 5 PM and 7 PM.</p>
-        </details>
-      </div>
+      <!-- The questions are built by js/courseDetail.js (jQuery) from its FAQ array,
+           which also adds the search box and the slide animation -->
+      <div class="bg-white rounded-4 shadow-sm" id="faq-list"></div>
     </section>
 
     <section class="course-enrollment rounded-5 p-3 p-md-4 p-lg-5 mb-5" id="course-enrollment" aria-labelledby="enrollment-cta-title">
