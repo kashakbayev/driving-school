@@ -91,7 +91,7 @@ $(function () {
     }).text('Clear preference').prop('disabled', true);
 
     const $enrollment = $('<a>', {
-        href: 'enrollment.html',
+        href: 'index.html#enrollment-form',
         class: 'btn btn-primary is-hidden'
     }).text('Continue to enrollment');
 
@@ -99,7 +99,7 @@ $(function () {
         $('<h3>', { class: 'h5' }).text('Your instructor preference'),
         $summary,
         $('<p>', { class: 'small text-body-secondary' }).text(
-            'This is a front-end demonstration. No real booking is created.'
+            'The enrollment form will already have this instructor selected.'
         ),
         $clear,
         $enrollment
@@ -110,7 +110,7 @@ $(function () {
     $.each(instructors, function (index, instructor) {
         const $button = $('<button>', {
             type: 'button',
-            class: 'btn btn-primary mt-3 align-self-start',
+            class: 'btn btn-primary mt-auto align-self-start',
             'data-preference': instructor.id,
             'aria-pressed': 'false'
         }).text('Choose ' + instructor.name);
@@ -163,14 +163,10 @@ $(function () {
         }
     }
 
-    $list.on('click', 'button[data-preference]', function () {
-        const $button = $(this);
-        const $card = $button.closest('article');
-        const id = $card.attr('data-instructor');
-        const selected = instructors.find(item => item.id === id);
-
-        if (!selected) return;
-
+    // Marks one instructor as chosen. animate is false when the choice is
+    // restored on page load, so the page does not jump.
+    function selectInstructor(selected, animate) {
+        const $card = selected.$profile.find('article[data-instructor]:first');
         const $column = $card.parent();
 
         $column
@@ -192,17 +188,25 @@ $(function () {
             .html('<strong>Selected instructor:</strong> ')
             .append($('<span>').text(
                 selected.name + '. ' + selected.description +
-                ' Availability must be confirmed with the school. ' +
-                'Mention this instructor during enrollment.'
+                ' Availability is confirmed when Prestige calls you.'
             ));
 
         $clear.prop('disabled', false);
+        $enrollment.stop(true, true).removeClass('is-hidden');
 
-        $enrollment
-            .stop(true, true)
-            .removeClass('is-hidden')
-            .hide()
-            .fadeIn(250);
+        if (animate) {
+            $enrollment.hide().fadeIn(250);
+        }
+    }
+
+    $list.on('click', 'button[data-preference]', function () {
+        const id = $(this).closest('article').attr('data-instructor');
+        const selected = instructors.find(item => item.id === id);
+
+        if (!selected) return;
+
+        saveEnrollmentChoice('instructorId', selected.id);
+        selectInstructor(selected, true);
     });
 
     $search.on('input', function () {
@@ -221,6 +225,7 @@ $(function () {
     });
 
     $clear.on('click', function () {
+        saveEnrollmentChoice('instructorId', '');
         $list.find('article.is-selected').removeClass('is-selected');
 
         $list.find('button[data-preference]')
@@ -235,4 +240,13 @@ $(function () {
     });
 
     renderResults();
+
+    // An instructor chosen earlier in this tab (here or in the form) stays selected.
+    const savedInstructor = instructors.find(
+        item => item.id === loadEnrollmentChoices().instructorId
+    );
+
+    if (savedInstructor) {
+        selectInstructor(savedInstructor, false);
+    }
 });

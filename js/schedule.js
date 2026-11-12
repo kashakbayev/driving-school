@@ -1,79 +1,6 @@
 'use strict';
 
-const SCHEDULE_SESSIONS = [
-    {
-        id: 'mon-highway',
-        day: 'Monday',
-        dayOrder: 1,
-        time: '10:00 AM',
-        type: 'Practical',
-        instructor: 'Nurlan Idrisov',
-        location: 'Astana–Burabay highway',
-        mode: 'On road',
-        seats: 2,
-        durationHours: 2
-    },
-    {
-        id: 'tue-theory-17',
-        day: 'Tuesday',
-        dayOrder: 2,
-        time: '5:00 PM',
-        type: 'Theory',
-        instructor: 'Prestige theory instructor',
-        location: 'Online classroom',
-        mode: 'Online',
-        seats: 12,
-        durationHours: 2
-    },
-    {
-        id: 'tue-theory-19',
-        day: 'Tuesday',
-        dayOrder: 2,
-        time: '7:00 PM',
-        type: 'Theory',
-        instructor: 'Bilingual theory instructor',
-        location: 'Online classroom',
-        mode: 'Online',
-        seats: 9,
-        durationHours: 2
-    },
-    {
-        id: 'wed-city',
-        day: 'Wednesday',
-        dayOrder: 3,
-        time: '2:00 PM',
-        type: 'Practical',
-        instructor: 'Aliya Sadykova',
-        location: 'Left side of Astana',
-        mode: 'On road',
-        seats: 1,
-        durationHours: 2
-    },
-    {
-        id: 'thu-facility',
-        day: 'Thursday',
-        dayOrder: 4,
-        time: '11:00 AM',
-        type: 'Practical',
-        instructor: 'Nurlan Idrisov',
-        location: 'Closed training facility',
-        mode: 'Training ground',
-        seats: 3,
-        durationHours: 2
-    },
-    {
-        id: 'fri-city',
-        day: 'Friday',
-        dayOrder: 5,
-        time: '4:00 PM',
-        type: 'Practical',
-        instructor: 'Aliya Sadykova',
-        location: 'Right side of Astana',
-        mode: 'On road',
-        seats: 2,
-        durationHours: 2
-    }
-];
+// SCHEDULE_SESSIONS and the choice storage helpers come from js/data.js.
 
 function matchesScheduleFilters(session, query, type) {
     const searchable = [
@@ -103,23 +30,6 @@ function sortScheduleSessions(sessions, sortMode) {
     });
 }
 
-function saveScheduleChoice(session) {
-    try {
-        sessionStorage.setItem('prestigeScheduleChoice', JSON.stringify({
-            id: session.id,
-            day: session.day,
-            time: session.time,
-            type: session.type,
-            instructor: session.instructor,
-            location: session.location
-        }));
-    } catch (error) {
-        return false;
-    }
-
-    return true;
-}
-
 // Rewritten feature 2: jQuery .empty(), .append(), .each() and delegated .on()
 // replace createElement/replaceChildren/addEventListener and reduce repeated code.
 $(function () {
@@ -132,7 +42,9 @@ $(function () {
         return;
     }
 
-    let selectedSessionId = '';
+    let selectedSessionId = findById(SCHEDULE_SESSIONS, loadEnrollmentChoices().sessionId)
+        ? loadEnrollmentChoices().sessionId
+        : '';
     const $headerRow = $table.find('thead tr:first');
     $('<th>', {
         class: 'text-center',
@@ -218,7 +130,8 @@ $(function () {
         $('<p>', { class: 'mb-2', 'data-selection-detail': '' }),
         $('<p>', {
             class: 'small text-body-secondary mb-3',
-            text: 'Availability must be confirmed by Prestige. This is not a booking.'
+            text: 'The enrollment form will already have this time selected. ' +
+                'Prestige confirms availability when they call you.'
         }),
         $('<a>', {
             class: 'btn btn-primary',
@@ -259,6 +172,24 @@ $(function () {
         );
 
         return $row;
+    }
+
+    function showSelection(session, animate) {
+        $selection.find('[data-selection-detail]').text(
+            session.day + ' at ' + session.time + ': ' + session.type +
+            ' with ' + session.instructor + ' at ' + session.location + '. ' +
+            session.durationHours + ' academic hours.'
+        );
+        $selection.removeClass('is-hidden').addClass('is-success');
+
+        if (animate) {
+            $selection
+                .stop(true, true)
+                .hide()
+                .slideDown(250, function () {
+                    $(this).trigger('focus');
+                });
+        }
     }
 
     function renderSchedule() {
@@ -328,7 +259,7 @@ $(function () {
         }
 
         selectedSessionId = session.id;
-        saveScheduleChoice(session);
+        saveEnrollmentChoice('sessionId', session.id);
 
         // Chain: move from the clicked button to its row, select that row, then
         // reach its sibling rows and remove their selected appearance.
@@ -340,21 +271,13 @@ $(function () {
         $tableBody.find('button[data-choose-session]').attr('aria-pressed', 'false');
         $button.attr('aria-pressed', 'true');
 
-        $selection.find('[data-selection-detail]').text(
-            session.day + ' at ' + session.time + ': ' + session.type +
-            ' with ' + session.instructor + ' at ' + session.location + '. ' +
-            session.durationHours + ' academic hours; ' + session.seats +
-            ' demonstration place' + (session.seats === 1 ? '' : 's') + '.'
-        );
-        $selection
-            .removeClass('is-hidden')
-            .addClass('is-success')
-            .stop(true, true)
-            .hide()
-            .slideDown(250, function () {
-                $(this).trigger('focus');
-            });
+        showSelection(session, true);
     });
 
     renderSchedule();
+
+    // A lesson chosen earlier in this tab (here or in the form) stays selected.
+    if (selectedSessionId) {
+        showSelection(findById(SCHEDULE_SESSIONS, selectedSessionId), false);
+    }
 });

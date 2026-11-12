@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="css/index.css">
   <link rel="stylesheet" href="css/courses.css">
   <title>Category B Courses | Prestige Driving School</title>
+  <script src="js/data.js" defer></script>
   <script src="js/courses-installment.js" defer></script>
   <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous" defer></script>
   <script src="js/courses.js" defer></script>
@@ -110,7 +111,7 @@
               <p class="course-price mt-auto mb-3">145,000 <small>KZT</small></p>
               <div class="d-grid gap-2">
                 <a class="btn btn-primary" id="course-category-b-details" href="courseDetail.html">View Category B details</a>
-                <a class="btn btn-outline-primary" id="course-category-b-enroll" href="index.html#enrollment-form">Enroll in Category B</a>
+                <a class="btn btn-outline-primary" id="course-category-b-enroll" href="index.html?program=category-b#enrollment-form">Enroll in Category B</a>
               </div>
             </div>
           </article>
@@ -130,7 +131,7 @@
               <div class="d-grid gap-2">
                 <!-- There is no separate page for this course yet, so its details live in the comparison table below -->
                 <a class="btn btn-primary" id="course-intensive-details" href="#compare-intensive">Compare intensive details</a>
-                <a class="btn btn-outline-primary" id="course-intensive-enroll" href="index.html#enrollment-form">Enroll in Intensive</a>
+                <a class="btn btn-outline-primary" id="course-intensive-enroll" href="index.html?program=intensive#enrollment-form">Enroll in Intensive</a>
               </div>
             </div>
           </article>
@@ -149,7 +150,7 @@
               <p class="course-price mt-auto mb-3">45,000 <small>KZT</small></p>
               <div class="d-grid gap-2">
                 <a class="btn btn-primary" id="course-refresher-details" href="#compare-refresher">Compare refresher details</a>
-                <a class="btn btn-outline-primary" id="course-refresher-enroll" href="index.html#enrollment-form">Enroll in Defensive Driving</a>
+                <a class="btn btn-outline-primary" id="course-refresher-enroll" href="index.html?program=refresher#enrollment-form">Enroll in Defensive Driving</a>
               </div>
             </div>
           </article>
@@ -217,8 +218,8 @@
             <tr>
               <th scope="row">Next step</th>
               <td><a class="btn btn-primary btn-sm" id="compare-category-b-details" href="courseDetail.html">Category B details</a></td>
-              <td><a class="btn btn-outline-primary btn-sm" id="compare-intensive-enroll" href="index.html#enrollment-form">Enroll in Intensive</a></td>
-              <td><a class="btn btn-outline-primary btn-sm" id="compare-refresher-enroll" href="index.html#enrollment-form">Enroll in Defensive Driving</a></td>
+              <td><a class="btn btn-outline-primary btn-sm" id="compare-intensive-enroll" href="index.html?program=intensive#enrollment-form">Enroll in Intensive</a></td>
+              <td><a class="btn btn-outline-primary btn-sm" id="compare-refresher-enroll" href="index.html?program=refresher#enrollment-form">Enroll in Defensive Driving</a></td>
             </tr>
           </tbody>
         </table>
