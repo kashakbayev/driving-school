@@ -13,6 +13,7 @@
     <!-- jQuery 3.7.1 must load before the project scripts that call its API. -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous" defer></script>
     <script src="js/main.js" defer></script>
+    <script src="js/data.js" defer></script>
     <script src="js/index.js" defer></script>
 </head>
 <body class="bg-body-tertiary d-flex flex-column min-vh-100">
@@ -146,7 +147,7 @@
                     </div>
                 </div>
                 <div class="col-12 col-lg-8">
-                    <!-- This static prototype has no backend; form submission will be connected later. -->
+                    <!-- The only enrollment form of the site; js/index.js adds the email, hours, lesson time and instructor fields. -->
                     <form class="enrollment-form bg-white border rounded-4 shadow-sm p-3 p-md-4" id="enrollment-form" method="post" action="index.html#enrollment-form" aria-describedby="form-instructions enrollment-form-status">
                         <fieldset>
                             <legend class="h5 mb-4">Student information</legend>

@@ -13,6 +13,7 @@
     <!-- jQuery 3.7.1 must load before the project scripts that call its API. -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous" defer></script>
     <script src="js/main.js" defer></script>
+    <script src="js/data.js" defer></script>
     <script src="js/schedule.js" defer></script>
 </head>
 <body class="bg-body-tertiary d-flex flex-column min-vh-100">
@@ -103,14 +104,7 @@
                             <th scope="col">Location</th>
                         </tr>
                     </thead>
-                    <tbody id="schedule-table-body">
-                        <tr><th scope="row">Monday</th><td>10 AM–9 PM, appointment</td><td class="d-none d-md-table-cell">Prestige instructor</td><td>Astana–Burabay highway</td></tr>
-                        <tr><th scope="row">Tuesday</th><td>5 PM, theory</td><td class="d-none d-md-table-cell">Prestige instructor</td><td><span class="badge text-bg-success">Online</span></td></tr>
-                        <tr><th scope="row">Tuesday</th><td>7 PM, theory</td><td class="d-none d-md-table-cell">Bilingual instructor</td><td><span class="badge text-bg-success">Online</span></td></tr>
-                        <tr><th scope="row">Wednesday</th><td>10 AM–9 PM, appointment</td><td class="d-none d-md-table-cell">Prestige instructor</td><td>Left side of Astana</td></tr>
-                        <tr><th scope="row">Thursday</th><td>10 AM–9 PM, appointment</td><td class="d-none d-md-table-cell">Prestige instructor</td><td>Closed training facility</td></tr>
-                        <tr><th scope="row">Friday</th><td>10 AM–9 PM, appointment</td><td class="d-none d-md-table-cell">Prestige instructor</td><td>Right side of Astana</td></tr>
-                    </tbody>
+                    <tbody id="schedule-table-body"></tbody>
                 </table>
             </div>
             <div class="status-message is-hidden" id="schedule-status" aria-live="polite"></div>

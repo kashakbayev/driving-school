@@ -1,10 +1,6 @@
 'use strict';
 
-const installmentCourses = [
-  { id: 'category-b', title: 'Category B', price: 145000, weeks: 6, hours: 56, maxMonths: 6 },
-  { id: 'intensive', title: 'Intensive Category B', price: 165000, weeks: 3, hours: 56, maxMonths: 6 },
-  { id: 'refresher', title: 'Defensive Driving', price: 45000, weeks: 1, hours: 10, maxMonths: 3 },
-];
+// Course prices, durations and the longest allowed term come from PROGRAMS in js/data.js.
 const INSTALLMENT_TERMS = [3, 6];
 
 const HINT_TEXT = 'Choose a course and an installment term.';
@@ -35,7 +31,7 @@ function validateInstallment(course, months) {
   if (!INSTALLMENT_TERMS.includes(months)) {
     errors.months = 'Error: choose an installment term.';
   } else if (course !== undefined && months > course.maxMonths) {
-    errors.months = `Error: ${course.title} can be paid over ${course.maxMonths} months at most.`;
+    errors.months = `Error: ${course.name} can be paid over ${course.maxMonths} months at most.`;
   }
   return errors;
 }
@@ -70,7 +66,7 @@ function renderPlan(container, course, months) {
 
   const facts = buildElement('dl', { class: 'row mb-0' });
   [
-    ['Course', `${course.title}: ${pluralize(course.weeks, 'week')}, ${course.hours} academic hours`],
+    ['Course', `${course.name}: ${pluralize(course.weeks, 'week')}, ${course.hours} academic hours`],
     ['Full price', formatKzt(course.price)],
     ['Term', pluralize(months, 'month')],
     ['Monthly payment', monthlyText],
@@ -119,7 +115,7 @@ function initInstallmentCalculator(comparisonSection) {
   );
 
   const courseField = buildSelectField('installment-course', 'Course', 'Choose a course',
-    installmentCourses.map((course) => ({ value: course.id, text: `${course.title} (${formatKzt(course.price)})` })));
+    PROGRAMS.map((course) => ({ value: course.id, text: `${course.name} (${formatKzt(course.price)})` })));
   const monthsField = buildSelectField('installment-months', 'Installment term', 'Choose a term',
     INSTALLMENT_TERMS.map((months) => ({ value: String(months), text: pluralize(months, 'month') })));
 
@@ -152,7 +148,7 @@ function initInstallmentCalculator(comparisonSection) {
   }
 
   function update(isSubmit) {
-    const course = installmentCourses.find((item) => item.id === courseField.select.value);
+    const course = PROGRAMS.find((item) => item.id === courseField.select.value);
     const months = Number(monthsField.select.value);
     const errors = validateInstallment(course, months);
     wasSubmitted = wasSubmitted || isSubmit;

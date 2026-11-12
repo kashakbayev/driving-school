@@ -1,43 +1,12 @@
 'use strict';
 
-const TRAINING_PROGRAMS = [
-    {
-        id: 'category-b',
-        name: 'Category B',
-        price: 145000,
-        weeks: 6,
-        hours: 56,
-        minimumAge: 17
-    },
-    {
-        id: 'intensive',
-        name: 'Intensive Category B',
-        price: 165000,
-        weeks: 3,
-        hours: 56,
-        minimumAge: 17
-    },
-    {
-        id: 'refresher',
-        name: 'Defensive Driving',
-        price: 45000,
-        weeks: 1,
-        hours: 10,
-        minimumAge: 18
-    }
-];
+// Programs, lessons, instructors and extra hours come from js/data.js.
 
 const currencyFormatter = new Intl.NumberFormat('en-KZ', {
     style: 'currency',
     currency: 'KZT',
     maximumFractionDigits: 0
 });
-
-function findProgram(programId) {
-    return TRAINING_PROGRAMS.find(function (program) {
-        return program.id === programId;
-    }) || null;
-}
 
 function getEarliestStartDate() {
     const date = new Date();
@@ -61,33 +30,15 @@ function formatLocalDate(dateValue) {
     }).format(new Date(dateValue + 'T00:00:00'));
 }
 
-function getStoredScheduleChoice() {
-    try {
-        const saved = sessionStorage.getItem('prestigeScheduleChoice');
-        const choice = saved ? JSON.parse(saved) : null;
-
-        if (
-            choice &&
-            typeof choice.day === 'string' &&
-            typeof choice.time === 'string' &&
-            typeof choice.type === 'string'
-        ) {
-            return choice;
-        }
-    } catch (error) {
-        return null;
-    }
-
-    return null;
-}
-
 function createTemporaryReference() {
     return 'PSD-' + String(Math.floor(100000 + Math.random() * 900000));
 }
 
 function validateEnrollmentValues(values, earliestDate) {
     const errors = {};
-    const program = findProgram(values.programId);
+    const program = findById(PROGRAMS, values.programId);
+    const session = findById(SCHEDULE_SESSIONS, values.sessionId);
+    const instructor = findById(INSTRUCTORS, values.instructorId);
     const phoneDigits = values.phone.replace(/\D/g, '');
     const phonePattern = /^\+?[\d\s()-]+$/;
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -122,6 +73,27 @@ function validateEnrollmentValues(values, earliestDate) {
             program.minimumAge + '.';
     }
 
+    if (!EXTRA_HOURS_OPTIONS.includes(values.extraHours)) {
+        errors['extra-hours'] = 'Choose how many extra practice hours you want.';
+    }
+
+    if (values.sessionId !== '' && !session) {
+        errors['preferred-session'] = 'Choose a lesson time from the list.';
+    }
+
+    if (values.instructorId !== '' && !instructor) {
+        errors.instructor = 'Choose an instructor from the list.';
+    } else if (
+        session && instructor && session.instructorId !== null &&
+        session.instructorId !== instructor.id
+    ) {
+        // A practical lesson is always taught by one instructor, so the two
+        // choices must agree. Theory lessons accept any practical instructor.
+        errors.instructor = session.day + ' ' + session.time + ' is taught by ' +
+            session.instructor + '. Choose ' + session.instructor +
+            ' or “No preference”.';
+    }
+
     if (!selectedDate || Number.isNaN(selectedDate.getTime())) {
         errors['start-date'] = 'Choose your preferred start date.';
     } else if (selectedDate < earliestDate) {
@@ -142,8 +114,8 @@ function validateEnrollmentValues(values, earliestDate) {
     return errors;
 }
 
-// Rewritten feature 1: jQuery selectors, .val(), .prop(), traversal and effects
-// replace querySelector/FormData/classList. This version is shorter at event sites.
+// The single enrollment form of the site. Choices made on the Courses, Course
+// detail, Schedule and Instructors pages arrive here through js/data.js storage.
 $(function () {
     const $form = $('#enrollment-form');
 
@@ -162,6 +134,9 @@ $(function () {
         'age',
         'start-date',
         'category',
+        'extra-hours',
+        'preferred-session',
+        'instructor',
         'transmission',
         'agreement'
     ];
@@ -198,10 +173,6 @@ $(function () {
         text: 'Enter a valid email address.'
     }).appendTo($emailGroup);
     $('#phone').closest('.col-12').after($emailGroup);
-    $programSelect
-        .closest('.col-12')
-        .removeClass('col-md-6')
-        .addClass('col-md-12');
 
     $programSelect.empty().append(
         $('<option>', {
@@ -212,12 +183,69 @@ $(function () {
         })
     );
 
-    $.each(TRAINING_PROGRAMS, function (index, program) {
+    $.each(PROGRAMS, function (index, program) {
         $('<option>', {
             value: program.id,
             text: program.name + ' — ' + currencyFormatter.format(program.price)
         }).appendTo($programSelect);
     });
+
+    // Builds one labelled select with its own error message under it.
+    function createSelectGroup(id, label, options) {
+        const $select = $('<select>', {
+            class: 'form-select',
+            id: id,
+            name: id,
+            'aria-describedby': id + '-error'
+        });
+
+        $.each(options, function (index, option) {
+            $('<option>', {
+                value: option.value,
+                text: option.text,
+                selected: index === 0
+            }).appendTo($select);
+        });
+
+        return $('<div>', { class: 'col-12 col-md-6' }).append(
+            $('<label>', { class: 'form-label fw-semibold', for: id, text: label }),
+            $select,
+            $('<small>', { class: 'field-message is-hidden', id: id + '-error' })
+        );
+    }
+
+    const $hoursGroup = createSelectGroup(
+        'extra-hours',
+        'Extra practice hours',
+        $.map(EXTRA_HOURS_OPTIONS, function (hours) {
+            return {
+                value: String(hours),
+                text: hours === 0 ? 'No extra hours' : hours + ' extra hours'
+            };
+        })
+    );
+    const $sessionGroup = createSelectGroup(
+        'preferred-session',
+        'Preferred lesson time',
+        [{ value: '', text: 'No preference — Prestige will suggest a time' }].concat(
+            $.map(SCHEDULE_SESSIONS, function (session) {
+                return { value: session.id, text: describeSession(session) };
+            })
+        )
+    );
+    const $instructorGroup = createSelectGroup(
+        'instructor',
+        'Instructor',
+        [{ value: '', text: 'No preference' }].concat(
+            $.map(INSTRUCTORS, function (instructor) {
+                return { value: instructor.id, text: instructor.name };
+            })
+        )
+    );
+
+    $programSelect
+        .closest('.col-12')
+        .after($hoursGroup, $sessionGroup, $instructorGroup);
 
     const $summary = $('<section>', {
         class: 'col-12 status-message bg-white',
@@ -231,8 +259,7 @@ $(function () {
         }),
         $('<p>', {
             class: 'small text-body-secondary mb-0',
-            'data-summary-schedule': '',
-            text: 'No schedule preference saved yet.'
+            'data-summary-schedule': ''
         })
     );
     $('#enrollment-submit').parent().before($summary);
@@ -245,11 +272,41 @@ $(function () {
             age: Number($('#age').val()),
             startDate: String($('#start-date').val() || ''),
             programId: String($programSelect.val() || ''),
+            extraHours: Number($('#extra-hours').val()),
+            sessionId: String($('#preferred-session').val() || ''),
+            instructorId: String($('#instructor').val() || ''),
             transmission: String(
                 $('input[name="transmission"]:checked').val() || ''
             ),
             agreement: $('#agreement').prop('checked')
         };
+    }
+
+    // Fill the form with what the visitor already chose on other pages.
+    // A ?program= link from the Courses page wins over an older stored choice.
+    function applySavedChoices() {
+        const choices = loadEnrollmentChoices();
+        const requestedProgram = new URLSearchParams(window.location.search).get('program');
+        const programId = findById(PROGRAMS, requestedProgram)
+            ? requestedProgram
+            : choices.programId;
+
+        if (findById(PROGRAMS, programId)) {
+            $programSelect.val(programId);
+            saveEnrollmentChoice('programId', programId);
+        }
+
+        if (EXTRA_HOURS_OPTIONS.includes(choices.extraHours)) {
+            $('#extra-hours').val(String(choices.extraHours));
+        }
+
+        if (findById(SCHEDULE_SESSIONS, choices.sessionId)) {
+            $('#preferred-session').val(choices.sessionId);
+        }
+
+        if (findById(INSTRUCTORS, choices.instructorId)) {
+            $('#instructor').val(choices.instructorId);
+        }
     }
 
     function getControls(fieldName) {
@@ -294,35 +351,50 @@ $(function () {
         });
     }
 
+    function describeLesson(values) {
+        const session = findById(SCHEDULE_SESSIONS, values.sessionId);
+        const instructor = findById(INSTRUCTORS, values.instructorId);
+        const lesson = session
+            ? session.day + ' at ' + session.time + ' (' + session.type.toLowerCase() + ')'
+            : 'a time suggested by Prestige';
+        const teacher = instructor ? instructor.name : 'any available instructor';
+
+        return 'Lesson: ' + lesson + ', instructor: ' + teacher + '.';
+    }
+
     function updateSummary() {
         const values = readValues();
-        const program = findProgram(values.programId);
-        const schedule = getStoredScheduleChoice();
+        const program = findById(PROGRAMS, values.programId);
         const $detail = $summary.find('[data-summary-detail]');
 
         if (!program) {
             $detail.text('Choose a program to see its duration and price.');
         } else {
-            const weeklyHours = program.hours / program.weeks;
+            const extraHours = EXTRA_HOURS_OPTIONS.includes(values.extraHours)
+                ? values.extraHours
+                : 0;
+            const weeklyHours = (program.hours + extraHours) / program.weeks;
             const transmission = values.transmission || 'not selected';
+            const extraText = extraHours === 0
+                ? ''
+                : ' + ' + extraHours + ' extra hours × ' +
+                    currencyFormatter.format(EXTRA_HOUR_PRICE);
 
             // .html() is safe here because every inserted value comes from the
-            // fixed program array, never from visitor-entered text.
+            // fixed data arrays, never from visitor-entered text.
             $detail.html(
                 '<strong>' + program.name + '</strong>: ' +
-                currencyFormatter.format(program.price) + ', ' +
-                program.weeks + ' week' + (program.weeks === 1 ? '' : 's') +
-                ', about ' + weeklyHours.toFixed(1) +
-                ' hours per week. Transmission: ' + transmission + '.'
+                currencyFormatter.format(program.price) + extraText +
+                ' = <strong>' +
+                currencyFormatter.format(calculateProgramTotal(program, extraHours)) +
+                '</strong>. ' + program.weeks + ' week' +
+                (program.weeks === 1 ? '' : 's') + ', about ' +
+                weeklyHours.toFixed(1) + ' hours per week. Transmission: ' +
+                transmission + '.'
             );
         }
 
-        $summary.find('[data-summary-schedule]').text(
-            schedule
-                ? 'Preferred schedule: ' + schedule.day + ' at ' +
-                    schedule.time + ' (' + schedule.type + ').'
-                : 'No schedule preference saved yet. Choose one on the Schedule page.'
-        );
+        $summary.find('[data-summary-schedule]').text(describeLesson(values));
     }
 
     function refreshValidation() {
@@ -343,9 +415,19 @@ $(function () {
         }
     });
 
+    // Remember choices made in the form too, so going to the Schedule or
+    // Instructors page and back does not lose them.
+    $form.on('change', '#category, #extra-hours, #preferred-session, #instructor', function () {
+        const values = readValues();
+        saveEnrollmentChoice('programId', values.programId);
+        saveEnrollmentChoice('extraHours', values.extraHours);
+        saveEnrollmentChoice('sessionId', values.sessionId);
+        saveEnrollmentChoice('instructorId', values.instructorId);
+    });
+
     $form.on('submit', function (event) {
         // Without preventDefault(), the browser would navigate to the form action
-        // and the visitor would lose the on-page validation and demo confirmation.
+        // and the visitor would lose the on-page validation and confirmation.
         event.preventDefault();
         attemptedSubmit = true;
 
@@ -368,12 +450,19 @@ $(function () {
             return;
         }
 
-        const program = findProgram(values.programId);
-        const confirmationText = 'Demonstration request ' +
-            createTemporaryReference() + ': ' + values.fullName +
-            ' selected ' + program.name + ' starting ' +
-            formatLocalDate(values.startDate) + '. No data was sent to a server ' +
-            'and no real booking was created.';
+        const program = findById(PROGRAMS, values.programId);
+        const extraText = values.extraHours === 0
+            ? ''
+            : ' with ' + values.extraHours + ' extra practice hours';
+        const confirmationText = 'Thank you, ' + values.fullName +
+            '! Request ' + createTemporaryReference() + ': ' + program.name +
+            extraText + ', total ' +
+            currencyFormatter.format(calculateProgramTotal(program, values.extraHours)) +
+            ', starting ' + formatLocalDate(values.startDate) + ', ' +
+            values.transmission + ' transmission. ' + describeLesson(values) +
+            ' Prestige will call ' + values.phone +
+            ' to confirm the plan. (This website has no server, so the request ' +
+            'stays in your browser.)';
 
         $generalError.stop(true, true).fadeOut(100, function () {
             $(this).addClass('is-hidden');
@@ -391,7 +480,10 @@ $(function () {
         }, 0);
     });
 
+    // Clearing the form also forgets the choices brought from other pages.
     $form.on('reset', function () {
+        clearEnrollmentChoices();
+
         window.setTimeout(function () {
             attemptedSubmit = false;
             clearFieldStates();
@@ -402,5 +494,6 @@ $(function () {
     });
 
     $confirmation.attr('tabindex', '-1');
+    applySavedChoices();
     updateSummary();
 });
