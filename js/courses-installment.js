@@ -47,14 +47,6 @@ function buildElement(tagName, attributes = {}, text = '') {
   return element;
 }
 
-function createScheduleList(payments) {
-  const list = buildElement('ul', { class: 'mb-2', id: 'installment-schedule' });
-  payments.forEach((payment, index) => {
-    list.append(buildElement('li', {}, `Month ${index + 1} — ${formatKzt(payment)}`));
-  });
-  return list;
-}
-
 function renderPlan(container, course, months) {
   const payments = calculatePayments(course.price, months);
   const firstPayment = payments[0];
@@ -63,6 +55,10 @@ function renderPlan(container, course, months) {
     ? formatKzt(firstPayment)
     : `${formatKzt(firstPayment)} (last payment ${formatKzt(lastPayment)})`;
   const total = payments.reduce((sum, payment) => sum + payment, 0);
+  const schedule = buildElement('ul', { class: 'mb-2', id: 'installment-schedule' });
+  payments.forEach((payment, index) => {
+    schedule.append(buildElement('li', {}, `Month ${index + 1} — ${formatKzt(payment)}`));
+  });
 
   const facts = buildElement('dl', { class: 'row mb-0' });
   [
@@ -78,7 +74,7 @@ function renderPlan(container, course, months) {
     buildElement('p', { class: 'fw-bold mb-2' }, 'Your installment plan'),
     facts,
     buildElement('p', { class: 'fw-semibold mb-1' }, 'Payment schedule'),
-    createScheduleList(payments),
+    schedule,
     buildElement('p', { class: 'small mb-0' }, `Total: ${formatKzt(total)}, the same as the course price.`),
   );
 }
@@ -183,6 +179,33 @@ function initInstallmentCalculator(comparisonSection) {
     showFieldError(monthsField, '');
     showHint();
   });
+
+  // Delegated: the "see payment schedule" buttons are created later by
+  // js/courses-catalog.js, so one listener on the card container catches them all.
+  const cards = document.getElementById('course-results');
+  if (cards) {
+    cards.addEventListener('click', (event) => {
+      const button = event.target.closest('[data-installment]');
+      if (!button) {
+        return;
+      }
+
+      const course = PROGRAMS.find((item) => item.id === button.dataset.installment);
+      const months = course ? course.maxMonths : 0;
+      const errors = validateInstallment(course, months);
+      if (errors.course !== '' || errors.months !== '') {
+        return;
+      }
+
+      courseField.select.value = course.id;
+      monthsField.select.value = String(months);
+      showFieldError(courseField, '');
+      showFieldError(monthsField, '');
+      renderPlan(result, course, months);
+      result.classList.add('is-success');
+      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  }
 }
 
 const comparisonSection = document.getElementById('course-comparison');

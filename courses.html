@@ -11,7 +11,9 @@
   <title>Category B Courses | Prestige Driving School</title>
   <script src="js/data.js" defer></script>
   <script src="js/courses-installment.js" defer></script>
+  <script src="js/courses-catalog.js" defer></script>
   <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous" defer></script>
+  <script src="js/main.js" defer></script>
   <script src="js/courses.js" defer></script>
 </head>
 <body class="bg-body-tertiary d-flex flex-column min-vh-100">
@@ -67,8 +69,8 @@
         <p class="text-body-secondary mb-0">Every option focuses on Category B driving skills.</p>
       </div>
 
-      <!-- Search and filter form. JavaScript will later filter the cards in #course-results
-           without reloading; until then the form reloads this page with the chosen values in the URL. -->
+      <!-- Search and filter form. js/courses.js filters the cards without reloading;
+           without JavaScript the form reloads this page with the chosen values in the URL. -->
       <form class="course-search bg-white rounded-4 shadow-sm p-3 p-md-4 mb-4" id="course-search-form" role="search" method="get" action="courses.html" aria-describedby="course-search-help">
         <div class="row g-3 align-items-end">
           <div class="col-12 col-lg-5">
@@ -93,71 +95,13 @@
         </div>
       </form>
 
-      <!-- Result area: JavaScript will update this count and switch .is-hidden on the cards and the empty state -->
+      <!-- Result count: js/courses-catalog.js calculates it, js/courses.js updates it while filtering -->
       <p class="text-body-secondary small mb-3" id="course-results-status" aria-live="polite">Showing all 3 Category B courses.</p>
 
-      <div class="row g-4" id="course-results">
-        <div class="col-12 col-md-6 col-lg-4 course-item" id="course-category-b" data-course="category-b" data-audience="new" data-price="145000" data-weeks="6" data-hours="56">
-          <article class="card course-card featured-course h-100 border-0" aria-labelledby="course-category-b-title">
-            <div class="card-body p-4 d-flex flex-column">
-              <span class="course-label align-self-start mb-3">Most complete</span>
-              <h3 class="h3" id="course-category-b-title">Category B</h3>
-              <p class="text-body-secondary">Full training for new drivers.</p>
-              <dl class="course-facts row g-2 mt-1 mb-4">
-                <div class="col-4"><dt>Category</dt><dd>B (car)</dd></div>
-                <div class="col-4"><dt>Duration</dt><dd>6 weeks</dd></div>
-                <div class="col-4"><dt>Hours</dt><dd>56</dd></div>
-              </dl>
-              <p class="course-price mt-auto mb-3">145,000 <small>KZT</small></p>
-              <div class="d-grid gap-2">
-                <a class="btn btn-primary" id="course-category-b-details" href="courseDetail.html">View Category B details</a>
-                <a class="btn btn-outline-primary" id="course-category-b-enroll" href="index.html?program=category-b#enrollment-form">Enroll in Category B</a>
-              </div>
-            </div>
-          </article>
-        </div>
-        <div class="col-12 col-md-6 col-lg-4 course-item" id="course-intensive" data-course="intensive" data-audience="new" data-price="165000" data-weeks="3" data-hours="56">
-          <article class="card course-card h-100 border-0" aria-labelledby="course-intensive-title">
-            <div class="card-body p-4 d-flex flex-column">
-              <span class="course-label align-self-start mb-3">Faster pace</span>
-              <h3 class="h3" id="course-intensive-title">Intensive Category B</h3>
-              <p class="text-body-secondary">The same core hours in a shorter schedule.</p>
-              <dl class="course-facts row g-2 mt-1 mb-4">
-                <div class="col-4"><dt>Category</dt><dd>B (car)</dd></div>
-                <div class="col-4"><dt>Duration</dt><dd>3 weeks</dd></div>
-                <div class="col-4"><dt>Hours</dt><dd>56</dd></div>
-              </dl>
-              <p class="course-price mt-auto mb-3">165,000 <small>KZT</small></p>
-              <div class="d-grid gap-2">
-                <!-- There is no separate page for this course yet, so its details live in the comparison table below -->
-                <a class="btn btn-primary" id="course-intensive-details" href="#compare-intensive">Compare intensive details</a>
-                <a class="btn btn-outline-primary" id="course-intensive-enroll" href="index.html?program=intensive#enrollment-form">Enroll in Intensive</a>
-              </div>
-            </div>
-          </article>
-        </div>
-        <div class="col-12 col-md-6 col-lg-4 course-item" id="course-refresher" data-course="refresher" data-audience="returning" data-price="45000" data-weeks="1" data-hours="10">
-          <article class="card course-card h-100 border-0" aria-labelledby="course-refresher-title">
-            <div class="card-body p-4 d-flex flex-column">
-              <span class="course-label align-self-start mb-3">Skill refresh</span>
-              <h3 class="h3" id="course-refresher-title">Defensive Driving</h3>
-              <p class="text-body-secondary">Focused practice for returning drivers.</p>
-              <dl class="course-facts row g-2 mt-1 mb-4">
-                <div class="col-4"><dt>Category</dt><dd>B (car)</dd></div>
-                <div class="col-4"><dt>Duration</dt><dd>1 week</dd></div>
-                <div class="col-4"><dt>Hours</dt><dd>10</dd></div>
-              </dl>
-              <p class="course-price mt-auto mb-3">45,000 <small>KZT</small></p>
-              <div class="d-grid gap-2">
-                <a class="btn btn-primary" id="course-refresher-details" href="#compare-refresher">Compare refresher details</a>
-                <a class="btn btn-outline-primary" id="course-refresher-enroll" href="index.html?program=refresher#enrollment-form">Enroll in Defensive Driving</a>
-              </div>
-            </div>
-          </article>
-        </div>
-      </div>
+      <!-- js/courses-catalog.js builds the course cards from PROGRAMS in js/data.js -->
+      <div class="row g-4" id="course-results"></div>
 
-      <!-- Empty state: hidden now; JavaScript removes .is-hidden when no card matches the search -->
+      <!-- Empty state: js/courses.js removes .is-hidden when no card matches the search -->
       <div class="empty-state is-hidden text-center rounded-4 p-4 p-md-5 mt-4" id="course-empty-state" role="status">
         <h3 class="h4 fw-bold mb-2">No courses match your search</h3>
         <p class="text-body-secondary mb-3">Try another word or choose &ldquo;All courses&rdquo;. You can also ask us which course fits you.</p>
@@ -179,49 +123,10 @@
           <thead>
             <tr>
               <th scope="col">Criteria</th>
-              <th scope="col" id="compare-category-b">Category B</th>
-              <th scope="col" id="compare-intensive">Intensive Category B</th>
-              <th scope="col" id="compare-refresher">Defensive Driving</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <th scope="row">Price</th>
-              <td class="fw-bold">145,000 KZT</td>
-              <td class="fw-bold">165,000 KZT</td>
-              <td class="fw-bold">45,000 KZT</td>
-            </tr>
-            <tr>
-              <th scope="row">Duration</th>
-              <td>6 weeks</td>
-              <td>3 weeks</td>
-              <td>1 week</td>
-            </tr>
-            <tr>
-              <th scope="row">Academic hours</th>
-              <td>56</td>
-              <td>56</td>
-              <td>10</td>
-            </tr>
-            <tr>
-              <th scope="row">What the training includes</th>
-              <td>Theory (traffic rules, road signs, first aid basics) and practice (vehicle control, parking, city driving)</td>
-              <td>The same core hours as Category B in a shorter schedule</td>
-              <td>Focused driving practice</td>
-            </tr>
-            <tr>
-              <th scope="row">Who it is for</th>
-              <td>New drivers who want full training</td>
-              <td>New drivers who want a faster pace</td>
-              <td>Returning drivers who want to refresh their skills</td>
-            </tr>
-            <tr>
-              <th scope="row">Next step</th>
-              <td><a class="btn btn-primary btn-sm" id="compare-category-b-details" href="courseDetail.html">Category B details</a></td>
-              <td><a class="btn btn-outline-primary btn-sm" id="compare-intensive-enroll" href="index.html?program=intensive#enrollment-form">Enroll in Intensive</a></td>
-              <td><a class="btn btn-outline-primary btn-sm" id="compare-refresher-enroll" href="index.html?program=refresher#enrollment-form">Enroll in Defensive Driving</a></td>
-            </tr>
-          </tbody>
+          <!-- Course columns and rows are built by js/courses-catalog.js -->
+          <tbody></tbody>
         </table>
       </div>
     </section>

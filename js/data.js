@@ -8,35 +8,83 @@ const PROGRAMS = [
     {
         id: 'category-b',
         name: 'Category B',
+        shortName: 'Category B',
+        label: 'Most complete',
+        summary: 'Full training for new drivers.',
+        audience: 'new',
+        featured: true,
         price: 145000,
         weeks: 6,
         hours: 56,
         minimumAge: 17,
-        maxMonths: 6
+        maxMonths: 6,
+        includes: 'Theory (traffic rules, road signs, first aid basics) and practice (vehicle control, parking, city driving)',
+        forWhom: 'New drivers who want full training',
+        detailsPage: 'courseDetail.html',
+        detailsText: 'View Category B details'
     },
     {
         id: 'intensive',
         name: 'Intensive Category B',
+        shortName: 'Intensive',
+        label: 'Faster pace',
+        summary: 'The same core hours in a shorter schedule.',
+        audience: 'new',
+        featured: false,
         price: 165000,
         weeks: 3,
         hours: 56,
         minimumAge: 17,
-        maxMonths: 6
+        maxMonths: 6,
+        includes: 'The same core hours as Category B in a shorter schedule',
+        forWhom: 'New drivers who want a faster pace',
+        // No separate page yet: the details live in the comparison table.
+        detailsPage: null,
+        detailsText: 'Compare intensive details'
     },
     {
         id: 'refresher',
         name: 'Defensive Driving',
+        shortName: 'Defensive Driving',
+        label: 'Skill refresh',
+        summary: 'Focused practice for returning drivers.',
+        audience: 'returning',
+        featured: false,
         price: 45000,
         weeks: 1,
         hours: 10,
         minimumAge: 18,
-        maxMonths: 3
+        maxMonths: 3,
+        includes: 'Focused driving practice',
+        forWhom: 'Returning drivers who want to refresh their skills',
+        detailsPage: null,
+        detailsText: 'Compare refresher details'
     }
 ];
 
 const INSTRUCTORS = [
-    { id: 'nurlan', name: 'Nurlan Idrisov' },
-    { id: 'aliya', name: 'Aliya Sadykova' }
+    {
+        id: 'nurlan',
+        name: 'Nurlan Idrisov',
+        role: 'Senior instructor',
+        photo: 'images/nurlan.jpg',
+        description: 'More than 12 years of Category B teaching experience with a focus on confident road decisions.',
+        specialties: [
+            { id: 'highway', label: 'Highway driving' },
+            { id: 'night', label: 'Night driving' }
+        ]
+    },
+    {
+        id: 'aliya',
+        name: 'Aliya Sadykova',
+        role: 'Defensive driving instructor',
+        photo: 'images/aliya.jpg',
+        description: 'Focused support for first-time and returning drivers who want to feel more comfortable on the road.',
+        specialties: [
+            { id: 'winter', label: 'Winter conditions' },
+            { id: 'beginner', label: 'Anxious drivers' }
+        ]
+    }
 ];
 
 // instructorId is null for online theory: it is taught by the theory team.
@@ -51,7 +99,6 @@ const SCHEDULE_SESSIONS = [
         instructor: 'Nurlan Idrisov',
         location: 'Astana–Burabay highway',
         mode: 'On road',
-        seats: 2,
         durationHours: 2
     },
     {
@@ -64,7 +111,6 @@ const SCHEDULE_SESSIONS = [
         instructor: 'Prestige theory instructor',
         location: 'Online classroom',
         mode: 'Online',
-        seats: 12,
         durationHours: 2
     },
     {
@@ -77,7 +123,6 @@ const SCHEDULE_SESSIONS = [
         instructor: 'Bilingual theory instructor',
         location: 'Online classroom',
         mode: 'Online',
-        seats: 9,
         durationHours: 2
     },
     {
@@ -90,7 +135,6 @@ const SCHEDULE_SESSIONS = [
         instructor: 'Aliya Sadykova',
         location: 'Left side of Astana',
         mode: 'On road',
-        seats: 1,
         durationHours: 2
     },
     {
@@ -103,7 +147,6 @@ const SCHEDULE_SESSIONS = [
         instructor: 'Nurlan Idrisov',
         location: 'Closed training facility',
         mode: 'Training ground',
-        seats: 3,
         durationHours: 2
     },
     {
@@ -116,7 +159,6 @@ const SCHEDULE_SESSIONS = [
         instructor: 'Aliya Sadykova',
         location: 'Right side of Astana',
         mode: 'On road',
-        seats: 2,
         durationHours: 2
     }
 ];
