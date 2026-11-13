@@ -1,6 +1,20 @@
 
 'use strict';
 
+const PUBLISHED_REVIEWS = [
+    {
+        id: 'zhanna',
+        name: 'Zhanna T.',
+        title: 'Learning with Nurlan',
+        text: '“Nurlan made me feel confident behind the wheel within two weeks.”',
+        rating: null,
+        course: '',
+        recommend: '',
+        date: '2026-03',
+        dateLabel: 'March 2026'
+    }
+];
+
 $(function () {
     const $form = $('#review-form');
     const $list = $('#reviews-list');
@@ -27,35 +41,6 @@ $(function () {
     $form.attr('novalidate', 'novalidate');
     $submit.attr('type', 'submit');
 
-    const $phoneGroup = $('<div>', {
-        class: 'col-12 col-md-6'
-    });
-
-    const $phone = $('<input>', {
-        type: 'tel',
-        id: 'reviewer-phone',
-        name: 'reviewer-phone',
-        class: 'form-control',
-        autocomplete: 'tel',
-        required: true,
-        maxlength: 25,
-        placeholder: '+7 (705) 123-4567'
-    });
-
-    $phoneGroup.append(
-        $('<label>', {
-            for: 'reviewer-phone',
-            class: 'form-label fw-semibold'
-        }).text('Phone number'),
-        $phone,
-        $('<div>', {
-            id: 'reviewer-phone-error',
-            class: 'invalid-feedback'
-        }).text('Please enter a valid phone number.')
-    );
-
-    $('#reviewer-email').closest('.col-12').after($phoneGroup);
-
     $formNote.text(
         'Reviews are stored only while this page is open. ' +
         'No data is sent to a server or published online. ' +
@@ -72,22 +57,10 @@ $(function () {
         }
     });
 
-    const $original = $('#review-zhanna');
-
-    if ($original.length) {
-        reviews.push({
-            id: 'zhanna',
-            name: $original.find('cite').text().trim(),
-            title: $original.find('h3').text().trim(),
-            text: $original.find('blockquote p').text().trim(),
-            rating: null,
-            course: '',
-            recommend: '',
-            date: '',
-            dateLabel: 'March 2026',
-            local: false
-        });
-    }
+    // Published reviews are kept as data; renderReviews() builds every card.
+    $.each(PUBLISHED_REVIEWS, function (index, review) {
+        reviews.push($.extend({}, review, { local: false }));
+    });
 
     function createReviewCard(review) {
         const $column = $('<div>', {
@@ -255,7 +228,6 @@ $(function () {
         return {
             name: $.trim($('#reviewer-name').val()),
             email: $.trim($('#reviewer-email').val()),
-            phone: $.trim($phone.val()),
             rating: Number($('#rating').val()),
             course: $('#course-reviewed').val(),
             recommend: $form
@@ -282,18 +254,6 @@ $(function () {
         ) {
             errors['reviewer-email'] =
                 'Enter a valid email, for example name@example.com.';
-        }
-
-        const phoneDigits = values.phone.replace(/\D/g, '');
-        const allowedPhoneCharacters = /^\+?[\d\s()-]+$/;
-
-        if (
-            !allowedPhoneCharacters.test(values.phone) ||
-            phoneDigits.length < 10 ||
-            phoneDigits.length > 15
-        ) {
-            errors['reviewer-phone'] =
-                'Enter a valid phone number with 10–15 digits.';
         }
 
         if (
@@ -346,7 +306,6 @@ $(function () {
     const fieldKeys = [
         'reviewer-name',
         'reviewer-email',
-        'reviewer-phone',
         'rating',
         'course-reviewed',
         'recommend',
@@ -480,7 +439,6 @@ $(function () {
 
         $('#reviewer-name').val(review.name);
         $('#reviewer-email').val('');
-        $phone.val('');
         $('#rating').val(String(review.rating));
         $('#course-reviewed').val(review.course);
         $('#review-text').val(review.text);
@@ -503,7 +461,7 @@ $(function () {
         $submit.text('Save review changes');
 
         $formNote.text(
-            'Editing your local review. Enter your email and phone ' +
+            'Editing your local review. Enter your email ' +
             'again, and renew consent. Clear form cancels editing.'
         );
 

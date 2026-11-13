@@ -119,12 +119,8 @@
   min-width: 10rem;
 }
 
-/* Future JavaScript states. .is-hidden, .is-selected, .is-active, .is-error, .is-success
-   and .status-message already exist in the shared css/index.css and are reused here. */
-.is-visible {
-  display: block;
-}
-
+/* State classes (.is-hidden, .is-error, .is-success, .status-message) come from
+   the shared css/index.css and are switched by js/courses.js and js/courses-installment.js. */
 .empty-state {
   border: 2px dashed #c9d6e2;
   background: #fff;

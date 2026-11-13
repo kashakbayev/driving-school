@@ -7,21 +7,18 @@ $(function () {
 
     if (!$list.length || !$results.length) return;
 
-    const instructors = [];
-
-    $list.children('div').each(function () {
-        const $profile = $(this);
-        const $article = $profile.find('article[data-instructor]:first');
-
-        if (!$article.length) return;
-
-        instructors.push({
-            id: $article.attr('data-instructor'),
-            name: $article.find('h3').first().text().trim(),
-            description: $article.find('.card-body p').first().text().trim(),
-            specialties: ($article.attr('data-specialty') || '').split(' '),
-            $profile: $profile
-        });
+    // Profiles are built from INSTRUCTORS by js/instructors-cards.js; here
+    // each data item is paired with its profile element for filtering.
+    const instructors = $.map(INSTRUCTORS, function (instructor) {
+        return {
+            id: instructor.id,
+            name: instructor.name,
+            description: instructor.description,
+            specialties: $.map(instructor.specialties, function (specialty) {
+                return specialty.id;
+            }),
+            $profile: $('#' + instructor.id + '-profile')
+        };
     });
 
     const $tools = $('<div>', {

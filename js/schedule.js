@@ -1,37 +1,9 @@
 'use strict';
 
-// SCHEDULE_SESSIONS and the choice storage helpers come from js/data.js.
+// SCHEDULE_SESSIONS and the choice storage come from js/data.js; filtering and
+// sorting rules come from js/rules.js. This file only handles the page.
 
-function matchesScheduleFilters(session, query, type) {
-    const searchable = [
-        session.day,
-        session.time,
-        session.type,
-        session.instructor,
-        session.location,
-        session.mode
-    ].join(' ').toLowerCase();
-
-    return searchable.includes(query.trim().toLowerCase()) &&
-        (type === 'all' || session.type === type);
-}
-
-function sortScheduleSessions(sessions, sortMode) {
-    return [...sessions].sort(function (first, second) {
-        switch (sortMode) {
-            case 'availability':
-                return second.seats - first.seats ||
-                    first.dayOrder - second.dayOrder;
-            case 'day':
-            default:
-                return first.dayOrder - second.dayOrder ||
-                    first.time.localeCompare(second.time);
-        }
-    });
-}
-
-// Rewritten feature 2: jQuery .empty(), .append(), .each() and delegated .on()
-// replace createElement/replaceChildren/addEventListener and reduce repeated code.
+// Timetable: jQuery builds the rows, search, filters, sorting and lesson choice.
 $(function () {
     const $table = $('#weekly-schedule-table');
     const $tableBody = $('#schedule-table-body');
@@ -105,7 +77,7 @@ $(function () {
         id: 'schedule-sort'
     }).append(
         $('<option>', { value: 'day', text: 'Day and time' }),
-        $('<option>', { value: 'availability', text: 'Most availability' })
+        $('<option>', { value: 'time', text: 'Earliest time of day' })
     );
     const $reset = $('<button>', {
         class: 'btn btn-outline-secondary',
