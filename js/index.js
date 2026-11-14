@@ -335,8 +335,26 @@ $(function () {
 
         if (findById(INSTRUCTORS, choices.instructorId)) {
             $('#instructor').val(choices.instructorId);
+        } else {
+            // No instructor chosen yet: take the one who teaches the saved lesson.
+            selectSessionInstructor();
         }
     }
+
+    // A practical lesson is always taught by one instructor, so choosing the
+    // lesson time also chooses the instructor. Theory lessons (instructorId
+    // null) and "No preference" leave the instructor as it is.
+    function selectSessionInstructor() {
+        const session = findById(SCHEDULE_SESSIONS, $('#preferred-session').val());
+
+        if (session && session.instructorId !== null) {
+            $('#instructor').val(session.instructorId);
+        }
+    }
+
+    // Bound directly on the select, so it runs before the form's delegated
+    // handlers; they then save and summarise the updated instructor too.
+    $('#preferred-session').on('change', selectSessionInstructor);
 
     function getControls(fieldName) {
         if (fieldName === 'transmission') {
