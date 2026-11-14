@@ -1,10 +1,5 @@
 'use strict';
 
-// Plain JavaScript: builds the course cards and the comparison table on
-// courses.html from the PROGRAMS array in js/data.js. No course markup is
-// written in the HTML. buildElement, formatKzt, pluralize and
-// calculatePayments come from js/courses-installment.js, loaded before this file.
-
 const COURSE_CATEGORY = 'B (car)';
 
 function getEnrollLink(program) {
@@ -34,7 +29,8 @@ function createCourseCard(program) {
     'data-audience': program.audience,
   });
   const article = buildElement('article', {
-    class: program.featured ? 'card course-card featured-course h-100 border-0' : 'card course-card h-100 border-0',
+    // The featured course starts selected (orange outline) until the visitor picks another.
+    class: program.featured ? 'card course-card is-selected h-100 border-0' : 'card course-card h-100 border-0',
     'aria-labelledby': `course-${program.id}-title`,
   });
   const body = buildElement('div', { class: 'card-body p-4 d-flex flex-column' });

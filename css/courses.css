@@ -39,8 +39,10 @@
 /* The base shadow is set here instead of Bootstrap's .shadow-sm utility,
    so the hover shadow can replace it without !important */
 .course-card {
+  outline: 0.18rem solid transparent;
   box-shadow: 0 0.125rem 0.25rem rgba(7, 26, 45, 0.08);
-  transition: transform 180ms ease, box-shadow 180ms ease;
+  cursor: pointer;
+  transition: transform 180ms ease, box-shadow 180ms ease, outline-color 180ms ease;
 }
 
 .course-card:hover {
@@ -48,8 +50,11 @@
   box-shadow: 0 1rem 2.5rem rgba(7, 26, 45, 0.15);
 }
 
-.featured-course {
-  outline: 0.18rem solid var(--prestige-orange);
+/* The chosen course gets the orange outline; js/courses.js moves it on click.
+   Overrides the shared .is-selected in css/index.css to sit flush with the card. */
+.course-card.is-selected {
+  outline-color: var(--prestige-orange);
+  outline-offset: 0;
 }
 
 .course-label {
