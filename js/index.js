@@ -368,10 +368,14 @@ $(function () {
         const $controls = getControls(fieldName);
         const $message = $('#' + fieldName + '-error');
         const invalid = message !== '';
+        // Radio buttons and checkboxes never get .is-success: its white
+        // background would cover the orange :checked fill, so a chosen option
+        // would look empty. Their own checked state already shows they are fine.
+        const isCheckable = $controls.is(':radio, :checkbox');
 
         $controls
             .toggleClass('is-error', invalid)
-            .toggleClass('is-success', !invalid)
+            .toggleClass('is-success', !invalid && !isCheckable)
             .attr('aria-invalid', String(invalid));
 
         if (invalid) {
