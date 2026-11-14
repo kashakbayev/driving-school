@@ -69,6 +69,125 @@ $(function () {
     }).appendTo($emailGroup);
     $('#phone').closest('.col-12').after($emailGroup);
 
+    // Phone mask for Kazakhstan mobile numbers: +7 (7XX) XXX-XX-XX.
+    // "+7 (7" is fixed; the visitor fills the nine underscores with digits.
+    const PHONE_TEMPLATE = '+7 (7__) ___-__-__';
+    const PHONE_PREFIX = '+7 (7';
+    const PHONE_DIGITS = 9;
+    const PHONE_MESSAGE = 'Enter the full number: +7 (7XX) XXX-XX-XX.';
+    const $phone = $('#phone');
+
+    // Positions of the underscores, so the caret can jump to the next free one.
+    const phoneSlots = $.map(PHONE_TEMPLATE.split(''), function (character, index) {
+        return character === '_' ? index : null;
+    });
+
+    // Takes the visitor's nine digits out of whatever is in the field:
+    // typed text inside the mask, or a pasted/autofilled number such as
+    // +77011234567 or 87011234567.
+    function getPhoneDigits(value) {
+        if (value.indexOf(PHONE_PREFIX) === 0) {
+            return value.slice(PHONE_PREFIX.length).replace(/\D/g, '').slice(0, PHONE_DIGITS);
+        }
+
+        let digits = value.replace(/\D/g, '');
+
+        if (digits.length === 11 && (digits[0] === '7' || digits[0] === '8')) {
+            digits = digits.slice(1);
+        }
+
+        if (digits[0] === '7') {
+            digits = digits.slice(1);
+        }
+
+        return digits.slice(0, PHONE_DIGITS);
+    }
+
+    function formatPhone(digits) {
+        let result = PHONE_TEMPLATE;
+
+        $.each(digits.split(''), function (index, digit) {
+            const slot = phoneSlots[index];
+            result = result.slice(0, slot) + digit + result.slice(slot + 1);
+        });
+
+        return result;
+    }
+
+    // Caret position right after the last typed digit (or at the end when full).
+    function getPhoneCaret(digitCount) {
+        return digitCount < PHONE_DIGITS ? phoneSlots[digitCount] : PHONE_TEMPLATE.length;
+    }
+
+    function setPhone(digits, caretAfterDigits) {
+        const input = $phone.get(0);
+        $phone.val(formatPhone(digits));
+
+        if (document.activeElement === input) {
+            const caret = getPhoneCaret(caretAfterDigits);
+            input.setSelectionRange(caret, caret);
+        }
+    }
+
+    // No maxlength: the mask is always full length, so the browser would block
+    // every new digit. getPhoneDigits() already keeps at most nine digits.
+    $phone.attr('placeholder', PHONE_TEMPLATE);
+    $('#phone-error').text(PHONE_MESSAGE);
+    setPhone('', 0);
+
+    // How many of the visitor's digits stand before the caret.
+    function countDigitsBeforeCaret(input) {
+        const value = $(input).val();
+
+        if (value.indexOf(PHONE_PREFIX) !== 0) {
+            return getPhoneDigits(value).length;
+        }
+
+        return getPhoneDigits(PHONE_PREFIX + value.slice(PHONE_PREFIX.length, input.selectionStart)).length;
+    }
+
+    // Every change (typing, pasting, autofill) is rebuilt into the mask,
+    // and the caret stays right after the digit that was just typed.
+    $phone.on('input', function () {
+        setPhone(getPhoneDigits($(this).val()), countDigitsBeforeCaret(this));
+    });
+
+    // Backspace removes the digit before the caret, not a bracket or dash,
+    // and never deletes the fixed +7 (7 part.
+    $phone.on('keydown', function (event) {
+        const input = this;
+
+        if (event.key !== 'Backspace' || input.selectionStart !== input.selectionEnd) {
+            return;
+        }
+
+        event.preventDefault();
+        const digits = getPhoneDigits($(this).val());
+        const before = countDigitsBeforeCaret(input);
+
+        if (before === 0) {
+            return;
+        }
+
+        setPhone(digits.slice(0, before - 1) + digits.slice(before), before - 1);
+        // Let the form update its summary and live validation.
+        $(this).trigger('change');
+    });
+
+    // Keep the caret out of the fixed prefix: clicking or tabbing into the
+    // field puts it at the first empty place.
+    $phone.on('focus click', function () {
+        const input = this;
+        const digits = getPhoneDigits($(this).val());
+
+        if (input.selectionStart < PHONE_PREFIX.length || input.selectionStart > getPhoneCaret(digits.length)) {
+            const caret = getPhoneCaret(digits.length);
+            window.setTimeout(function () {
+                input.setSelectionRange(caret, caret);
+            }, 0);
+        }
+    });
+
     $programSelect.empty().append(
         $('<option>', {
             value: '',
@@ -295,6 +414,11 @@ $(function () {
     function refreshValidation() {
         const errors = validateEnrollmentValues(readValues(), earliestDate);
 
+        // The rule only says the number is incomplete; tell the visitor the mask format.
+        if (errors.phone) {
+            errors.phone = PHONE_MESSAGE;
+        }
+
         $.each(fieldOrder, function (index, fieldName) {
             setFieldState(fieldName, errors[fieldName] || '');
         });
@@ -382,6 +506,7 @@ $(function () {
         window.setTimeout(function () {
             attemptedSubmit = false;
             clearFieldStates();
+            setPhone('', 0);
             $generalError.stop(true, true).addClass('is-hidden');
             $confirmation.stop(true, true).addClass('is-hidden');
             updateSummary();
