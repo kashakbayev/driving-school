@@ -1,8 +1,5 @@
 'use strict';
 
-// Course search and audience filter (jQuery). It uses the search form and the
-// empty state prepared in courses.html; the cards themselves are built by
-// js/courses-catalog.js before this file runs.
 $(function () {
   const FADE_MS = 300;
 
@@ -76,6 +73,16 @@ $(function () {
   });
 
   $form.on('change', 'input[name="audience"]', applyFilters);
+
+  // Course selection: clicking a card (or a button inside it) moves the
+  // orange outline from the previously chosen card to this one.
+  const $courseCards = $cards.find('.course-card');
+  $courseCards.filter('.is-selected').attr('aria-current', 'true');
+
+  $('#course-results').on('click', '.course-card', function () {
+    $courseCards.removeClass('is-selected').removeAttr('aria-current');
+    $(this).addClass('is-selected').attr('aria-current', 'true');
+  });
 
   $search.on('input', applyFilters);
 
