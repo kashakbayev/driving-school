@@ -40,7 +40,22 @@ $(function () {
     // The required attributes remain useful browser/documentation safeguards,
     // but client-side checks can never replace validation on a real server.
     $form.attr('novalidate', 'novalidate');
-    $('#start-date').attr('min', toDateInputValue(earliestDate));
+
+    // Start date: the earliest allowed day is two days from today. The column
+    // is widened (age needs less room) so the whole date and the calendar icon
+    // fit, and a click anywhere in the field opens the calendar, not only the icon.
+    const $startDate = $('#start-date');
+    $startDate.attr('min', toDateInputValue(earliestDate));
+    $('#age').closest('.col-6').removeClass('col-md-3').addClass('col-md-2');
+    $startDate.closest('.col-6').removeClass('col-md-3').addClass('col-md-4');
+
+    $startDate.on('click', function () {
+        try {
+            this.showPicker();
+        } catch (error) {
+            // Older browsers have no showPicker(); their calendar icon still works.
+        }
+    });
     $('label[for="category"]').text('Training program');
     $('#category-error').text('Choose a training program.');
 
