@@ -1,4 +1,3 @@
-
 'use strict';
 
 const PUBLISHED_REVIEWS = [
@@ -28,7 +27,6 @@ $(function () {
 
     const $success = $('#review-form-success');
     const $generalError = $('#review-form-error');
-    const $preview = $('#review-preview');
     const $submit = $('#review-submit');
     const $counter = $('#review-character-count');
     const $formNote = $('#review-form-note');
@@ -41,11 +39,12 @@ $(function () {
     $form.attr('novalidate', 'novalidate');
     $submit.attr('type', 'submit');
 
-    $formNote.text(
+    const defaultFormNote =
         'Reviews are stored only while this page is open. ' +
         'No data is sent to a server or published online. ' +
-        'Reloading removes demonstration reviews.'
-    );
+        'Reloading removes demonstration reviews.';
+
+    $formNote.text(defaultFormNote);
 
     const courseNames = {};
 
@@ -57,7 +56,6 @@ $(function () {
         }
     });
 
-    // Published reviews are kept as data; renderReviews() builds every card.
     $.each(PUBLISHED_REVIEWS, function (index, review) {
         reviews.push($.extend({}, review, { local: false }));
     });
@@ -88,11 +86,14 @@ $(function () {
             $stars.text('Rating not provided');
         } else {
             $stars.html(
-                '&#9733;'.repeat(review.rating) +
-                '&#9734;'.repeat(5 - review.rating)
+                '★'.repeat(review.rating) +
+                '☆'.repeat(5 - review.rating)
             );
 
-            $stars.attr('aria-label', review.rating + ' out of 5 stars');
+            $stars.attr(
+                'aria-label',
+                review.rating + ' out of 5 stars'
+            );
         }
 
         const $reviewText = $('<p>').text(review.text);
@@ -109,11 +110,18 @@ $(function () {
 
         $author.append($time);
 
-        $body.append($title, $stars, $reviewText, $author);
+        $body.append(
+            $title,
+            $stars,
+            $reviewText,
+            $author
+        );
 
         if (review.course) {
             $body.append(
-                $('<p>', { class: 'small' }).text(
+                $('<p>', {
+                    class: 'small'
+                }).text(
                     'Course: ' + courseNames[review.course] +
                     '. Recommends school: ' +
                     (review.recommend === 'yes' ? 'Yes' : 'No')
@@ -241,7 +249,10 @@ $(function () {
     function validateReview(values) {
         const errors = {};
 
-        if (values.name.length < 2 || values.name.length > 80) {
+        if (
+            values.name.length < 2 ||
+            values.name.length > 80
+        ) {
             errors['reviewer-name'] =
                 'Enter a name between 2 and 80 characters.';
         }
@@ -265,9 +276,11 @@ $(function () {
         }
 
         if (!Object.prototype.hasOwnProperty.call(
-            courseNames, values.course
+            courseNames,
+            values.course
         )) {
-            errors['course-reviewed'] = 'Please select a course.';
+            errors['course-reviewed'] =
+                'Please select a course.';
         }
 
         if (
@@ -369,27 +382,26 @@ $(function () {
             .stop(true, true)
             .hide()
             .addClass('is-hidden');
-
-        $preview
-            .stop(true, true)
-            .hide()
-            .addClass('is-hidden');
     }
 
-    $form.on('input change', 'input, select, textarea', function () {
-        const $changedField = $(this);
+    $form.on(
+        'input change',
+        'input, select, textarea',
+        function () {
+            const $changedField = $(this);
 
-        if ($changedField.is('#review-text')) {
-            updateCounter();
+            if ($changedField.is('#review-text')) {
+                updateCounter();
+            }
+
+            hideFeedback();
+
+            if (attempted) {
+                const errors = validateReview(readForm());
+                displayErrors(errors);
+            }
         }
-
-        hideFeedback();
-
-        if (attempted) {
-            const errors = validateReview(readForm());
-            displayErrors(errors);
-        }
-    });
+    );
 
     $form.on('reset', function () {
         editingId = null;
@@ -398,34 +410,33 @@ $(function () {
         displayErrors({});
         hideFeedback();
 
-        $preview.empty();
         $submit.text('Submit review');
 
         $counter.text(
-            '0 / 1200 characters. 0 excluding surrounding spaces. ' +
-            'Minimum: 20.'
+            '0 / 1200 characters. ' +
+            '0 excluding surrounding spaces. Minimum: 20.'
         );
 
-        $formNote.text(
-            'Reviews are stored only while this page is open. ' +
-            'No data is sent to a server or published online. ' +
-            'Reloading removes demonstration reviews.'
-        );
+        $formNote.text(defaultFormNote);
     });
 
-    $list.on('click', 'button[data-review-action]', function () {
-        const $button = $(this);
-        const $card = $button.closest('.review-item');
+    $list.on(
+        'click',
+        'button[data-review-action]',
+        function () {
+            const $button = $(this);
+            const $card = $button.closest('.review-item');
 
-        const id = $card.attr('data-review-id');
-        const action = $button.attr('data-review-action');
+            const id = $card.attr('data-review-id');
+            const action = $button.attr('data-review-action');
 
-        if (action === 'edit') {
-            editReview(id);
-        } else if (action === 'remove') {
-            removeReview(id);
+            if (action === 'edit') {
+                editReview(id);
+            } else if (action === 'remove') {
+                removeReview(id);
+            }
         }
-    });
+    );
 
     function editReview(id) {
         const review = reviews.find(function (item) {
@@ -508,7 +519,9 @@ $(function () {
 
         if (Object.keys(errors).length > 0) {
             $generalError
-                .text('Correct the marked fields before submitting.')
+                .text(
+                    'Correct the marked fields before submitting.'
+                )
                 .removeClass('is-hidden')
                 .hide()
                 .fadeIn(200);
@@ -557,40 +570,21 @@ $(function () {
         $filter.val('all');
         renderReviews();
 
-        const action = wasEditing ? 'updated' : 'added';
+        
+const message = wasEditing
+    ? 'Review is updated.'
+    : 'Review is submitted.';
 
-        $success
-            .text(
-                'Your local demonstration review was ' + action +
-                ' successfully. No data was sent to a server.'
-            )
-            .removeClass('is-hidden')
-            .hide()
-            .fadeIn(300, function () {
-                $(this)
-                    .attr('tabindex', '-1')
-                    .trigger('focus');
-            });
+$success
+    .text(message)
+    .removeClass('is-hidden')
+    .hide()
+    .fadeIn(300, function () {
+        $(this)
+            .attr('tabindex', '-1')
+            .trigger('focus');
+    });
 
-        $preview.empty().append(
-            $('<h3>', {
-                class: 'h5'
-            }).text('Your submitted review'),
-
-            $('<p>').text(
-                review.name + ' · ' +
-                courseNames[review.course] + ' · ' +
-                review.rating + '/5 · Recommends: ' +
-                (review.recommend === 'yes' ? 'Yes' : 'No')
-            ),
-
-            $('<p>').text(review.text)
-        );
-
-        $preview
-            .removeClass('is-hidden')
-            .hide()
-            .slideDown(250);
     });
 
     updateCounter();
